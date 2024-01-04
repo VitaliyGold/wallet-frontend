@@ -1,4 +1,5 @@
 interface Expenses {
+    expenseId: string;
     expensesName: string;
     spendingDate: string;
     amount: number;

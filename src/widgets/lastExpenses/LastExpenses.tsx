@@ -1,19 +1,20 @@
 
 import { expensesListSelector } from "@/entities/expenses";
 import { useSelector } from "react-redux";
+import { ExpensesTable } from "@/features/expensesTable";
 
 
-const ExpensesTable = () => {
+const LastExpenses = () => {
 
     const expensesList = useSelector(expensesListSelector)
 
     return (
         <div>
-            { expensesList.map((expense) => <p>{ expense.amount }</p>) }
+            <ExpensesTable expensesList={expensesList} />
         </div>
     )
 };
 
 export {
-    ExpensesTable,
+    LastExpenses,
 }

@@ -2,7 +2,7 @@ import { INavbarItem } from "../types/types";
 const linksList: INavbarItem[] = [
     {
         title: 'Дашборд',
-        iconName: 'table',
+        iconName: 'dashboard',
         link: '/'
     },
     {

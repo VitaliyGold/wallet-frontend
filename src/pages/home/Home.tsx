@@ -1,9 +1,9 @@
-import { ExpensesTable } from '@/widgets/expensesTable';
+import { LastExpenses } from '@/widgets/lastExpenses';
 
 const Home = () => {
     return (
         <div>
-            <ExpensesTable/>
+            <LastExpenses/>
         </div>
     )
 };

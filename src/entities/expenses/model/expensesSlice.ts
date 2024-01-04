@@ -10,6 +10,7 @@ const initialState: ExpensesSliceSchema = {
             amount: 20,
             categoryIds: ['555'],
             tagIds: ['6666'],
+            expenseId: crypto.randomUUID(),
         }
     ],
 }
