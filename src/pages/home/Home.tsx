@@ -1,7 +1,9 @@
+import { ExpensesTable } from '@/widgets/expensesTable';
+
 const Home = () => {
     return (
         <div>
-            Стартовая старница
+            <ExpensesTable/>
         </div>
     )
 };

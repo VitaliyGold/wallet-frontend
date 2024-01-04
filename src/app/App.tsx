@@ -2,15 +2,18 @@ import './styles/index.less';
 import { AppRouter } from './router/AppRouter';
 import { MainLayout } from './layout/MainLayout';
 import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from './providers';
 
 const App = () =>  {
 
   return (
     <>
         <BrowserRouter>
-            <MainLayout>
-                <AppRouter/>
-            </MainLayout>
+            <StoreProvider>
+                <MainLayout>
+                    <AppRouter/>
+                </MainLayout>
+            </StoreProvider>
         </BrowserRouter>
     </>
   )
