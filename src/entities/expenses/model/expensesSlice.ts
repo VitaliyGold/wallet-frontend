@@ -1,18 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ExpensesSliceSchema } from "../types/expensesSliceSchema";
 import { Expenses } from "../types/expenses";
+import { getExpensesListThunk } from "./expensesThunks";
 
 const initialState: ExpensesSliceSchema = {
-    expensesList: [
-        {
-            expensesName: 'траты на кота',
-            spendingDate: new Date().toISOString(),
-            amount: 20,
-            categoryIds: ['555'],
-            tagIds: ['6666'],
-            expenseId: crypto.randomUUID(),
-        }
-    ],
+    expensesList: [],
 }
 
 const ExpensesSlice = createSlice({
@@ -25,8 +17,20 @@ const ExpensesSlice = createSlice({
             } else {
                 state.expensesList = payload;
             }
+        },
+        clearExpensesList(state) {
+            state.expensesList = [];
         }
-    }
+    },
+    extraReducers(builder) {
+        builder.addCase(getExpensesListThunk.fulfilled, (state, action) => {
+            if (state.expensesList.length) {
+                state.expensesList = [ ...state.expensesList, ...action.payload ]
+            } else {
+                state.expensesList = action.payload;
+            }
+        })
+    },
 });
 
 export const { actions: expensesActions, reducer: expensesReducer } = ExpensesSlice;

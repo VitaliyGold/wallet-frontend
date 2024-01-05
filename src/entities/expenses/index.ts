@@ -1,4 +1,5 @@
 export type { ExpensesSliceSchema } from './types/expensesSliceSchema';
 
-export { expensesReducer } from './model/expensesSlice';
+export { expensesReducer, expensesActions } from './model/expensesSlice';
 export { expensesListSelector } from './model/expensesSelectors';
+export { getExpensesListThunk } from './model/expensesThunks';
