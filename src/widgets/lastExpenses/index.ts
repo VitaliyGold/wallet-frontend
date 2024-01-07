@@ -1,0 +1,1 @@
+export { LastExpenses } from './LastExpenses';

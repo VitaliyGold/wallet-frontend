@@ -5,3 +5,7 @@ export {
 export {
     Icon
 } from './icon';
+
+export {
+    WidgetContainer,
+} from './widgetContainer';
