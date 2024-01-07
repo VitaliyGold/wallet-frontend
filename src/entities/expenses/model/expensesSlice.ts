@@ -5,6 +5,7 @@ import { getExpensesListThunk } from "./expensesThunks";
 
 const initialState: ExpensesSliceSchema = {
     expensesList: [],
+    totalExpenses: 0,
 }
 
 const ExpensesSlice = createSlice({
@@ -25,10 +26,11 @@ const ExpensesSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(getExpensesListThunk.fulfilled, (state, action) => {
             if (state.expensesList.length) {
-                state.expensesList = [ ...state.expensesList, ...action.payload ]
+                state.expensesList = [ ...state.expensesList, ...action.payload.data ]
             } else {
-                state.expensesList = action.payload;
+                state.expensesList = action.payload.data;
             }
+            state.totalExpenses = action.payload.total;
         })
     },
 });

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 
 import Loader from '@/shared/assets/svg/loader.svg?react';
 import styles from './styles.module.less';

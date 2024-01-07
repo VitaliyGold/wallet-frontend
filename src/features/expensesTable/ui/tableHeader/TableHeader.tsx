@@ -23,8 +23,8 @@ const TableHeader: FC<TableHeaderProps> = ({ headerConfig }) => {
                                         return (
                                             <th
                                                 className={cn(styles.cell, styles.headerCell)}
+                                                style={{ width: header.column.getSize() }}
                                                 key={header.id}
-                                                style={{ width: header.getSize() }}
                                             >
                                                 {
                                                     header.isPlaceholder

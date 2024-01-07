@@ -20,7 +20,7 @@ const TableBody: FC<TableBodyProps> = ({ data }) => {
                             {
                                 row.getVisibleCells().map(cell => {
                                     return (
-                                        <td key={cell.id} className={styles.cell}>
+                                        <td key={cell.id} className={styles.cell} style={{ width: cell.column.getSize() }}>
                                             { flexRender(cell.column.columnDef.cell, cell.getContext()) }
                                         </td>
                                     )
