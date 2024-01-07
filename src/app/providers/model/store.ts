@@ -9,7 +9,6 @@ const createReduxStore = () => configureStore({
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
-    //middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(logger).concat(diskFileListApi.middleware),
 });
 
 const store = createReduxStore();
