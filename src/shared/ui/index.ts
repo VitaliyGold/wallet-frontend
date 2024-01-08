@@ -9,3 +9,11 @@ export {
 export {
     WidgetContainer,
 } from './widgetContainer';
+
+export {
+    UiButton
+} from './uiButton';
+
+export {
+    ButtonsGroup
+} from './buttonsGroup';

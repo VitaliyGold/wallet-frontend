@@ -1,5 +1,8 @@
-export type { ExpensesSliceSchema } from './types/expensesSliceSchema';
+export type { ExpensesSliceSchema } from './types/expensesSliceSchemas';
+export type { Expenses } from './types/expenses'; 
 
 export { expensesReducer, expensesActions } from './model/expensesSlice';
-export { expensesListSelector } from './model/expensesSelectors';
+export { createExpensesActions, createExpensesReducer, createExpensesAdapter } from './model/createExpensesSlice';
+export { expensesListSelector, createExpensesStateSelector } from './model/expensesSelectors';
 export { getExpensesListThunk } from './model/expensesThunks';
+export { ExpensesCard } from './ui/expensesCard/ExpensesCard';

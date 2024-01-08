@@ -1,0 +1,46 @@
+.uiButton {
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: var(--text-size-s);
+    line-height: var(--text-size-l);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.blue {
+    background-color: var(--blue-500);
+    color: var(--white);
+    &:hover {
+        background-color: var(--blue-700);
+    }
+    &:disabled {
+        background-color: var(--blue-300);
+        color: var(--gray-300);
+    }
+}
+
+.white {
+    background-color: var(--white);
+    color: var(--black);
+    &:disabled {
+        color: var(--gray-300);
+    }
+}
+
+.large {
+    width: 170px;
+    height: 42px;
+}
+
+.medium {
+    width: 136px;
+    height: 32px;
+}
+
+.small {
+    width: 110px;
+    height: 24px;
+}

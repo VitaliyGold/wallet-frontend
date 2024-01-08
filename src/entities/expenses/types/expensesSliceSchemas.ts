@@ -5,6 +5,11 @@ interface ExpensesSliceSchema {
     totalExpenses: number;
 }
 
+interface CreateExpensesSliceSchema {
+    newExpensesList: Expenses[];
+}
+
 export type {
     ExpensesSliceSchema,
+    CreateExpensesSliceSchema,
 }

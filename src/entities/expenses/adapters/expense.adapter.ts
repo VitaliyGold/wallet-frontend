@@ -5,7 +5,7 @@ const expenseAdapter = ({ expenses_id, name, date, amount, category, tags }: Get
     return {
         expenseId: expenses_id,
         expensesName: name,
-        spendingDate: date,
+        spendingDate: new Date(date).toLocaleDateString(),
         amount,
         categoryIds: category.map((categoryItem) => categoryItem.category_id),
         tagIds: tags.map((tag) => tag.tag_id)
