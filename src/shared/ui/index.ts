@@ -17,3 +17,7 @@ export {
 export {
     ButtonsGroup
 } from './buttonsGroup';
+
+export {
+    UiInput
+} from './uiInput';

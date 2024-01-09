@@ -5,6 +5,7 @@ import { ExpensesList } from "@/features/expensesList";
 import { createExpensesStateSelector, createExpensesActions } from '@/entities/expenses';
 
 import { ActionsMenu } from "./ui/ActionsMenu/ActionsMenu";
+import { ExpensesForm } from "@/features/expensesForm";
 import styles from './styles.module.less';
 
 const CreateExpenses = () => {
@@ -28,6 +29,7 @@ const CreateExpenses = () => {
     return (
         <div className={styles.createExpenses}>
             <ActionsMenu disabledSave={!createExpensesList.length} saveExpensesCallback={saveExpenses} goBackCallback={goBackCallback}/>
+            <ExpensesForm expense={createExpensesList[0]}/>
             <ExpensesList expensesList={createExpensesList} />
         </div>
     )

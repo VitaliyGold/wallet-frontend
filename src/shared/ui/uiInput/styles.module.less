@@ -1,0 +1,23 @@
+.uiInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputLabel {
+    margin-bottom: 2px;
+    font-size: var(--text-size-s);
+}
+
+.inputElement {
+    font-size: var(--text-size-l);
+    border: none;
+    height: 32px;
+    border-radius: 4px;
+    &:disabled {
+        background-color: var(--gray-200);
+        cursor: not-allowed;
+    }
+    font-family: 'Roboto';
+    padding-inline-start: 0;
+    padding: 4px 8px;
+}
