@@ -1,0 +1,41 @@
+.expensesCard {
+    padding: 16px;
+    border-radius: 8px;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    border: 1px solid var(--gray-500);
+    background-color: var(--white);
+    &:hover {
+        box-shadow: var(--widget-shadow);
+    }
+    
+}
+
+.name {
+    font-size: var(--text-size-l);
+    cursor: default;
+}
+
+.actions {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.metaContainer {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    font-size: var(--text-size-s);
+    cursor: default;
+}
+
+.amount {
+    font-size: var(--text-size-l);
+    color: var(--red-400);
+    cursor: default;
+}

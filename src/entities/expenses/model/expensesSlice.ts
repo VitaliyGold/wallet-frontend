@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ExpensesSliceSchema } from "../types/expensesSliceSchema";
+import { ExpensesSliceSchema } from "../types/expensesSliceSchemas";
 import { Expenses } from "../types/expenses";
 import { getExpensesListThunk } from "./expensesThunks";
 

@@ -15,6 +15,14 @@ interface GetExpenseApi {
     ]
 }
 
+interface SetExpenseApi {
+    amount: number,
+    date: string,
+    name: string,
+    categories: string[],
+    tags: string[],
+}
+
 interface GetExpenseRequestParams {
     limit: number;
     offset: number;
@@ -22,6 +30,7 @@ interface GetExpenseRequestParams {
 }
 
 export type {
+    SetExpenseApi,
     GetExpenseApi,
     GetExpenseRequestParams,
 }
