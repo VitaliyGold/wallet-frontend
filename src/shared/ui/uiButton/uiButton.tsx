@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import styles from './styles.module.less';
 
-type ViewType = 'blue' | 'white';
+type ViewType = 'blue' | 'white' | 'transparent';
 
 type ButtonSize = 'large' | 'medium' | 'small';
 
@@ -11,11 +11,12 @@ interface UiButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButto
     viewType?: ViewType,
     size?: ButtonSize,
     children: ReactNode,
+    outline?: boolean,
 }
 
-const UiButton: FC<UiButtonProps> = ({ viewType = 'blue', children, size = 'medium', ...rest }) => {
+const UiButton: FC<UiButtonProps> = ({ viewType = 'blue', outline = false, children, size = 'medium', ...rest }) => {
     return (
-        <button className={ cn(styles.uiButton, styles[viewType], styles[size]) } { ...rest}>
+        <button className={ cn(styles.uiButton, styles[viewType], styles[size], outline ? styles['outline'] : '') } { ...rest}>
             <span>
                 { children }
             </span>

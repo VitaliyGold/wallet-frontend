@@ -19,5 +19,10 @@ export {
 } from './buttonsGroup';
 
 export {
-    UiInput
+    UiInput,
+    MaskedUiInput,
 } from './uiInput';
+
+export {
+    UiModal
+} from './uiModal';

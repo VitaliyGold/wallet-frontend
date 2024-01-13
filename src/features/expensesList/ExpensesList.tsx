@@ -3,17 +3,19 @@ import { FC, ReactNode } from 'react';
 import type { Expenses } from '@/entities/expenses';
 import { ExpensesCard } from '@/entities/expenses';
 
-
+import styles from './styles.module.less';
 interface ExpensesListProps {
     expensesList: Expenses[];
     expenseControlPanel?: ReactNode;
+    lastListItem?: ReactNode;
 }
 
-const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel }) => {
+const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel, lastListItem = null }) => {
 
     return (
-        <div>
+        <div className={styles.expenseList}>
             { expensesList.map(expenses => <ExpensesCard key={expenses.expenseId} expenses={expenses} actionComponent={expenseControlPanel}/>) }
+            { lastListItem }
         </div>
     )
 };

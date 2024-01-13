@@ -1,19 +1,23 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/app";
 import { ExpensesList } from "@/features/expensesList";
-import { createExpensesStateSelector, createExpensesActions } from '@/entities/expenses';
+import { createExpensesStateSelector, createExpensesActions, Expenses, createExpensesThunk } from '@/entities/expenses';
+import { UiLoader } from "@/shared/ui";
 
 import { ActionsMenu } from "./ui/ActionsMenu/ActionsMenu";
-import { ExpensesForm } from "@/features/expensesForm";
+import { AddNewExpenseCard } from "./ui/AddNewExpenseCard/AddNewExpenseCard";
 import styles from './styles.module.less';
 
 const CreateExpenses = () => {
-    console.log('рендер')
+
+    const [ isLoading, setLoading ] = useState(false);
+
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-
-    dispatch(createExpensesActions.addNewExpense({ expenseId: '123', expensesName: 'Тестовая трата', amount: 200, categoryIds: [], tagIds: [], spendingDate: '11.02.2023' }))
 
     const createExpensesList = useSelector(createExpensesStateSelector.selectAll);
 
@@ -21,16 +25,24 @@ const CreateExpenses = () => {
         dispatch(createExpensesActions.removeAllExpenses());
     }
 
-    const saveExpenses = () => {
-        console.log('сохранение')
+    const saveExpenses = async () => {
+        setLoading(true);
+        await dispatch(createExpensesThunk(createExpensesList));
+        navigate('/expenses');
     }
 
+    const onAddExpense = (expense: Expenses) => {
+        dispatch(createExpensesActions.addNewExpense(expense));
+    }
+
+    if (isLoading) {
+        return <UiLoader/>
+    }
 
     return (
         <div className={styles.createExpenses}>
             <ActionsMenu disabledSave={!createExpensesList.length} saveExpensesCallback={saveExpenses} goBackCallback={goBackCallback}/>
-            <ExpensesForm expense={createExpensesList[0]}/>
-            <ExpensesList expensesList={createExpensesList} />
+            <ExpensesList expensesList={createExpensesList} lastListItem={<AddNewExpenseCard addNewExpense={onAddExpense} />}/>
         </div>
     )
 };

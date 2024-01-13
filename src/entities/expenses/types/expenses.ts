@@ -2,7 +2,7 @@ interface Expenses {
     expenseId: string;
     expensesName: string;
     spendingDate: string;
-    amount: number;
+    amount: string;
     categoryIds: string[];
     tagIds: string[];
 }

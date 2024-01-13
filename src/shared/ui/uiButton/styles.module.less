@@ -8,6 +8,9 @@
     line-height: var(--text-size-l);
     text-decoration: none;
     cursor: pointer;
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 
 .blue {
@@ -18,8 +21,28 @@
     }
     &:disabled {
         background-color: var(--blue-300);
+    }
+}
+
+.transparent {
+    background-color: transparent;
+    color: var(--black);
+    &:disabled {
         color: var(--gray-300);
     }
+    &.outline {
+        border: 1px solid var(--blue-500);
+        color: var(--blue-500);
+        &:hover {
+            color: var(--blue-700);
+            border: 1px solid var(--blue-700);
+        }
+        &:disabled {
+            background-color: var(--blue-300);
+            color: var(--gray-300);
+        }
+    }
+
 }
 
 .white {
