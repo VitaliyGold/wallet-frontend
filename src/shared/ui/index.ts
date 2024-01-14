@@ -6,6 +6,10 @@ export {
     Icon
 } from './icon';
 
+export type {
+    IconsTypes
+} from './icon';
+
 export {
     WidgetContainer,
 } from './widgetContainer';
@@ -15,8 +19,12 @@ export {
 } from './uiButton';
 
 export {
-    ButtonsGroup
-} from './buttonsGroup';
+    UiIconButton,
+} from './uiIconButton';
+
+export {
+    UiButtonsGroup
+} from './uiButtonsGroup';
 
 export {
     UiInput,

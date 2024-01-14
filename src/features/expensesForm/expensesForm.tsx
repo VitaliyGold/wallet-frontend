@@ -4,7 +4,7 @@ import type { SubmitHandler } from 'react-hook-form';
 
 import type { Expenses } from '@/entities/expenses';
 import { getExpenseAdapter } from '@/entities/expenses';
-import { UiInput, UiButton, ButtonsGroup, MaskedUiInput } from '@/shared/ui';
+import { UiInput, UiButton, UiButtonsGroup, MaskedUiInput } from '@/shared/ui';
 import { CreateExpenseFormData } from './types';
 
 import styles from './styles.module.less';
@@ -25,7 +25,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
 
     const clearForm = () => {
         reset();
-        console.log('1')
         closeCallback();
     }
 
@@ -61,10 +60,10 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 render={({ field }) => (<UiInput type='date' label="Дата траты" { ...field } />)}
             />
             <div className={styles.formControls}>
-                <ButtonsGroup>
+                <UiButtonsGroup>
                     <UiButton onClick={() => clearForm()} viewType="transparent" type='reset' outline>Отменить</UiButton>
                     <UiButton type="submit">Добавить</UiButton>
-                </ButtonsGroup>
+                </UiButtonsGroup>
             </div>
         </form>
     )

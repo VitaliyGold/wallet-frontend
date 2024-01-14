@@ -1,4 +1,4 @@
-import { RootStore } from "@/app";
+import type { RootStore } from "@/app";
 import { createSelector } from "@reduxjs/toolkit";
 import { createExpensesAdapter } from './createExpensesSlice';
 

@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/app";
+import type { RootStore } from "@/app";
 import { ExpensesList } from "@/features/expensesList";
-import { createExpensesStateSelector, createExpensesActions, Expenses, createExpensesThunk } from '@/entities/expenses';
-import { UiLoader } from "@/shared/ui";
+import { createExpensesStateSelector, createExpensesActions, Expenses, createExpensesThunk, ExpensesCardActions } from '@/entities/expenses';
+import { UiLoader, UiModal } from "@/shared/ui";
+import { ExpensesForm } from "@/features/expensesForm";
 
 import { ActionsMenu } from "./ui/ActionsMenu/ActionsMenu";
 import { AddNewExpenseCard } from "./ui/AddNewExpenseCard/AddNewExpenseCard";
@@ -15,11 +17,15 @@ const CreateExpenses = () => {
 
     const [ isLoading, setLoading ] = useState(false);
 
+    const [ editExpenseId, setEditExpenseId ] = useState<string>('');
+
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
 
     const createExpensesList = useSelector(createExpensesStateSelector.selectAll);
+
+    const editableExpense = useSelector((state: RootStore) => createExpensesStateSelector.selectById(state, editExpenseId));
 
     const goBackCallback = () => {
         dispatch(createExpensesActions.removeAllExpenses());
@@ -29,6 +35,20 @@ const CreateExpenses = () => {
         setLoading(true);
         await dispatch(createExpensesThunk(createExpensesList));
         navigate('/expenses');
+    }
+
+    const removeExpense = (expenseId: string) => {
+        dispatch(createExpensesActions.removeExpense(expenseId));
+        setEditExpenseId('')
+    }
+
+    const startEditExpense = (expenseId: string) => {
+        setEditExpenseId(expenseId);
+    }
+
+    const editExpense = (expense: Expenses) => {
+        dispatch(createExpensesActions.updateExpense({ id: expense.expenseId, changes: expense  }));
+        setEditExpenseId('');
     }
 
     const onAddExpense = (expense: Expenses) => {
@@ -42,7 +62,20 @@ const CreateExpenses = () => {
     return (
         <div className={styles.createExpenses}>
             <ActionsMenu disabledSave={!createExpensesList.length} saveExpensesCallback={saveExpenses} goBackCallback={goBackCallback}/>
-            <ExpensesList expensesList={createExpensesList} lastListItem={<AddNewExpenseCard addNewExpense={onAddExpense} />}/>
+            <ExpensesList 
+                expensesList={createExpensesList} 
+                lastListItem={<AddNewExpenseCard addNewExpense={onAddExpense}/>} 
+                expenseControlPanel={(expenseId) => 
+                    <ExpensesCardActions removeAction={() => removeExpense(expenseId)} editAction={() => startEditExpense(expenseId)}/>
+                }
+            />
+            {
+                editExpenseId 
+                && 
+                <UiModal>
+                    <ExpensesForm expense={editableExpense} saveCallback={editExpense} closeCallback={() => setEditExpenseId('')}/>
+                </UiModal>
+            }
         </div>
     )
 };
