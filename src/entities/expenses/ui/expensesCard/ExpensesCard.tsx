@@ -11,7 +11,7 @@ interface ExpensesCardProps {
     actionComponent?: ReactNode;
 }
 
-const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent }) => {
+const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = null }) => {
     return (
         <div className={styles.expensesCard}>
             

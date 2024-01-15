@@ -10,7 +10,7 @@ interface ButtonsGroupProps {
     position?: ButtonGroupPosition,
 }
 
-const ButtonsGroup: FC<ButtonsGroupProps> = ({ children, position = 'end' }) => {
+const UiButtonsGroup: FC<ButtonsGroupProps> = ({ children, position = 'end' }) => {
     return (
         <div className={cn(styles.buttonsGroup, styles[position])}>
             { children }
@@ -19,5 +19,5 @@ const ButtonsGroup: FC<ButtonsGroupProps> = ({ children, position = 'end' }) => 
 };
 
 export {
-    ButtonsGroup,
+    UiButtonsGroup,
 }

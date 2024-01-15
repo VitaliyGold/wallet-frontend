@@ -6,7 +6,7 @@ import { ExpensesCard } from '@/entities/expenses';
 import styles from './styles.module.less';
 interface ExpensesListProps {
     expensesList: Expenses[];
-    expenseControlPanel?: ReactNode;
+    expenseControlPanel?: (expenseId: string) => ReactNode;
     lastListItem?: ReactNode;
 }
 
@@ -14,7 +14,7 @@ const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel
 
     return (
         <div className={styles.expenseList}>
-            { expensesList.map(expenses => <ExpensesCard key={expenses.expenseId} expenses={expenses} actionComponent={expenseControlPanel}/>) }
+            { expensesList.map(expenses => <ExpensesCard key={expenses.expenseId} expenses={expenses} actionComponent={expenseControlPanel && expenseControlPanel(expenses.expenseId)}/>) }
             { lastListItem }
         </div>
     )

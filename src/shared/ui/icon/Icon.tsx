@@ -3,6 +3,7 @@ import type { FC, SVGProps } from 'react';
 
 import { iconComponents } from './model/icon-components';
 import { IconsTypes } from './model/types';
+import styles from './styles.module.less';
 
 
 interface IconProps {
@@ -16,7 +17,7 @@ const Icon: FC<IconProps> = memo(({ iconType, size = 24 }) => {
         console.log('такой иконки нет в паке')
         return null;
     }
-    return <IconComponent width={size} height={size}/>
+    return <IconComponent width={size} height={size} className={styles[iconType]}/>
 });
 
 export { Icon };

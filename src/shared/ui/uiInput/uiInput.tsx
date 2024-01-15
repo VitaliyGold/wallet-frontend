@@ -8,7 +8,6 @@ interface UiInputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputEl
 }
 
 const UiInput = memo(forwardRef<HTMLInputElement, UiInputProps>(({ label, ...rest }, ref) => {
-    console.log('рендер инпута')
     return (
         <div className={styles.uiInput}>
             { label && <label className={styles.inputLabel}>{label}</label> }

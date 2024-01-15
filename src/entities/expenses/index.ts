@@ -7,3 +7,4 @@ export { expensesListSelector, createExpensesStateSelector } from './model/expen
 export { getExpensesListThunk, createExpensesThunk } from './model/expensesThunks';
 export { getExpenseAdapter, createExpenseAdapter } from './adapters/expense.adapter';
 export { ExpensesCard } from './ui/expensesCard/ExpensesCard';
+export { ExpensesCardActions } from './ui/expensesCardActions/ExpensesCardActions';
