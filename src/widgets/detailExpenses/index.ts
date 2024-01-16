@@ -1,0 +1,3 @@
+export {
+    DetailExpenses
+} from './DetailExpenses';

@@ -34,3 +34,7 @@ export {
 export {
     UiModal
 } from './uiModal';
+
+export {
+    InfinityLoader
+} from './infinityLoader';
