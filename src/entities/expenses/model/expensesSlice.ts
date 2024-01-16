@@ -1,38 +1,30 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ExpensesSliceSchema } from "../types/expensesSliceSchemas";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { Expenses } from "../types/expenses";
 import { getExpensesListThunk } from "./expensesThunks";
 
-const initialState: ExpensesSliceSchema = {
-    expensesList: [],
-    totalExpenses: 0,
-}
+const expensesAdapter = createEntityAdapter({
+    selectId: (expenses: Expenses) => expenses.expenseId,
+})
 
 const ExpensesSlice = createSlice({
     name: 'expensesSlice',
-    initialState: initialState,
+    initialState: expensesAdapter.getInitialState({
+        totalExpenses: 0,
+    }),
     reducers: {
-        addExpenses(state, { payload }: PayloadAction<Expenses[]>) {
-            if (state.expensesList.length) {
-                state.expensesList = [ ...state.expensesList, ...payload ]
-            } else {
-                state.expensesList = payload;
-            }
-        },
-        clearExpensesList(state) {
-            state.expensesList = [];
-        }
+        addExpenses: expensesAdapter.addMany,
+        clearExpenses: expensesAdapter.removeAll,
     },
     extraReducers(builder) {
         builder.addCase(getExpensesListThunk.fulfilled, (state, action) => {
-            if (state.expensesList.length) {
-                state.expensesList = [ ...state.expensesList, ...action.payload.data ]
-            } else {
-                state.expensesList = action.payload.data;
-            }
+            expensesAdapter.addMany(state, action.payload.data);
+            console.log(action.payload.total)
             state.totalExpenses = action.payload.total;
         })
     },
 });
 
 export const { actions: expensesActions, reducer: expensesReducer } = ExpensesSlice;
+export {
+    expensesAdapter,
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { InView } from 'react-intersection-observer';
 
-import { expensesListSelector, getExpensesListThunk, expensesActions } from "@/entities/expenses";
+import { expensesListEntitiesSelector, totalExpensesSelector, getExpensesListThunk, expensesActions } from "@/entities/expenses";
 import { ExpensesTable } from "@/features/expensesTable";
 import { UiLoader } from "@/shared/ui";
 
@@ -17,11 +17,12 @@ const LastExpenses = () => {
 
     const [ isTableResolved, setTableResolved ] = useState(false);
 
-    const { totalExpenses, expensesList } = useSelector(expensesListSelector)
+    const lastExpensesList = useSelector(expensesListEntitiesSelector.selectAll);
+    const totalExpenses = useSelector(totalExpensesSelector)
 
     useEffect(() => {
         return () => {
-            dispatch(expensesActions.clearExpensesList())
+            dispatch(expensesActions.clearExpenses())
         }
     }, []);
 
@@ -50,7 +51,7 @@ const LastExpenses = () => {
     }
 
     const getInfinityLoader = () => {
-        if (expensesList && totalExpenses !== expensesList.length) {
+        if (lastExpensesList && totalExpenses !== lastExpensesList.length) {
             return (
                 <InView onChange={getMoreData}>
                     <UiLoader size={20}/>
@@ -60,14 +61,14 @@ const LastExpenses = () => {
         return null
     }
 
-    if (!expensesList) {
+    if (!lastExpensesList) {
         return (
             <div>Трат пока нет</div>
         )
     }
 
     return (
-        <ExpensesTable expensesList={expensesList} infinityLoadingElement={getInfinityLoader()}/>
+        <ExpensesTable expensesList={lastExpensesList} infinityLoadingElement={getInfinityLoader()}/>
     )
 };
 
