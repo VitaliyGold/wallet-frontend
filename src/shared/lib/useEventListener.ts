@@ -11,10 +11,10 @@ const useEventListener = ( eventType: string, callback: CallableFunction, elemen
 
     useEffect(() => {
         if (element == null) return
-        const handler = (e: Event) => callbackRef.current(e)
-        element.addEventListener(eventType, handler)
+        const handler = (e: Event) => callbackRef.current(e);
+        element.addEventListener(eventType, handler);
 
-        return () => element.removeEventListener(eventType, handler)
+        return () => element.removeEventListener(eventType, handler);
     }, [eventType, element])
 };
 export {

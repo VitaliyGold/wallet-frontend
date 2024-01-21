@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, ButtonHTMLAttributes, FC } from "react";
+import type { DetailedHTMLProps, ButtonHTMLAttributes, FC, MouseEvent } from "react";
 import cn from 'classnames';
 
 import type { IconsTypes } from "@/shared/ui";
@@ -19,11 +19,18 @@ interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
     size?: IconSizes;
     viewType?: IconButtonViewType;
     outline?: boolean;
+    onClick: () => void;
 }
 
-const UiIconButton: FC<IconButtonProps> = ({ iconType, size = IconSizes['medium'], viewType = 'gray', outline = false, ...rest }) => {
+const UiIconButton: FC<IconButtonProps> = ({ iconType, size = IconSizes['medium'], viewType = 'gray', outline = false, onClick, ...rest }) => {
+
+    const onClickStopPropagation = (e: MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+    }
+
     return (
-        <button className={cn(styles.iconButton, styles[viewType], outline ? styles['outline'] : '')} { ...rest }>
+        <button className={cn(styles.iconButton, styles[viewType], outline ? styles['outline'] : '')} onClick={onClickStopPropagation} { ...rest }>
             <Icon iconType={iconType} size={size}/>
         </button>
     )

@@ -1,14 +1,17 @@
-import { GetExpenseApi, SetExpenseApi } from "../types/api"
+import { GetExpenseApi, SetExpenseApi, RemoveExpenseApiResponse } from "../types/api"
 import { Expenses } from "../types/expenses"
 
-const getExpenseAdapter = ({ expenses_id, name, date, amount, category, tags } = {} as GetExpenseApi): Expenses => {
+const getExpenseAdapter = (data: GetExpenseApi | RemoveExpenseApiResponse | {} = {}): Expenses => {
+    const expense = data as GetExpenseApi;
+
     return {
-        expenseId: expenses_id ?? crypto.randomUUID(),
-        expensesName: name ?? '',
-        spendingDate: date ? new Date(date).toLocaleDateString() : new Date().toLocaleDateString(),
-        amount: amount ? String(amount) : '',
-        categoryIds: category ? category.map((categoryItem) => categoryItem.category_id) : [],
-        tagIds: tags ? tags.map((tag) => tag.tag_id) : []
+        expenseId: expense?.expenses_id ?? crypto.randomUUID(),
+        expensesName: expense.name ?? '',
+        spendingDate: expense.date ? new Date(expense.date).toLocaleDateString() : new Date().toLocaleDateString(),
+        amount: expense.amount ? String(expense.amount) : '',
+        categoryIds: expense.category ? expense.category.map((categoryItem) => categoryItem.category_id) : [],
+        tagIds: expense.tags ? expense.tags.map((tag) => tag.tag_id) : [],
+        isHidden: false,
     }
 }
 

@@ -4,10 +4,10 @@ import { getExpenseAdapter, createExpenseAdapter } from "../adapters/expense.ada
 import type { PaginationResponse } from '@/shared/types';
 import { Expenses } from "../types/expenses";
 
-import { getExpensesListApi, saveNewExpensesApi } from "../api";
+import { getExpensesListApi, saveNewExpensesApi, removeExpensesApi } from "../api";
 
-const getExpensesListThunk = createAsyncThunk('expenses/fetchList', async ({ limit, offset, name }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
-    const { data, total } = await getExpensesListApi(name, limit, offset);
+const getExpensesListThunk = createAsyncThunk('expenses/fetchList', async ({ limit, offset, name, startDate, endDate }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
+    const { data, total } = await getExpensesListApi(name, limit, offset, startDate, endDate);
     return {
         data: data.map(expense => getExpenseAdapter(expense)),
         total,
@@ -22,7 +22,13 @@ const createExpensesThunk = createAsyncThunk('expenses/create', async (expenses:
     return data.map(expense => getExpenseAdapter(expense));
 })
 
+const removeExpensesThunk = createAsyncThunk('expenses/remove', async (expenseId: string): Promise<Expenses> => {
+    const data = await removeExpensesApi(expenseId);
+    return getExpenseAdapter(data);
+})
+
 export {
     getExpensesListThunk,
     createExpensesThunk,
+    removeExpensesThunk,
 }

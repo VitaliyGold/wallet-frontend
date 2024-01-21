@@ -11,9 +11,12 @@ const createExpensesStateSelector = createExpensesAdapter.getSelectors((state: R
 
 const totalExpensesSelector = createSelector(expensesStateSelector, (state) => state.totalExpenses);
 
+const filtersExpensesSelector = createSelector(expensesStateSelector, (state) => state.filters);
+
 
 export {
     expensesListEntitiesSelector,
     createExpensesStateSelector,
-    totalExpensesSelector
+    totalExpensesSelector,
+    filtersExpensesSelector
 }

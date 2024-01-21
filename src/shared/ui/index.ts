@@ -36,5 +36,9 @@ export {
 } from './uiModal';
 
 export {
+    PageLayout
+} from './pageLayout';
+
+export {
     InfinityLoader
 } from './infinityLoader';

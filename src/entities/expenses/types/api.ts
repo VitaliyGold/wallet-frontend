@@ -27,10 +27,20 @@ interface GetExpenseRequestParams {
     limit: number;
     offset: number;
     name: string;
+    startDate: string;
+    endDate: string;
+}
+
+interface RemoveExpenseApiResponse {
+    expenses_id: string;
+	amount: number;
+	date: string;
+	name: string;
 }
 
 export type {
     SetExpenseApi,
     GetExpenseApi,
     GetExpenseRequestParams,
+    RemoveExpenseApiResponse,
 }

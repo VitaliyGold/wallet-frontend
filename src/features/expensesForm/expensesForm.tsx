@@ -33,7 +33,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
     }
 
     const editExpense = (editedExpense: Expenses) => {
-        // тут запрос на бек
         saveCallback(editedExpense)
     }
 

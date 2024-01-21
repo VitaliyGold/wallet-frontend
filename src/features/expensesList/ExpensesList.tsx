@@ -12,9 +12,16 @@ interface ExpensesListProps {
 
 const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel, lastListItem = null }) => {
 
+    const getExpenseCard = (expenses: Expenses) => {
+        if (expenses.isHidden) {
+            return null;
+        }
+        return <ExpensesCard key={expenses.expenseId} expenses={expenses} actionComponent={expenseControlPanel && expenseControlPanel(expenses.expenseId)}/>
+    }
+
     return (
         <div className={styles.expenseList}>
-            { expensesList.map(expenses => <ExpensesCard key={expenses.expenseId} expenses={expenses} actionComponent={expenseControlPanel && expenseControlPanel(expenses.expenseId)}/>) }
+            { expensesList.map(getExpenseCard) }
             { lastListItem }
         </div>
     )

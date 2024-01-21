@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, ButtonHTMLAttributes, FC, ReactNode } from "react";
+import type { DetailedHTMLProps, ButtonHTMLAttributes, FC, ReactNode, MouseEvent } from "react";
 import cn from 'classnames';
 
 import styles from './styles.module.less';
@@ -12,11 +12,18 @@ interface UiButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButto
     size?: ButtonSize,
     children: ReactNode,
     outline?: boolean,
+    onClick?: () => void;
 }
 
-const UiButton: FC<UiButtonProps> = ({ viewType = 'blue', outline = false, children, size = 'medium', ...rest }) => {
+const UiButton: FC<UiButtonProps> = ({ viewType = 'blue', outline = false, children, size = 'medium', onClick, ...rest }) => {
+
+    const onClickStopPropagation = (e: MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+    }
+
     return (
-        <button className={ cn(styles.uiButton, styles[viewType], styles[size], outline ? styles['outline'] : '') } { ...rest}>
+        <button className={ cn(styles.uiButton, styles[viewType], styles[size], outline ? styles['outline'] : '') } onClick={onClickStopPropagation} { ...rest}>
             <span>
                 { children }
             </span>
