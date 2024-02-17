@@ -27,7 +27,7 @@ const createExpenseAdapter = (expense: Expenses): SetExpenseApi => {
 const updateExpenseAdapter = (expense: Expenses): UpdateExpenseApi => {
     return {
         ...createExpenseAdapter(expense),
-        expenses_id: ''
+        expenses_id: expense.expenseId
     }
 }
 
