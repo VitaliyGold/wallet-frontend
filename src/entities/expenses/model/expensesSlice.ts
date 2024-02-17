@@ -1,38 +1,52 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ExpensesSliceSchema } from "../types/expensesSliceSchemas";
-import { Expenses } from "../types/expenses";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { Expenses, ExpensesFilters } from "../types/expenses";
 import { getExpensesListThunk } from "./expensesThunks";
+import { formatDateToDatepicker, getMonthAgo } from "@/shared/lib/dateMethods";
 
-const initialState: ExpensesSliceSchema = {
-    expensesList: [],
-    totalExpenses: 0,
-}
+import { defaultExpensesFilter } from "../consts";
+
+const expensesAdapter = createEntityAdapter({
+    selectId: (expenses: Expenses) => expenses.expenseId,
+})
 
 const ExpensesSlice = createSlice({
     name: 'expensesSlice',
-    initialState: initialState,
-    reducers: {
-        addExpenses(state, { payload }: PayloadAction<Expenses[]>) {
-            if (state.expensesList.length) {
-                state.expensesList = [ ...state.expensesList, ...payload ]
-            } else {
-                state.expensesList = payload;
-            }
+    initialState: expensesAdapter.getInitialState({
+        totalExpenses: 0,
+        filters: {
+            expensesName: '',
+            startDate: formatDateToDatepicker(getMonthAgo(new Date).getTime()),
+            endDate: formatDateToDatepicker(new Date().getTime()),
         },
-        clearExpensesList(state) {
-            state.expensesList = [];
+    }),
+    reducers: {
+        addExpenses: expensesAdapter.addMany,
+        clearExpenses(state) {
+            expensesAdapter.removeAll(state);
+            state.totalExpenses = 0
+        },
+        setFilters(state, { payload }: PayloadAction<ExpensesFilters>) {
+            state.filters = payload;
+        },
+        setDefaultFilter(state) {
+            state.filters = defaultExpensesFilter();
+        },
+        removeById: expensesAdapter.removeOne,
+        patchExpense(state, { payload }: PayloadAction<Expenses>) {
+            console.log(payload)
+            expensesAdapter.updateOne(state, { id: payload.expenseId, changes: payload });
         }
     },
     extraReducers(builder) {
         builder.addCase(getExpensesListThunk.fulfilled, (state, action) => {
-            if (state.expensesList.length) {
-                state.expensesList = [ ...state.expensesList, ...action.payload.data ]
-            } else {
-                state.expensesList = action.payload.data;
-            }
+            expensesAdapter.addMany(state, action.payload.data);
             state.totalExpenses = action.payload.total;
         })
     },
 });
 
 export const { actions: expensesActions, reducer: expensesReducer } = ExpensesSlice;
+export {
+    expensesAdapter,
+}

@@ -33,7 +33,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
     }
 
     const editExpense = (editedExpense: Expenses) => {
-        // тут запрос на бек
         saveCallback(editedExpense)
     }
 
@@ -62,7 +61,7 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
             <div className={styles.formControls}>
                 <UiButtonsGroup>
                     <UiButton onClick={() => clearForm()} viewType="transparent" type='reset' outline>Отменить</UiButton>
-                    <UiButton type="submit">Добавить</UiButton>
+                    <UiButton type="submit">{ isEdit ? 'Изменить' : 'Добавить' }</UiButton>
                 </UiButtonsGroup>
             </div>
         </form>

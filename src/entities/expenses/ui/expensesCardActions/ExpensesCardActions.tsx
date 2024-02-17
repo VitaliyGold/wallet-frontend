@@ -7,6 +7,7 @@ interface ExpensesCardActionsProps {
     removeAction: () => void;
 }
 const ExpensesCardActions: FC<ExpensesCardActionsProps> = ({ editAction, removeAction }) => {
+
     return (
         <UiButtonsGroup>
             <UiIconButton iconType='edit' onClick={editAction} />

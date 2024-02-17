@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { InView } from 'react-intersection-observer';
 
-import { expensesListSelector, getExpensesListThunk, expensesActions } from "@/entities/expenses";
+import { expensesListEntitiesSelector, totalExpensesSelector, getExpensesListThunk, expensesActions } from "@/entities/expenses";
 import { ExpensesTable } from "@/features/expensesTable";
-import { UiLoader } from "@/shared/ui";
+import { UiLoader, InfinityLoader } from "@/shared/ui";
+import { getMonthAgo } from "@/shared/lib/dateMethods";
 
 import { useAppDispatch } from "@/app";
 
@@ -17,11 +17,12 @@ const LastExpenses = () => {
 
     const [ isTableResolved, setTableResolved ] = useState(false);
 
-    const { totalExpenses, expensesList } = useSelector(expensesListSelector)
+    const lastExpensesList = useSelector(expensesListEntitiesSelector.selectAll);
+    const totalExpenses = useSelector(totalExpensesSelector);
 
     useEffect(() => {
         return () => {
-            dispatch(expensesActions.clearExpensesList())
+            dispatch(expensesActions.clearExpenses())
         }
     }, []);
 
@@ -34,13 +35,19 @@ const LastExpenses = () => {
     }, [offset])
 
     const getData = () => {
-        return dispatch(getExpensesListThunk({ limit: 50, offset, name: '' })).unwrap();
+        return dispatch(getExpensesListThunk({ 
+            limit: 50, 
+            offset, 
+            name: '', 
+            startDate: getMonthAgo(new Date()).toISOString(), 
+            endDate: new Date().toISOString() 
+        })).unwrap();
     }
 
-    const getMoreData = (isVisible: boolean) => {
-        if (isVisible && isTableResolved) {
-            changeOffset(offset + 50);
-        }
+    const haveMoreData = !!lastExpensesList.length && lastExpensesList.length !== totalExpenses;
+
+    const getMoreData = () => {
+        changeOffset(offset + 50);
     }
 
     if (!isTableResolved) {
@@ -49,25 +56,14 @@ const LastExpenses = () => {
         )
     }
 
-    const getInfinityLoader = () => {
-        if (expensesList && totalExpenses !== expensesList.length) {
-            return (
-                <InView onChange={getMoreData}>
-                    <UiLoader size={20}/>
-                </InView> 
-            )
-        }
-        return null
-    }
-
-    if (!expensesList) {
+    if (!lastExpensesList) {
         return (
             <div>Трат пока нет</div>
         )
     }
 
     return (
-        <ExpensesTable expensesList={expensesList} infinityLoadingElement={getInfinityLoader()}/>
+        <ExpensesTable expensesList={lastExpensesList} infinityLoadingElement={<InfinityLoader getMoreCallback={getMoreData} condition={haveMoreData}/>}/>
     )
 };
 
