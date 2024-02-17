@@ -76,10 +76,8 @@ const DetailExpenses = () => {
         setDefaultMode();
         dispatch(expensesActions.patchExpense(expenses));
         try {
-            await dispatch(updateExpensesThunk(expenses));
+            await dispatch(updateExpensesThunk(expenses)).unwrap();
         } catch(e) {
-            console.log(1232)
-            console.log(e)
             dispatch(expensesActions.patchExpense(oldExpense));
         }
     }

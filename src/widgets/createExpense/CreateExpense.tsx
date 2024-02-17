@@ -33,8 +33,14 @@ const CreateExpenses = () => {
 
     const saveExpenses = async () => {
         setLoading(true);
-        await dispatch(createExpensesThunk(createExpensesList));
-        navigate('/expenses');
+        try {
+            await dispatch(createExpensesThunk(createExpensesList)).unwrap();
+            navigate('/expenses');
+        } catch(e) {
+            console.log(1234)
+            console.log(e)
+            setLoading(false);
+        }
     }
 
     const removeExpense = (expenseId: string) => {

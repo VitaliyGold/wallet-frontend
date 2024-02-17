@@ -1,7 +1,7 @@
 import { GetExpenseApi, SetExpenseApi, RemoveExpenseApiResponse } from '../types/api';
 
 import type { PaginationResponse } from '@/shared/types';
-import { request } from 'http';
+import { fetcher } from '@/shared/lib/fetcher';
 
 const getExpensesListApi = (name: string, limit: number, offset: number, startDate: string, endDate: string): Promise<PaginationResponse<GetExpenseApi[]>> => {
     const query = {
@@ -11,48 +11,19 @@ const getExpensesListApi = (name: string, limit: number, offset: number, startDa
         startDate: new Date(startDate).toISOString(),
         endDate: new Date(endDate).toISOString(),
     }
-    return fetch(import.meta.env.FRONTEND_API_URL + 'expenses?' + new URLSearchParams(query).toString(), {
-        method: 'get',
-        
-    }).then(response => response.json());
+    return fetcher.get('expenses', query);
 }
 
 const saveNewExpensesApi = (expenses: SetExpenseApi[]): Promise<GetExpenseApi[]> => {
-    return fetch(import.meta.env.FRONTEND_API_URL + 'expenses', {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(
-            {
-                data: expenses,
-            }
-        )
-    }).then(response => response.json());
+    return fetcher.post('expenses', expenses);
 }
 
 const removeExpensesApi = (expenseId: string): Promise<RemoveExpenseApiResponse> => {
-    return fetch(import.meta.env.FRONTEND_API_URL + 'expenses?' + new URLSearchParams({ expenses_id: expenseId }).toString(), {
-        method: 'delete',
-        
-    }).then(response => response.json());
+    return fetcher.delete('expenses', { expenses_id: expenseId })
 }
 
 const editExpensesApi = (updatedExpense: SetExpenseApi): Promise<GetExpenseApi> => {
-    return fetch(import.meta.env.FRONTEND_API_URL + 'expenses', {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-            data: updatedExpense
-        })
-    })
-    .then(response => response.json())
-    .catch(response => {
-        console.log(response)
-        throw response;
-    });
+    return fetcher.update('expenses', updatedExpense);
 }
 
 export {
