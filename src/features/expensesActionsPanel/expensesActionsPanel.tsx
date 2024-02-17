@@ -12,7 +12,7 @@ const ExpensesActionsPanel: FC<ExpensesActionsPanel> = ({ children }) => {
     return (
         <div className={styles.actionPanel}>
             { children }
-            <Link to={'expenses/create'}>
+            <Link to={'/expenses/create'}>
                 <UiButton>
                     Новый расход
                 </UiButton>

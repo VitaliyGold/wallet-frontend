@@ -37,8 +37,6 @@ const CreateExpenses = () => {
             await dispatch(createExpensesThunk(createExpensesList)).unwrap();
             navigate('/expenses');
         } catch(e) {
-            console.log(1234)
-            console.log(e)
             setLoading(false);
         }
     }
