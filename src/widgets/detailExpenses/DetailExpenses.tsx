@@ -5,7 +5,10 @@ import { RootStore, useAppDispatch } from "@/app";
 import { ExpensesList } from "@/features/expensesList";
 import { RemoveExpenses } from "@/features/removeExpenses";
 import { ExpensesForm } from "@/features/expensesForm";
-import { expensesListEntitiesSelector, totalExpensesSelector, getExpensesListThunk, filtersExpensesSelector, expensesActions, ExpensesCardActions, Expenses } from "@/entities/expenses";
+import { expensesListEntitiesSelector, totalExpensesSelector, getExpensesListThunk, filtersExpensesSelector, expensesActions, ExpensesCardActions, updateExpensesThunk } from "@/entities/expenses";
+import type {
+    Expenses
+} from "@/entities/expenses";
 import { UiLoader, InfinityLoader, UiModal } from "@/shared/ui";
 import { useSkipFirstRender } from "@/shared/lib/useSkipFirstRender";
 
@@ -53,6 +56,11 @@ const DetailExpenses = () => {
         changeOffset(offset + 50);
     };
 
+    const setDefaultMode = () => {
+        setCurrentExpenseId('');
+        setCurrentModalMode(null);
+    }
+
     const startEdit = (expenseId: string) => {
         setCurrentModalMode('edit');
         setCurrentExpenseId(expenseId);
@@ -64,12 +72,16 @@ const DetailExpenses = () => {
     }
 
     const editData = async (expenses: Expenses) => {
-        console.log(expenses);
-    }
-
-    const setDefaultMode = () => {
-        setCurrentExpenseId('');
-        setCurrentModalMode(null);
+        const oldExpense = { ...currentExpense };
+        setDefaultMode();
+        dispatch(expensesActions.patchExpense(expenses));
+        try {
+            await dispatch(updateExpensesThunk(expenses));
+        } catch(e) {
+            console.log(1232)
+            console.log(e)
+            dispatch(expensesActions.patchExpense(oldExpense));
+        }
     }
 
     const haveMoreData = !!expensesList.length && expensesList.length !== totalExpenses;

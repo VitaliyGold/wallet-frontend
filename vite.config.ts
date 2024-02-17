@@ -18,9 +18,9 @@ export default defineConfig(({ mode }) => {
         server: {
             proxy: {
             '/api': {
-                target: env.API_URL, // Change to your Node.js API server address
+                target: env.API_URL,
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, ''), // Remove '/api' prefix
+                rewrite: (path) => path.replace(/^\/api/, ''),
             },
             }
         }

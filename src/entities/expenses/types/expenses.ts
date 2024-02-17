@@ -1,7 +1,7 @@
 interface Expenses {
     expenseId: string;
     expensesName: string;
-    spendingDate: string;
+    spendingDate: number;
     isHidden: boolean;
     amount: string;
     categoryIds: string[];

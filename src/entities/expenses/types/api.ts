@@ -23,6 +23,8 @@ interface SetExpenseApi {
     tags: string[],
 }
 
+type UpdateExpenseApi = SetExpenseApi & Pick<GetExpenseApi, 'expenses_id'>;
+
 interface GetExpenseRequestParams {
     limit: number;
     offset: number;
@@ -41,6 +43,7 @@ interface RemoveExpenseApiResponse {
 export type {
     SetExpenseApi,
     GetExpenseApi,
+    UpdateExpenseApi,
     GetExpenseRequestParams,
     RemoveExpenseApiResponse,
 }

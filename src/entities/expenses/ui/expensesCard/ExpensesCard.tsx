@@ -4,7 +4,9 @@ import { memo } from "react";
 import { getCuttingString } from "@/shared/lib/getCuttingString";
 
 import styles from './styles.module.less';
-import { Expenses } from "../../types/expenses"
+import { Expenses } from "../../types/expenses";
+
+import { formatDateToFront } from "@/shared/lib/dateMethods";
 
 interface ExpensesCardProps {
     expenses: Expenses;
@@ -20,7 +22,7 @@ const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = 
                 { getCuttingString(expenses.expensesName, 40) }
             </p>
             <div className={styles.metaContainer}>
-                <p className={styles.date}>{ expenses.spendingDate }</p>
+                <p className={styles.date}>{ formatDateToFront(new Date(expenses.spendingDate)) }</p>
                 <p className={styles.amount}>{ expenses.amount } ₽</p>
             </div>
         </div>
