@@ -29,8 +29,8 @@ interface GetExpenseRequestParams {
     limit: number;
     offset: number;
     name: string;
-    startDate: string;
-    endDate: string;
+    startDate: number;
+    endDate: number;
 }
 
 interface RemoveExpenseApiResponse {

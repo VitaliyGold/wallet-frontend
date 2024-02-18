@@ -101,7 +101,7 @@ const DetailExpenses = () => {
         
 
     return (
-        <div>
+        <div className={styles.detailExpenses}>
             <ExpensesList 
                 expensesList={expensesList} 
                 expenseControlPanel={(expenseId) => 

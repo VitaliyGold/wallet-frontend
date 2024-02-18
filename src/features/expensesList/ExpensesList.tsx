@@ -21,8 +21,10 @@ const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel
 
     return (
         <div className={styles.expenseList}>
-            { expensesList.map(getExpenseCard) }
-            { lastListItem }
+            <div className={styles.gridContainer}>
+                { expensesList.map(getExpenseCard) }
+                { lastListItem }
+            </div>
         </div>
     )
 };

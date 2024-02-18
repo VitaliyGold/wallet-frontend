@@ -5,6 +5,8 @@ import type { Expenses } from '@/entities/expenses/types/expenses';
 import styles from './styles.module.less';
 import { TableBody } from './ui/tableBody/TableBody';
 import { TableHeader } from './ui/tableHeader/TableHeader';
+import { formatDateToFront } from '@/shared/lib/dateMethods';
+
 interface ExpensesTableProps {
     expensesList: Expenses[];
     infinityLoadingElement?: ReactNode;
@@ -21,7 +23,7 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
         }),
         columnHelper.accessor('spendingDate', {
             header: 'Дата',
-            cell: info => info.renderValue(),
+            cell: info => formatDateToFront(info.getValue()),
         }),
         columnHelper.accessor('amount', {
             header: 'Сумма',

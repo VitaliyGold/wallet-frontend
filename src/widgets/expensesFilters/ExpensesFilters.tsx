@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import { useAppDispatch } from "@/app";
 import { ExpensesActionsPanel } from "@/features/expensesActionsPanel";
 import { filtersExpensesSelector, expensesActions } from "@/entities/expenses";
-import { UiInput } from "@/shared/ui";
+import { UiDatePicker, UiInput } from "@/shared/ui";
 import type { ExpensesFilters } from "@/entities/expenses";
 
 import { isEqualFilter } from './lib/isEqualFilter';
@@ -15,7 +15,7 @@ const ExpensesFilter = () => {
 
     const filter = useSelector(filtersExpensesSelector);
 
-    const { register, handleSubmit } = useForm<ExpensesFilters>({ defaultValues: filter })
+    const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filter })
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
         if (!isEqualFilter(newFilters, filter)) dispatch(expensesActions.setFilters(newFilters));
@@ -27,9 +27,17 @@ const ExpensesFilter = () => {
                 <UiInput label="Название" labelPosition="left" { ...register('expensesName') } />
                 <div className={styles.periodFilters}>
                     с
-                    <UiInput type='date' { ...register('startDate') } />
+                    <Controller
+                        name='startDate'
+                        control={control}
+                        render={({ field }) => (<UiDatePicker { ...field } />)}
+                    />
                     по
-                    <UiInput type='date' { ...register('endDate') } />
+                    <Controller
+                        name='endDate'
+                        control={control}
+                        render={({ field }) => (<UiDatePicker { ...field } />)}
+                    />
                 </div>
             </form>
         </ExpensesActionsPanel>

@@ -9,8 +9,8 @@ interface Expenses {
 }
 
 interface ExpensesFilters {
-    endDate: string;
-    startDate: string;
+    endDate: number;
+    startDate: number;
     expensesName: string;
 }
 

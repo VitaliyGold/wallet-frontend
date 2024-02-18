@@ -39,8 +39,8 @@ const LastExpenses = () => {
             limit: 50, 
             offset, 
             name: '', 
-            startDate: getMonthAgo(new Date()).toISOString(), 
-            endDate: new Date().toISOString() 
+            startDate: getMonthAgo(new Date()).getTime(), 
+            endDate: new Date().getTime() 
         })).unwrap();
     }
 
