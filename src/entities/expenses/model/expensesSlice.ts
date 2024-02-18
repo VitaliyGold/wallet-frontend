@@ -2,7 +2,7 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Expenses, ExpensesFilters } from "../types/expenses";
 import { getExpensesListThunk } from "./expensesThunks";
-import { formatDateToDatepicker, getMonthAgo } from "@/shared/lib/dateMethods";
+import { getMonthAgo } from "@/shared/lib/dateMethods";
 
 import { defaultExpensesFilter } from "../consts";
 
@@ -16,8 +16,8 @@ const ExpensesSlice = createSlice({
         totalExpenses: 0,
         filters: {
             expensesName: '',
-            startDate: formatDateToDatepicker(getMonthAgo(new Date).getTime()),
-            endDate: formatDateToDatepicker(new Date().getTime()),
+            startDate: getMonthAgo(new Date).getTime(),
+            endDate: new Date().getTime(),
         },
     }),
     reducers: {
@@ -34,7 +34,6 @@ const ExpensesSlice = createSlice({
         },
         removeById: expensesAdapter.removeOne,
         patchExpense(state, { payload }: PayloadAction<Expenses>) {
-            console.log(payload)
             expensesAdapter.updateOne(state, { id: payload.expenseId, changes: payload });
         }
     },

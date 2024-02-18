@@ -76,7 +76,7 @@ const CreateExpenses = () => {
             {
                 editExpenseId 
                 && 
-                <UiModal>
+                <UiModal onHideCallback={() => setEditExpenseId('')}>
                     <ExpensesForm expense={editableExpense} saveCallback={editExpense} closeCallback={() => setEditExpenseId('')}/>
                 </UiModal>
             }

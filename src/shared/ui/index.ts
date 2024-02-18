@@ -40,5 +40,9 @@ export {
 } from './pageLayout';
 
 export {
+    UiDatePicker
+} from './uiDatePicker';
+
+export {
     InfinityLoader
 } from './infinityLoader';
