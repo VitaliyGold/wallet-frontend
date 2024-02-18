@@ -6,7 +6,7 @@ const useClickOutside = (ref: RefObject<HTMLElement | null>, cb: CallableFunctio
     useEventListener("click", (e: MouseEvent) => {
         if (ref?.current === null || ref.current.contains(e.target as Node)) return
         cb(e)
-    }, document)
+    }, document, true)
 };
 
 export {

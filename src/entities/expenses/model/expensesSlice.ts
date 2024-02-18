@@ -34,7 +34,6 @@ const ExpensesSlice = createSlice({
         },
         removeById: expensesAdapter.removeOne,
         patchExpense(state, { payload }: PayloadAction<Expenses>) {
-            console.log(payload)
             expensesAdapter.updateOne(state, { id: payload.expenseId, changes: payload });
         }
     },

@@ -27,7 +27,7 @@ const AddNewExpenseCard: FC<AddNewExpenseCardProps> = ({ addNewExpense }) => {
             {
                 isOpenModalCreateExpense 
                 && 
-                <UiModal>
+                <UiModal onHideCallback={() => setModalCreateExpenseState(false)}>
                     <ExpensesForm closeCallback={() => setModalCreateExpenseState(false)} saveCallback={(expense) => onAddNewExpense(expense)}/>
                 </UiModal>
             }
