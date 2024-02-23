@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GetExpenseRequestParams } from '../types/api';
-import { getExpenseAdapter, createExpenseAdapter, updateExpenseAdapter } from "../adapters/expense.adapter";
+import { GetExpenseRequestParams } from '../../types/api';
+import { getExpenseAdapter, createExpenseAdapter, updateExpenseAdapter } from "../../adapters/expense.adapter";
 import type { PaginationResponse } from '@/shared/types';
-import { Expenses } from "../types/expenses";
+import { Expenses } from "../../types/expenses";
 
-import { getExpensesListApi, saveNewExpensesApi, removeExpensesApi, editExpensesApi } from "../api";
+import { getExpensesListApi, saveNewExpensesApi, removeExpensesApi, editExpensesApi } from "../../api/expenses";
 
-const getExpensesListThunk = createAsyncThunk('expenses/fetchList', async ({ limit, offset, name, startDate, endDate }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
+const getExpensesListThunk = createAsyncThunk('expenses/list', async ({ limit, offset, name, startDate, endDate }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
     const { data, total } = await getExpensesListApi(name, limit, offset, startDate, endDate);
     return {
         data: data.map(expense => getExpenseAdapter(expense)),

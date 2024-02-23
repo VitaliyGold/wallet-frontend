@@ -23,7 +23,7 @@ const ExpensesFilter = () => {
 
     return (
         <ExpensesActionsPanel>
-            <form className={styles.expensesFilters} onBlur={handleSubmit(onSubmitFilters)}>
+            <form className={styles.expensesFilters} onBlur={handleSubmit(onSubmitFilters)} onSubmit={handleSubmit(onSubmitFilters)}>
                 <UiInput label="Название" labelPosition="left" { ...register('expensesName') } />
                 <div className={styles.periodFilters}>
                     с
