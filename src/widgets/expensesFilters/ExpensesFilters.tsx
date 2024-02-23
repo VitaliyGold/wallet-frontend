@@ -18,12 +18,13 @@ const ExpensesFilter = () => {
     const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filter })
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
+        console.log(123)
         if (!isEqualFilter(newFilters, filter)) dispatch(expensesActions.setFilters(newFilters));
     };
 
     return (
         <ExpensesActionsPanel>
-            <form className={styles.expensesFilters} onBlur={handleSubmit(onSubmitFilters)}>
+            <form className={styles.expensesFilters} onBlur={handleSubmit(onSubmitFilters)} onSubmit={handleSubmit(onSubmitFilters)}>
                 <UiInput label="Название" labelPosition="left" { ...register('expensesName') } />
                 <div className={styles.periodFilters}>
                     с

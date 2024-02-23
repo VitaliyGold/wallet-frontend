@@ -33,6 +33,8 @@ interface GetExpenseRequestParams {
     endDate: number;
 }
 
+type GetTotalExpensesRequestParams = Omit<GetExpenseRequestParams, 'offset' | 'limit'>;
+
 interface RemoveExpenseApiResponse {
     expenses_id: string;
 	amount: number;
@@ -40,10 +42,16 @@ interface RemoveExpenseApiResponse {
 	name: string;
 }
 
+interface GetTotalExpensesApi {
+    total: number;
+};
+
 export type {
     SetExpenseApi,
     GetExpenseApi,
     UpdateExpenseApi,
+    GetTotalExpensesApi,
+    GetTotalExpensesRequestParams,
     GetExpenseRequestParams,
     RemoveExpenseApiResponse,
 }

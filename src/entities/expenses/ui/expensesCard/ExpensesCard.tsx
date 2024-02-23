@@ -22,7 +22,7 @@ const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = 
                 { getCuttingString(expenses.expensesName, 40) }
             </p>
             <div className={styles.metaContainer}>
-                <p className={styles.date}>{ formatDateToFront(new Date(expenses.spendingDate)) }</p>
+                <p className={styles.date}>{ formatDateToFront(expenses.spendingDate) }</p>
                 <p className={styles.amount}>{ expenses.amount } ₽</p>
             </div>
         </div>
