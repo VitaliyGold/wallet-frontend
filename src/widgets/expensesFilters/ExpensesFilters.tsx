@@ -18,7 +18,6 @@ const ExpensesFilter = () => {
     const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filter })
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
-        console.log(123)
         if (!isEqualFilter(newFilters, filter)) dispatch(expensesActions.setFilters(newFilters));
     };
 
