@@ -32,7 +32,10 @@ const ExpensesSlice = createSlice({
         setDefaultFilter(state) {
             state.filters = defaultExpensesFilter();
         },
-        removeById: expensesAdapter.removeOne,
+        removeById(state, { payload }: PayloadAction<string>) {
+            expensesAdapter.removeOne(state,payload);
+            state.totalExpenses -= 1;
+        },
         patchExpense(state, { payload }: PayloadAction<Expenses>) {
             expensesAdapter.updateOne(state, { id: payload.expenseId, changes: payload });
         }
