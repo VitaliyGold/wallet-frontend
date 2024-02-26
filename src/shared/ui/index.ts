@@ -46,3 +46,7 @@ export {
 export {
     InfinityLoader
 } from './infinityLoader';
+
+export {
+    UiCheckbox
+} from './uiCheckbox';

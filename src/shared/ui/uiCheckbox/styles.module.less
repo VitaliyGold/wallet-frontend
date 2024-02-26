@@ -1,0 +1,19 @@
+.checkboxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+    padding: 4px;
+    cursor: pointer;
+    &.disabled {
+        cursor: default;
+    }
+}
+
+.label {
+    margin-left: 4px;
+}
+
+.checkbox:disabled + .label {
+    color: var(--gray-300);
+}
