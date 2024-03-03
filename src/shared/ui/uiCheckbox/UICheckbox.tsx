@@ -4,16 +4,16 @@ import cn from 'classnames';
 import styles from './styles.module.less';
 
 interface UiCheckboxProps {
-    children: ReactNode;
+    children?: ReactNode;
     value: boolean;
-    onChange: (newValue: boolean) => void;
+    onChange?: (newValue: boolean) => void;
     disabled?: boolean; 
 }
 
 const UiCheckbox: FC<UiCheckboxProps> = ({ children, value, onChange, disabled }) => {
 
     const onCheck = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange(e.target.checked);
+        if (onChange) onChange(e.target.checked);
     }
 
     return (

@@ -50,3 +50,11 @@ export {
 export {
     UiCheckbox
 } from './uiCheckbox';
+
+export {
+    UiSelect
+} from './uiSelect';
+
+export {
+    UiText
+} from './uiText';
