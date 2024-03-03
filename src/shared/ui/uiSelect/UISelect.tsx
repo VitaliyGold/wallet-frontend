@@ -16,11 +16,11 @@ interface UiSelectProps {
     multiply?: boolean;
     onSelected: (selectedValue: string, isSelected: boolean) => void;
     onClose?: () => void;
-    isOptionLoading?: boolean;
+    isOptionsLoading?: boolean;
     currentValuePlaceholder?: string;
 }
 
-const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder }) => {
+const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder, isOptionsLoading = false }) => {
 
     const [ isBodyOpened, setBodyOpened ] = useState(false);
 
@@ -65,7 +65,9 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
 
     const dismiss = useDismiss(context);
 
-    const click = useClick(context);
+    const click = useClick(context, {
+        enabled: !isOptionsLoading,
+    });
 
     const {getReferenceProps, getFloatingProps} = useInteractions([
         click, dismiss,
@@ -77,7 +79,9 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
                 label={option.label} 
                 key={option.value} 
                 isSelected={currentValuesMap.has(option.value)} 
-                onSelect={(check) => onSelect(check, option.value)}/>
+                onSelect={(check) => onSelect(check, option.value)}
+                withCheckbox={multiply}
+                />
             ) 
         }
         return (
@@ -90,7 +94,11 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
     return (
         <div className={styles.selectContainer}>
             <div ref={refs.setReference} { ...getReferenceProps()} className={styles.headerContainer}>
-                <UiSelectHeader currentLabel={Array.from(currentValuesMap.values())} currentValuePlaceholder={currentValuePlaceholder}/>
+                <UiSelectHeader
+                    isLoading={isOptionsLoading}
+                    currentLabel={Array.from(currentValuesMap.values())} 
+                    currentValuePlaceholder={currentValuePlaceholder}
+                />
             </div>
            { isBodyOpened &&
                 <div ref={refs.setFloating} style={{ ...floatingStyles, width: '100%' }} {...getFloatingProps()}>
