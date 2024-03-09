@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit"
 import logger from 'redux-logger';
 import { useDispatch } from 'react-redux'
 import { expensesReducer, createExpensesReducer } from '@/entities/expenses';
+import { categoryReducer } from "@/entities/category";
 
 const createReduxStore = () => configureStore({
     reducer: {
         expenses: expensesReducer,
         createExpenses: createExpensesReducer,
+        category: categoryReducer,
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),

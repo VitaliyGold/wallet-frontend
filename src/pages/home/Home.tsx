@@ -6,9 +6,6 @@ import styles from './styles.module.less';
 
 
 const Home = () => {
-
-    
-
     return (
         <div className={styles.pageContainer}>
             <div className={styles.widget}>

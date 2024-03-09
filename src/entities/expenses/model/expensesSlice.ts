@@ -1,6 +1,6 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Expenses, ExpensesFilters } from "../types/expenses";
+import type { Expenses, ExpensesFilters } from "../types/expenses";
 import { getExpensesListThunk } from "./thunks/expensesThunks";
 import { getMonthAgo } from "@/shared/lib/dateMethods";
 
