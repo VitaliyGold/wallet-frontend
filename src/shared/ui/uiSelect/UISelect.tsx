@@ -56,7 +56,7 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
         placement: 'bottom-start',
         strategy: 'absolute',
         open: isBodyOpened,
-        onOpenChange: setBodyOpened,
+        onOpenChange: triggerOpen,
         whileElementsMounted: autoUpdate,
         middleware: [
             offset(5),
@@ -92,7 +92,7 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
     }
 
     return (
-        <div className={styles.selectContainer}>
+        <div className={styles.selectContainer} tabIndex={0}>
             <div ref={refs.setReference} { ...getReferenceProps()} className={styles.headerContainer}>
                 <UiSelectHeader
                     isLoading={isOptionsLoading}
@@ -101,7 +101,7 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
                 />
             </div>
            { isBodyOpened &&
-                <div ref={refs.setFloating} style={{ ...floatingStyles, width: '100%' }} {...getFloatingProps()}>
+                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto' }} {...getFloatingProps()}>
                     <UiSelectBody>
                         {
                             getSelectBodyContent()

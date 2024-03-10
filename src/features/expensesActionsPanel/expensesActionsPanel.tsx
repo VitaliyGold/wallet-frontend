@@ -11,7 +11,9 @@ interface ExpensesActionsPanel {
 const ExpensesActionsPanel: FC<ExpensesActionsPanel> = ({ children }) => {
     return (
         <div className={styles.actionPanel}>
-            { children }
+            <div className={styles.additionContainer}>
+                { children }
+            </div>
             <Link to={'/expenses/create'}>
                 <UiButton>
                     Новый расход

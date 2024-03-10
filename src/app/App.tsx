@@ -1,8 +1,9 @@
 import './styles/index.less';
 import { AppRouter } from './router/AppRouter';
-import { MainLayout } from './layout/MainLayout';
+import { MainLayout } from './layouts/main/MainLayout';
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from './providers';
+import { DataLayout } from "./layouts/data/DataLayout";
 
 const App = () =>  {
 
@@ -11,7 +12,9 @@ const App = () =>  {
         <BrowserRouter>
             <StoreProvider>
                 <MainLayout>
-                    <AppRouter/>
+                    <DataLayout>
+                        <AppRouter/>
+                    </DataLayout>
                 </MainLayout>
             </StoreProvider>
         </BrowserRouter>

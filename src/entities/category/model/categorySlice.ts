@@ -3,14 +3,14 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import type { Category } from "../types/category";
 import { getCategoryListThunks } from "./thunks/categoryThunks";
 
-const categoryAdapter = createEntityAdapter({
+const categoryEntityAdapter = createEntityAdapter({
     selectId: (category: Category) => category.categoryId,
 })
 
 
 const CategorySlice = createSlice({
     name: 'categorySlice',
-    initialState: categoryAdapter.getInitialState({
+    initialState: categoryEntityAdapter.getInitialState({
         isLoadingCategoryList: false,
     }),
     reducers: {
@@ -18,7 +18,7 @@ const CategorySlice = createSlice({
     },
     extraReducers(builder) {
         builder.addCase(getCategoryListThunks.fulfilled, (state, action) => {
-            categoryAdapter.addMany(state, action.payload);
+            categoryEntityAdapter.addMany(state, action.payload);
             state.isLoadingCategoryList = false;
         })
     }
@@ -27,5 +27,5 @@ const CategorySlice = createSlice({
 export const { actions: categoryActions, reducer: categoryReducer } = CategorySlice;
 
 export {
-    categoryAdapter,
+    categoryEntityAdapter,
 }
