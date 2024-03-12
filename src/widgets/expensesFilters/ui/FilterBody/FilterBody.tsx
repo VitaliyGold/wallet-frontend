@@ -18,7 +18,6 @@ const FilterBody: FC<FilterBodyProps> = ({ filters, onSubmit }) => {
     const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filters })
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
-        console.log(isEqualFilter(newFilters, filters))
         if (!isEqualFilter(newFilters, filters)) onSubmit(newFilters);
     };
 
