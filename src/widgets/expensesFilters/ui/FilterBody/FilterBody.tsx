@@ -1,4 +1,4 @@
-import { ExpensesFilters } from '@/entities/expenses';
+import { defaultExpensesFilter, ExpensesFilters } from '@/entities/expenses';
 import type { FC } from 'react';
 import { useForm, Controller } from "react-hook-form";
 
@@ -18,11 +18,16 @@ const FilterBody: FC<FilterBodyProps> = ({ filters, onSubmit }) => {
     const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filters })
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
+        console.log(isEqualFilter(newFilters, filters))
         if (!isEqualFilter(newFilters, filters)) onSubmit(newFilters);
     };
 
+    const onResetFilters = () => {
+        onSubmitFilters(defaultExpensesFilter());
+    }
+
     return (
-        <form className={styles.filtersForm} onSubmit={handleSubmit(onSubmitFilters)}>
+        <form className={styles.filtersForm} onSubmit={handleSubmit(onSubmitFilters)} onReset={onResetFilters}>
             <UiInput label="Название" labelPosition="top" { ...register('expensesName') } />
             <div className={styles.periodFilters}>
                 <Controller
@@ -44,6 +49,9 @@ const FilterBody: FC<FilterBodyProps> = ({ filters, onSubmit }) => {
                     )}
                 />
             <div className={styles.filterActions}>
+                <UiButton type='reset' viewType='white' outline>
+                    Сбросить
+                </UiButton>
                 <UiButton type='submit'>
                     Применить
                 </UiButton>

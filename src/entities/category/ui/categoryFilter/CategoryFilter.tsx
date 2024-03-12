@@ -30,6 +30,7 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange, onClose }) =
 
     return (
         <UiSelect
+            currentValuePlaceholder='Выберите категорию'
             isOptionsLoading={isLoadingCategoryList}
             options={options}
             currentValue={value}

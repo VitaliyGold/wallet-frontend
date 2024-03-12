@@ -9,3 +9,5 @@ export { getExpensesTotalThunk } from './model/thunks/expensesTotalThunks';
 export { getExpenseAdapter, createExpenseAdapter } from './adapters/expense.adapter';
 export { ExpensesCard } from './ui/expensesCard/ExpensesCard';
 export { ExpensesCardActions } from './ui/expensesCardActions/ExpensesCardActions';
+
+export { defaultExpensesFilter } from './consts';

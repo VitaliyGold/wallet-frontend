@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/app";
 import { ExpensesActionsPanel } from "@/features/expensesActionsPanel";
 import { filtersExpensesSelector, expensesActions } from "@/entities/expenses";
 import type { ExpensesFilters } from "@/entities/expenses";
-import { UiButton } from "@/shared/ui";
+import { UiButton, Icon } from "@/shared/ui";
 
 import { FilterBody } from './ui/FilterBody';
 
@@ -48,10 +48,12 @@ const ExpensesFilter = () => {
 
     return (
         <ExpensesActionsPanel>
-            <UiButton onClick={() => openTrigger(!isFilterOpen)} ref={refs.setReference}>Фильтры</UiButton>
+            <UiButton onClick={() => openTrigger(!isFilterOpen)} addBefore={<Icon iconType='empty-filter' size={16}/>} ref={refs.setReference} viewType="white" outline>
+                Фильтры
+            </UiButton>
             {
                 isFilterOpen &&
-                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto' }} {...getFloatingProps()}>
+                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto', zIndex: 'var(--popup-z-index)' }} {...getFloatingProps()}>
                     <FilterBody filters={filters} onSubmit={onSubmitFilters}/>
                 </div>
             }

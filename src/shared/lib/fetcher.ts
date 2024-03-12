@@ -1,3 +1,5 @@
+import { convertToQueryUrl } from "./queryBuilder";
+
 const fetcher = {
     post: async (url: string, data: Record<string, any>) => {
         const response = await fetch(import.meta.env.FRONTEND_API_URL + url, {
@@ -20,7 +22,7 @@ const fetcher = {
         };
     },
     delete: async (url: string, queryParams: Record<string, any>) => {
-        const response = await fetch(`${import.meta.env.FRONTEND_API_URL}${url}?${new URLSearchParams(queryParams).toString()}`, {
+        const response = await fetch(`${import.meta.env.FRONTEND_API_URL}${url}?${convertToQueryUrl(queryParams)}`, {
             method: 'DELETE'
         });
         if (response.ok) {
@@ -55,7 +57,7 @@ const fetcher = {
         };
     },
     get: async (url: string, queryParams: Record<string, any>) => {
-        const response = await fetch(`${import.meta.env.FRONTEND_API_URL}${url}?${new URLSearchParams(queryParams).toString()}`, {
+        const response = await fetch(`${import.meta.env.FRONTEND_API_URL}${url}?${convertToQueryUrl(queryParams)}`, {
             method: 'GET'
         });
         if (response.ok) {
