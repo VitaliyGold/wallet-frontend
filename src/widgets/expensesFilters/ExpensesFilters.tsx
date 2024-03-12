@@ -1,45 +1,63 @@
 import { useSelector } from "react-redux";
-import { useForm, Controller } from "react-hook-form";
+import { useState } from "react";
+import { useFloating, autoUpdate, useClick, useInteractions, useDismiss, offset } from '@floating-ui/react';
 
 import { useAppDispatch } from "@/app";
 import { ExpensesActionsPanel } from "@/features/expensesActionsPanel";
 import { filtersExpensesSelector, expensesActions } from "@/entities/expenses";
-import { UiDatePicker, UiInput } from "@/shared/ui";
 import type { ExpensesFilters } from "@/entities/expenses";
+import { UiButton, Icon } from "@/shared/ui";
 
-import { isEqualFilter } from './lib/isEqualFilter';
-import styles from './styles.module.less';
+import { FilterBody } from './ui/FilterBody';
 
 const ExpensesFilter = () => {
+
+    const [ isFilterOpen, setFilterOpen ] = useState(false);
+
     const dispatch = useAppDispatch();
 
-    const filter = useSelector(filtersExpensesSelector);
-
-    const { register, handleSubmit, control } = useForm<ExpensesFilters>({ defaultValues: filter })
+    const filters = useSelector(filtersExpensesSelector);
 
     const onSubmitFilters = (newFilters: ExpensesFilters) => {
-        if (!isEqualFilter(newFilters, filter)) dispatch(expensesActions.setFilters(newFilters));
+        dispatch(expensesActions.setFilters(newFilters));
+        setFilterOpen(false);
     };
+
+    const openTrigger = (isOpen: boolean) => {
+        setFilterOpen(isOpen);
+    }
+
+    const { refs, floatingStyles, context } = useFloating({
+        placement: 'bottom-start',
+        strategy: 'absolute',
+        open: isFilterOpen,
+        onOpenChange: openTrigger,
+        whileElementsMounted: autoUpdate,
+        middleware: [
+            offset(5),
+        ]
+    });
+
+    const dismiss = useDismiss(context);
+
+    const click = useClick(context);
+
+    const {getFloatingProps} = useInteractions([
+        click, dismiss,
+      ])
 
     return (
         <ExpensesActionsPanel>
-            <form className={styles.expensesFilters} onBlur={handleSubmit(onSubmitFilters)} onSubmit={handleSubmit(onSubmitFilters)}>
-                <UiInput label="Название" labelPosition="left" { ...register('expensesName') } />
-                <div className={styles.periodFilters}>
-                    с
-                    <Controller
-                        name='startDate'
-                        control={control}
-                        render={({ field }) => (<UiDatePicker { ...field } />)}
-                    />
-                    по
-                    <Controller
-                        name='endDate'
-                        control={control}
-                        render={({ field }) => (<UiDatePicker { ...field } />)}
-                    />
+            <UiButton onClick={() => openTrigger(!isFilterOpen)} addBefore={<Icon iconType='empty-filter' size={16}/>} ref={refs.setReference} viewType="white" outline>
+                Фильтры
+            </UiButton>
+            {
+                isFilterOpen &&
+                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto', zIndex: 'var(--popup-z-index)' }} {...getFloatingProps()}>
+                    <FilterBody filters={filters} onSubmit={onSubmitFilters}/>
                 </div>
-            </form>
+            }
+            
         </ExpensesActionsPanel>
     )
 };

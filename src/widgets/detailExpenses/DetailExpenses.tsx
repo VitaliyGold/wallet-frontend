@@ -29,7 +29,7 @@ const DetailExpenses = () => {
     const expensesList = useSelector(expensesListEntitiesSelector.selectAll);
     const totalExpenses = useSelector(totalExpensesSelector);
 
-    const { endDate, startDate, expensesName } = useSelector(filtersExpensesSelector);
+    const { endDate, startDate, expensesName, categoryIds } = useSelector(filtersExpensesSelector);
 
     const currentExpense = useSelector((state: RootStore) => expensesListEntitiesSelector.selectById(state, currentExpenseId))
 
@@ -41,14 +41,14 @@ const DetailExpenses = () => {
         } else {
             changeOffset(0);
         }
-    }, [endDate, startDate, expensesName]);
+    }, [endDate, startDate, expensesName, categoryIds.length]);
 
     useEffect(() => {
         getData();
     }, [offset])
 
     const getData = async () => {
-        await dispatch(getExpensesListThunk({ limit: 50, offset, name: expensesName, startDate, endDate })).unwrap();
+        await dispatch(getExpensesListThunk({ limit: 50, offset, name: expensesName, startDate, endDate, categoryIds })).unwrap();
         setLoading(false);
     }
 

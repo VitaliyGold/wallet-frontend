@@ -14,15 +14,15 @@ const ExpensesTotal = () => {
 
     const dispatch = useAppDispatch();
 
-    const { endDate, startDate, expensesName } = useSelector(filtersExpensesSelector);
+    const { endDate, startDate, expensesName, categoryIds } = useSelector(filtersExpensesSelector);
 
     useEffect(() => {
         getExpensesTotal();
-    }, [endDate, startDate, expensesName]);
+    }, [endDate, startDate, expensesName, categoryIds.length]);
 
     const getExpensesTotal = async () => {
         setLoading(true);
-        const total = await dispatch(getExpensesTotalThunk({ name: expensesName, startDate, endDate })).unwrap();
+        const total = await dispatch(getExpensesTotalThunk({ name: expensesName, startDate, endDate, categoryIds })).unwrap();
         setLoading(false);
         setTotalAmount(total);
     }

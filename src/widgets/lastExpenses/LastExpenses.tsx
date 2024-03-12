@@ -40,7 +40,8 @@ const LastExpenses = () => {
             offset, 
             name: '', 
             startDate: getMonthAgo(new Date()).getTime(), 
-            endDate: new Date().getTime() 
+            endDate: new Date().getTime(),
+            categoryIds: [],
         })).unwrap();
     }
 

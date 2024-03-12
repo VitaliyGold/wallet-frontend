@@ -12,6 +12,7 @@ interface ExpensesFilters {
     endDate: number;
     startDate: number;
     expensesName: string;
+    categoryIds: string[];
 }
 
 export type {

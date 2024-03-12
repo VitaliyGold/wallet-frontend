@@ -1,5 +1,6 @@
 .uiButton {
     border-radius: 4px;
+    gap: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +49,14 @@
 .white {
     background-color: var(--white);
     color: var(--black);
+    &.outline {
+        border: 1px solid var(--black);
+        color: var(--black);
+        &:hover {
+            color: var(--gray-700);
+            border-color: var(--gray-700);
+        }
+    }
     &:disabled {
         color: var(--gray-300);
     }

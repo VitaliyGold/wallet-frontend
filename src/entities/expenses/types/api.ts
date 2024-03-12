@@ -31,6 +31,7 @@ interface GetExpenseRequestParams {
     name: string;
     startDate: number;
     endDate: number;
+    categoryIds: string[];
 }
 
 type GetTotalExpensesRequestParams = Omit<GetExpenseRequestParams, 'offset' | 'limit'>;

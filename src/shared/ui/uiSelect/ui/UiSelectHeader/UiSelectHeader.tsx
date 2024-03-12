@@ -18,9 +18,6 @@ const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentVal
         if (!currentLabel.length) {
             return currentValuePlaceholder;
         }
-        if (currentLabel.length <= 2) {
-            return currentLabel.join('; ');
-        }
         return `Выбрано: ${currentLabel.length}`;
     }
 

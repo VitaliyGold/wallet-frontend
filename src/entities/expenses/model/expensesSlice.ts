@@ -14,11 +14,7 @@ const ExpensesSlice = createSlice({
     name: 'expensesSlice',
     initialState: expensesAdapter.getInitialState({
         totalExpenses: 0,
-        filters: {
-            expensesName: '',
-            startDate: getMonthAgo(new Date).getTime(),
-            endDate: new Date().getTime(),
-        },
+        filters: defaultExpensesFilter(),
     }),
     reducers: {
         addExpenses: expensesAdapter.addMany,
