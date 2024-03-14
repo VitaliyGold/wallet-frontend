@@ -1,3 +1,3 @@
 export {
-    CategoryFilter
-} from '../categoryFilter/CategoryFilter';
+    CategorySelect
+} from './CategorySelect';

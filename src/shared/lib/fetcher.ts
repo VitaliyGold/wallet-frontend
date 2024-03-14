@@ -37,7 +37,7 @@ const fetcher = {
     },
     update: async (url: string, data: Record<string, any>) => {
         const response = await fetch(import.meta.env.FRONTEND_API_URL + url, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },

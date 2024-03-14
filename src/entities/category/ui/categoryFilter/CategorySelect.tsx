@@ -5,13 +5,14 @@ import { UiSelect } from "@/shared/ui";
 import type { IUiOption } from "@/shared/ui/uiSelect";
 import { categoryListSelector, categorySelector } from "../../model/categorySelectors";
 
-interface CategoryFilterProps {
+interface CategorySelectProps {
     value: string[];
+    label?: string;
     onChange: (categoryIds: string[]) => void;
     onClose?: () => void;
 }
 
-const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange, onClose }) => {
+const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, label }) => {
 
     const { isLoadingCategoryList } = useSelector(categorySelector);
 
@@ -32,6 +33,7 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange, onClose }) =
         <UiSelect
             currentValuePlaceholder='Выберите категорию'
             isOptionsLoading={isLoadingCategoryList}
+            label={label}
             options={options}
             currentValue={value}
             onSelected={onSelectedCategories}
@@ -42,5 +44,5 @@ const CategoryFilter: FC<CategoryFilterProps> = ({ value, onChange, onClose }) =
 };
 
 export {
-    CategoryFilter,
+    CategorySelect,
 }
