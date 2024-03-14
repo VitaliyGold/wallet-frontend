@@ -18,9 +18,10 @@ interface UiSelectProps {
     onClose?: () => void;
     isOptionsLoading?: boolean;
     currentValuePlaceholder?: string;
+    label?: string;
 }
 
-const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder, isOptionsLoading = false }) => {
+const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder, isOptionsLoading = false, label }) => {
 
     const [ isBodyOpened, setBodyOpened ] = useState(false);
 
@@ -93,6 +94,7 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
 
     return (
         <div className={styles.selectContainer} tabIndex={0}>
+            { label && <label className={styles.inputLabel}>{label}</label> }
             <div ref={refs.setReference} { ...getReferenceProps()} className={styles.headerContainer}>
                 <UiSelectHeader
                     isLoading={isOptionsLoading}

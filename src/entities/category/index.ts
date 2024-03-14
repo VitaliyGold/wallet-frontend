@@ -9,7 +9,7 @@ export {
 } from './model/categorySelectors';
 
 export {
-    CategoryFilter
+    CategorySelect
 } from './ui/categoryFilter';
 
 export {

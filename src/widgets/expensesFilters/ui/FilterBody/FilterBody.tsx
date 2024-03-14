@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { useForm, Controller } from "react-hook-form";
 
 import { UiDatePicker, UiInput, UiButton } from "@/shared/ui";
-import { CategoryFilter } from "@/entities/category";
+import { CategorySelect } from "@/entities/category";
 
 import styles from './styles.module.less';
 import { isEqualFilter } from '../../lib/isEqualFilter';
@@ -44,7 +44,7 @@ const FilterBody: FC<FilterBodyProps> = ({ filters, onSubmit }) => {
                     name='categoryIds'
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                        <CategoryFilter value={value} onChange={onChange}/>
+                        <CategorySelect value={value} onChange={onChange}/>
                     )}
                 />
             <div className={styles.filterActions}>
