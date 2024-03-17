@@ -4,7 +4,8 @@ import { Category } from "../types/category";
 const getCategoryResponseAdapter = (data: CategoryApi): Category => {
     return {
         categoryId: data.category_id,
-        name: data.name
+        name: data.name,
+        isLoading: false,
     }
 };
 

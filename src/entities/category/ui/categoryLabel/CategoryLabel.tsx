@@ -9,9 +9,10 @@ interface CategoryLabelProps {
     children: ReactNode;
     size?: 'small' | 'large';
     controlPanel?: ReactNode;
+    isLoading?: boolean;
 }
 
-const CategoryLabel: FC<CategoryLabelProps> = ({ children, size = 'small' }) => {
+const CategoryLabel: FC<CategoryLabelProps> = ({ children, size = 'small', isLoading = false }) => {
     return (
         <div className={cn(styles.categoryLabel, styles[`${size}Label`])}>
             <UiText size={size === 'small' ? 'xs' : 'l'}>{ children }</UiText>

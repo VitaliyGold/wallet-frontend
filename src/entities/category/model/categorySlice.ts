@@ -1,4 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 import type { Category } from "../types/category";
 import { getCategoryListThunks } from "./thunks/categoryThunks";
@@ -14,7 +15,15 @@ const CategorySlice = createSlice({
         isLoadingCategoryList: false,
     }),
     reducers: {
-
+        addNewCategory(state, { payload }: PayloadAction<Category>) {
+            categoryEntityAdapter.addOne(state, payload);
+        },
+        updateCategory(state, { payload }: PayloadAction<{ updatedId: string, category: Category }>) {
+            categoryEntityAdapter.updateOne(state, { id: payload.updatedId, changes: payload.category });
+        },
+        removeCategory(state, { payload }: PayloadAction<string>) {
+            categoryEntityAdapter.removeOne(state, payload);
+        },
     },
     extraReducers(builder) {
         builder.addCase(getCategoryListThunks.fulfilled, (state, action) => {

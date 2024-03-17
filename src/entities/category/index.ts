@@ -5,7 +5,8 @@ export {
 } from './model/categorySlice';
 
 export {
-    categoryListSelector
+    categoryListSelector,
+    categorySelector
 } from './model/categorySelectors';
 
 export {
@@ -18,6 +19,10 @@ export {
     updateCategoryThunks,
     removeCategoryThunks,
 } from './model/thunks/categoryThunks';
+
+export type {
+    Category
+} from './types/category';
 
 export {
     CategoryLabel
