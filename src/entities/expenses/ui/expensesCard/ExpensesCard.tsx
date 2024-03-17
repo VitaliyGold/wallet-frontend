@@ -11,9 +11,10 @@ import { formatDateToFront } from "@/shared/lib/dateMethods";
 interface ExpensesCardProps {
     expenses: Expenses;
     actionComponent?: ReactNode;
+    labelsComponent?: ReactNode;
 }
 
-const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = null }) => {
+const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = null, labelsComponent = null }) => {
     return (
         <div className={styles.expensesCard}>
             
@@ -25,6 +26,9 @@ const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = 
                 <p className={styles.date}>{ formatDateToFront(expenses.spendingDate) }</p>
                 <p className={styles.amount}>{ expenses.amount } ₽</p>
             </div>
+            {
+                labelsComponent && <div className={styles.labels}>{labelsComponent}</div>
+            }
         </div>
     )
 });
