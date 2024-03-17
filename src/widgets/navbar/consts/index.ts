@@ -9,6 +9,11 @@ const linksList: INavbarItem[] = [
         title: 'Таблица расходов',
         iconName: 'table',
         link: '/expenses',
+    },
+    {
+        title: 'Настройки',
+        iconName: 'settings',
+        link: '/settings',
     }
 ];
 
