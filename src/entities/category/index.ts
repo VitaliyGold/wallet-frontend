@@ -18,3 +18,7 @@ export {
     updateCategoryThunks,
     removeCategoryThunks,
 } from './model/thunks/categoryThunks';
+
+export {
+    CategoryLabel
+} from './ui/categoryLabel';
