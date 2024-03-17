@@ -1,4 +1,4 @@
-type NavbarLinks = 'table' | 'dashboard';
+type NavbarLinks = 'table' | 'dashboard' | 'settings';
 
 interface INavbarItem {
     title: string;

@@ -4,7 +4,7 @@ import { ExpensesTotal } from "@/features/expensesTotal";
 
 import { PageLayout } from "@/shared/ui";
 
-const ExpensesListPage = () => {
+const ExpensesPage = () => {
     return (
         <PageLayout>
             <ExpensesFilter/>
@@ -15,5 +15,5 @@ const ExpensesListPage = () => {
 };
 
 export {
-    ExpensesListPage,
+    ExpensesPage,
 }

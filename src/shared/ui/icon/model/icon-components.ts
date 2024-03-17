@@ -6,6 +6,7 @@ import Edit from '@/shared/assets/svg/edit.svg?react';
 import Down from '@/shared/assets/svg/down.svg?react';
 import EmptyFilter from '@/shared/assets/svg/empty-filter.svg?react';
 import FillFilter from '@/shared/assets/svg/fill-filter.svg?react';
+import Settings from '@/shared/assets/svg/settings.svg?react';
 
 const iconComponents = {
     'user': User,
@@ -16,7 +17,8 @@ const iconComponents = {
     'remove': Plus,
     'down': Down,
     'empty-filter': EmptyFilter,
-    'fill-filter': FillFilter
+    'fill-filter': FillFilter,
+    'settings': Settings,
 };
 
 export {

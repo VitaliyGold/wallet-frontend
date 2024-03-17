@@ -5,7 +5,7 @@ import { WidgetContainer, } from '@/shared/ui';
 import styles from './styles.module.less';
 
 
-const Home = () => {
+const Dashboard = () => {
     return (
         <div className={styles.pageContainer}>
             <div className={styles.widget}>
@@ -26,5 +26,5 @@ const Home = () => {
 };
 
 export {
-    Home,
+    Dashboard,
 }
