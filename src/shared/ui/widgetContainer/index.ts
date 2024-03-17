@@ -1,3 +1,3 @@
 export {
     WidgetContainer
-} from './widgetContainer';
+} from './WidgetContainer';
