@@ -12,11 +12,12 @@ interface CategoryLabelProps {
     isLoading?: boolean;
 }
 
-const CategoryLabel: FC<CategoryLabelProps> = ({ children, size = 'small', isLoading = false }) => {
+const CategoryLabel: FC<CategoryLabelProps> = ({ children, size = 'small', isLoading = false, controlPanel = null }) => {
     return (
         <div className={cn(styles.categoryLabel, styles[`${size}Label`])}>
             <UiText size={size === 'small' ? 'xs' : 'l'}>{ children }</UiText>
             { isLoading && <BackgroundLoading/>}
+            { controlPanel && <div className={styles.controlPanel}>{controlPanel}</div>}
         </div>
     )
 }

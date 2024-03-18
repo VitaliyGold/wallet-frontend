@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import { CategoryLabel, categoryListSelector, categorySelector } from "@/entities/category";
 import { WidgetContainer, UiSkeleton, UiText } from "@/shared/ui";
-import { CreateCategoryButton } from '@/features/categoryForm';
+import { CreateCategoryButton, EditCategoryButton } from '@/features/categoryForm';
 
 import styles from './styles.module.less';
 
@@ -22,7 +22,16 @@ const CategoryCloud = () => {
         if (!categoryList.length) {
             return <div className={styles.emptyPlaceholder}><UiText size="l">У вас пока нет категорий, но вы можете легко их добавить</UiText></div>
         }
-        return categoryList.map(category => <CategoryLabel key={category.categoryId} size="large" isLoading={category.isLoading}>{category.name}</CategoryLabel>);
+        return categoryList.map(category => 
+            <CategoryLabel 
+                key={category.categoryId} 
+                size="large" 
+                isLoading={category.isLoading}
+                controlPanel={<EditCategoryButton categoryId={category.categoryId} />}
+            >
+                {category.name}
+            </CategoryLabel>
+        );
     }
 
     return (

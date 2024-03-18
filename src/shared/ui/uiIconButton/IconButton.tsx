@@ -7,7 +7,7 @@ import { Icon } from "@/shared/ui";
 
 import styles from './styles.module.less';
 
-type IconButtonViewType = 'gray' | 'white' | 'blue';
+type IconButtonViewType = 'gray' | 'white' | 'blue' | 'transparent';
 
 enum IconSizes {
     'small' = 14,
@@ -20,7 +20,7 @@ interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
     size?: IconSizes;
     viewType?: IconButtonViewType;
     outline?: boolean;
-    withoutPaddings: boolean;
+    withoutPaddings?: boolean;
     onClick: () => void;
 }
 
