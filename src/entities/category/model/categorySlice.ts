@@ -12,7 +12,7 @@ const categoryEntityAdapter = createEntityAdapter({
 const CategorySlice = createSlice({
     name: 'categorySlice',
     initialState: categoryEntityAdapter.getInitialState({
-        isLoadingCategoryList: false,
+        isLoadingCategoryList: true,
     }),
     reducers: {
         addNewCategory(state, { payload }: PayloadAction<Category>) {

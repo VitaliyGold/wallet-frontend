@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import cn from 'classnames';
 
-import { UiText } from '@/shared/ui';
+import { UiText, BackgroundLoading } from '@/shared/ui';
 
 import styles from './styles.module.less';
 
@@ -16,6 +16,7 @@ const CategoryLabel: FC<CategoryLabelProps> = ({ children, size = 'small', isLoa
     return (
         <div className={cn(styles.categoryLabel, styles[`${size}Label`])}>
             <UiText size={size === 'small' ? 'xs' : 'l'}>{ children }</UiText>
+            { isLoading && <BackgroundLoading/>}
         </div>
     )
 }

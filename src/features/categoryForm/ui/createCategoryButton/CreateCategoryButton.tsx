@@ -1,4 +1,4 @@
-import { UiIconButton } from "@/shared/ui";
+import { Icon, UiButton } from "@/shared/ui";
 import { useAppDispatch } from "@/app";
 import { createCategoryThunks, categoryActions } from "@/entities/category";
 
@@ -21,14 +21,27 @@ const CreateCategoryButton = () => {
             name: formData.name,
             isLoading: true,
         }));
-        const category = await dispatch(createCategoryThunks(formData.name)).unwrap();
-        dispatch(categoryActions.updateCategory({ updatedId: tempCategoryId, category: { ...category, isLoading: false } }));
+        try {
+            const category = await dispatch(createCategoryThunks(formData.name)).unwrap();
+            dispatch(categoryActions.updateCategory({ updatedId: tempCategoryId, category: { ...category, isLoading: false } }));
+        } catch (e) {
+            dispatch(categoryActions.removeCategory(tempCategoryId))
+        }
         
     }
 
     return (
-        <>
-            <UiIconButton iconType="plus" viewType="blue" withoutPaddings={false} onClick={() => openTrigger(!isFormOpen)} ref={refs.setReference}/>
+        <>  
+            <UiButton 
+                viewType="blue" 
+                onClick={() => openTrigger(!isFormOpen)} 
+                ref={refs.setReference} 
+                size="large" 
+                outline 
+                addBefore={<Icon iconType="plus" size={18}/>}
+            >  
+                Добавить категорию
+            </UiButton>
             {
                 isFormOpen &&
                 <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 'var(--popup-z-index)' }} {...getFloatingProps()}>

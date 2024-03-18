@@ -12,7 +12,6 @@ const getCategoryListThunks = createAsyncThunk('category/list', async () => {
 
 const createCategoryThunks = createAsyncThunk('category/create', async (name: string) => {
     const createdCategory = await createCategory(name);
-    console.log(123)
     return getCategoryResponseAdapter(createdCategory);
 });
 
