@@ -4,7 +4,7 @@ import { createCategoryThunks, categoryActions } from "@/entities/category";
 
 import { CreateForm } from '../createForm';
 import { useCategoryForm } from "../../model/useCategoryForm";
-import { CreateCategoryFormData } from "../../types";
+import { CategoryFormData } from "../../types";
 
 const CreateCategoryButton = () => {
     const { isFormOpen, refs, openTrigger, getFloatingProps, floatingStyles } = useCategoryForm();
@@ -13,7 +13,7 @@ const CreateCategoryButton = () => {
     
     const onResetForm = () => openTrigger(false);
 
-    const onSubmitForm = async (formData: CreateCategoryFormData) => {
+    const onSubmitForm = async (formData: CategoryFormData) => {
         openTrigger(false);
         const tempCategoryId = crypto.randomUUID();
         dispatch(categoryActions.addNewCategory({

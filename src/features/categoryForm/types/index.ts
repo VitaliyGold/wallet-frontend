@@ -1,7 +1,7 @@
 import type { Category } from "@/entities/category";
 
-type CreateCategoryFormData = Omit<Category, 'categoryId'>;
+type CategoryFormData = Omit<Category, 'categoryId' | 'isLoading'>;
 
 export type {
-    CreateCategoryFormData,
+    CategoryFormData,
 }

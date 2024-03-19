@@ -4,18 +4,23 @@ import type { FC } from 'react';
 import { UiInput, UiButton } from "@/shared/ui";
 
 import styles from './styles.module.less';
-import type { CreateCategoryFormData } from '../../types';
+import type { CategoryFormData } from '../../types';
 
 interface CreateFormProps {
-    onSubmit: (formData: CreateCategoryFormData) => void;
+    onSubmit: (formData: CategoryFormData) => void;
     onReset: () => void;
+    editedData?: CategoryFormData;
 }
 
-const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset }) => {
+const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset, editedData = { name: '' } }) => {
 
-    const { register, handleSubmit, control } = useForm<CreateCategoryFormData>()
+    const initialData = editedData ?? { name: '' };
 
-    const onSubmitForm = (formData: CreateCategoryFormData) => {
+    const isEdit = !!editedData;
+
+    const { register, handleSubmit } = useForm<CategoryFormData>({ defaultValues: initialData });
+
+    const onSubmitForm = (formData: CategoryFormData) => {
         if (!formData.name) {
             return;
         }
@@ -30,7 +35,7 @@ const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset }) => {
                     Отменить
                 </UiButton>
                 <UiButton type='submit'>
-                    Создать
+                    { isEdit ? 'Редактировать' : 'Создать' }
                 </UiButton>
             </div>
             

@@ -1,5 +1,5 @@
 import { CategoryApi } from "../types/api";
-import { Category } from "../types/category";
+import { Category, CategoryEntity } from "../types/category";
 
 const getCategoryResponseAdapter = (data: CategoryApi): Category => {
     return {
@@ -9,7 +9,7 @@ const getCategoryResponseAdapter = (data: CategoryApi): Category => {
     }
 };
 
-const updateCategoryRequestAdapter = (updatedCategory: Category): CategoryApi => {
+const updateCategoryRequestAdapter = (updatedCategory: CategoryEntity): CategoryApi => {
     return {
         category_id: updatedCategory.categoryId,
         name: updatedCategory.name,
