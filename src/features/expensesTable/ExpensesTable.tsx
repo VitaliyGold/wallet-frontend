@@ -1,11 +1,16 @@
 import type { FC, ReactNode } from 'react';
+import { useSelector } from 'react-redux';
 import { createColumnHelper, useReactTable, getCoreRowModel } from '@tanstack/react-table';
 
 import type { Expenses } from '@/entities/expenses/types/expenses';
+import { CategoryLabel, categoryListSelector } from '@/entities/category';
+import { formatDateToFront } from '@/shared/lib/dateMethods';
+
+import { CategoryCell } from './ui/CategoryCell';
 import styles from './styles.module.less';
 import { TableBody } from './ui/tableBody/TableBody';
 import { TableHeader } from './ui/tableHeader/TableHeader';
-import { formatDateToFront } from '@/shared/lib/dateMethods';
+
 
 interface ExpensesTableProps {
     expensesList: Expenses[];
@@ -15,6 +20,8 @@ interface ExpensesTableProps {
 const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingElement }) => {
 
     const columnHelper = createColumnHelper<Expenses>();
+
+    const categoryDict = useSelector(categoryListSelector.selectEntities);
 
     const tableColumns = [
         columnHelper.accessor('expensesName', {
@@ -31,7 +38,7 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
         }),
         columnHelper.accessor('categoryIds', {
             header: 'Категории',
-            cell: info => <p></p>,
+            cell: info =>  <CategoryCell categoryIds={info.getValue()}/>,
         }),
         columnHelper.accessor('tagIds', {
             header: 'Теги',
