@@ -20,6 +20,7 @@ const CreateCategoryButton = () => {
             categoryId: tempCategoryId,
             name: formData.name,
             isLoading: true,
+            isHidden: false,
         }));
         try {
             const category = await dispatch(createCategoryThunks(formData.name)).unwrap();

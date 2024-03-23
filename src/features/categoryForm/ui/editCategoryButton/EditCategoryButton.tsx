@@ -32,7 +32,7 @@ const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
         dispatch(categoryActions.updateCategory({
             updatedId: categoryId,
             category: {
-                categoryId,
+                ...editedCategory,
                 name: formData.name,
                 isLoading: true,
             }
