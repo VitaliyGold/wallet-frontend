@@ -5,6 +5,21 @@
     align-items: center;
     text-decoration: none;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    &.withoutPaddings {
+        padding: 0;
+    }
+}
+
+.transparent {
+    background-color: transparent;
+    &:hover {
+        color: var(--white);
+    }
+    &:disabled {
+        color: var(--gray-300);
+    }
 }
 
 .gray {
@@ -15,5 +30,16 @@
     }
     &:disabled {
         color: var(--gray-500);
+    }
+}
+
+.blue {
+    background-color: var(--blue-500);
+    color: var(--white);
+    &:hover {
+        background-color: var(--blue-700);
+    }
+    &:disabled {
+        background-color: var(--blue-300);
     }
 }

@@ -1,4 +1,5 @@
-import type { DetailedHTMLProps, ButtonHTMLAttributes, FC, MouseEvent } from "react";
+import type { DetailedHTMLProps, ButtonHTMLAttributes, FC, MouseEvent, Ref } from "react";
+import { forwardRef } from "react";
 import cn from 'classnames';
 
 import type { IconsTypes } from "@/shared/ui";
@@ -6,7 +7,7 @@ import { Icon } from "@/shared/ui";
 
 import styles from './styles.module.less';
 
-type IconButtonViewType = 'gray' | 'white';
+type IconButtonViewType = 'gray' | 'white' | 'blue' | 'transparent';
 
 enum IconSizes {
     'small' = 14,
@@ -19,10 +20,11 @@ interface IconButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBut
     size?: IconSizes;
     viewType?: IconButtonViewType;
     outline?: boolean;
+    withoutPaddings?: boolean;
     onClick: () => void;
 }
 
-const UiIconButton: FC<IconButtonProps> = ({ iconType, size = IconSizes['medium'], viewType = 'gray', outline = false, onClick, ...rest }) => {
+const UiIconButton = forwardRef(({ iconType, size = IconSizes['medium'], viewType = 'gray', outline = false, withoutPaddings = true, onClick, ...rest } : IconButtonProps, ref: Ref<HTMLButtonElement>) => {
 
     const onClickStopPropagation = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -30,11 +32,11 @@ const UiIconButton: FC<IconButtonProps> = ({ iconType, size = IconSizes['medium'
     }
 
     return (
-        <button className={cn(styles.iconButton, styles[viewType], outline ? styles['outline'] : '')} onClick={onClickStopPropagation} { ...rest }>
+        <button className={cn(styles.iconButton, { [styles[viewType]]: true, [styles.outline]: outline, [styles.withoutPaddings]: withoutPaddings })} onClick={onClickStopPropagation} { ...rest } ref={ref}>
             <Icon iconType={iconType} size={size}/>
         </button>
     )
-}
+})
 
 export {
     UiIconButton,
