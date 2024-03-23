@@ -5,6 +5,7 @@ interface CategoryEntity  {
 
 interface Category extends CategoryEntity {
     isLoading: boolean;
+    isHidden: boolean;
 }
 
 export type {

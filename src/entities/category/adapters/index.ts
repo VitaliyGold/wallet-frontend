@@ -6,6 +6,7 @@ const getCategoryResponseAdapter = (data: CategoryApi): Category => {
         categoryId: data.category_id,
         name: data.name,
         isLoading: false,
+        isHidden: false,
     }
 };
 

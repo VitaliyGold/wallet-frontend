@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { CategoryLabel, categoryListSelector, categorySelector } from "@/entities/category";
 import { WidgetContainer, UiSkeleton, UiText } from "@/shared/ui";
 import { CreateCategoryButton, EditCategoryButton } from '@/features/categoryForm';
+import { RemoveCategoryButton } from "@/features/removeCategory";
 
 import styles from './styles.module.less';
 
@@ -27,7 +28,7 @@ const CategoryCloud = () => {
                 key={category.categoryId} 
                 size="large" 
                 isLoading={category.isLoading}
-                controlPanel={<EditCategoryButton categoryId={category.categoryId} />}
+                controlPanel={<><EditCategoryButton categoryId={category.categoryId} /><RemoveCategoryButton categoryId={category.categoryId} /></>}
             >
                 {category.name}
             </CategoryLabel>

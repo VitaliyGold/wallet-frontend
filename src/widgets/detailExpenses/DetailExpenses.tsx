@@ -52,6 +52,12 @@ const DetailExpenses = () => {
         setLoading(false);
     }
 
+    useEffect(() => {
+        return () => {
+            dispatch(expensesActions.clearExpenses());
+        }
+    }, [])
+
     const getMoreData = () => {
         changeOffset(offset + 50);
     };
