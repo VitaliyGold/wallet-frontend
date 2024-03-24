@@ -1,12 +1,22 @@
-.tableHeader {
+.headerRow {
+    display: flex;
     background-color: var(--blue-500);
+    padding-right: 8px;
+    min-height: 30px;
 }
 
 .headerCell {
-    height: 30px;
     color: var(--white);
     background-color: inherit;
-    border: 1px solid var(--white);
+    border-right: 1px solid var(--white);
     font-size: var(--text-size-l);
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+    &:last-child {
+        border-right: 0;
+    }
 }

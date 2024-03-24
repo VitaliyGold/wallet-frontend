@@ -39,7 +39,7 @@ const LastExpenses = () => {
             limit: 50, 
             offset, 
             name: '', 
-            startDate: getMonthAgo(new Date()).getTime(), 
+            startDate: new Date('2023-08-07').getTime(), 
             endDate: new Date().getTime(),
             categoryIds: [],
         })).unwrap();

@@ -12,25 +12,25 @@ interface TableBodyProps {
 
 const TableBody: FC<TableBodyProps> = ({ data }) => {
     return (
-        <tbody>
+        <div className={styles.tableBody}>
             { 
                 data.rows.map((row) => {
                     return (
-                        <tr key={row.original.expenseId}>
+                        <div key={row.original.expenseId} className={styles.tableRow}>
                             {
                                 row.getVisibleCells().map(cell => {
                                     return (
-                                        <td key={cell.id} className={styles.cell} style={{ width: cell.column.getSize() }}>
+                                        <div key={cell.id} className={styles.cell} style={{ maxWidth: cell.column.columnDef.maxSize }}>
                                             { flexRender(cell.column.columnDef.cell, cell.getContext()) }
-                                        </td>
+                                        </div>
                                     )
                                 })
                             }
-                        </tr>
+                        </div>
                     )
                 }) 
             }
-        </tbody>
+        </div>
     )
 };
 

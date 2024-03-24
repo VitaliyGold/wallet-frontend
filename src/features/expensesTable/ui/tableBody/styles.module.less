@@ -1,11 +1,24 @@
 .cell {
-    text-align: center;
-    height: 40px;
+    min-height: 40px;
     border: 1px solid var(--white);
     font-size: var(--text-size-s);
     background-color: var(--white);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 4px;
+    justify-content: center;
+    border-right: 1px solid var(--gray-300);
+    &:last-child {
+        border-right: 0;
+    }
 }
 
 .bodyContainer {
     overflow-y: scroll;
+}
+
+.tableRow {
+    display: flex;
+    border-bottom: 1px solid var(--gray-700);
 }

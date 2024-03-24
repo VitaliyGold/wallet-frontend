@@ -1,10 +1,9 @@
 import type { FC, ReactNode } from 'react';
-import { useSelector } from 'react-redux';
 import { createColumnHelper, useReactTable, getCoreRowModel } from '@tanstack/react-table';
 
 import type { Expenses } from '@/entities/expenses/types/expenses';
-import { CategoryLabel, categoryListSelector } from '@/entities/category';
 import { formatDateToFront } from '@/shared/lib/dateMethods';
+import { UiText } from '@/shared/ui';
 
 import { CategoryCell } from './ui/CategoryCell';
 import styles from './styles.module.less';
@@ -21,24 +20,25 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
 
     const columnHelper = createColumnHelper<Expenses>();
 
-    const categoryDict = useSelector(categoryListSelector.selectEntities);
-
     const tableColumns = [
         columnHelper.accessor('expensesName', {
             header: 'Наименование',
-            cell: info => info.getValue(),
+            cell: info => <UiText>{info.getValue()}</UiText>
         }),
         columnHelper.accessor('spendingDate', {
             header: 'Дата',
-            cell: info => formatDateToFront(info.getValue()),
+            cell: props => <UiText>{formatDateToFront(props.getValue())}</UiText>,
+            maxSize: 120
         }),
         columnHelper.accessor('amount', {
             header: 'Сумма',
-            cell: info => <p>{ info.getValue() } ₽</p>,
+            cell: props => <UiText>{ props.getValue() } ₽</UiText>,
+            maxSize: 90
         }),
         columnHelper.accessor('categoryIds', {
+            id: 'categoryIds',
             header: 'Категории',
-            cell: info =>  <CategoryCell categoryIds={info.getValue()}/>,
+            cell: props => <CategoryCell categoryIds={props.getValue()}/>,
         }),
         columnHelper.accessor('tagIds', {
             header: 'Теги',
@@ -50,18 +50,14 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
 
     return (
         <div className={styles.tableContainer}>
-            <table className={styles.expensesTable}>
-                <TableHeader headerConfig={table.getHeaderGroups()} />
-            </table>
-            <div className={styles.bodyContainer}>
-                <table className={styles.expensesTable}>
-                    <TableBody data={table.getRowModel()} />
-                </table>
-                {
-                    infinityLoadingElement
-                    ?? 
-                    null
-                }
+            <TableHeader headerConfig={table.getHeaderGroups()} />
+            <div className={styles.scrollable}>
+            <TableBody data={table.getRowModel()} />
+            {
+                infinityLoadingElement
+                ?? 
+                null
+            }
             </div>
         </div>
     )

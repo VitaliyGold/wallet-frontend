@@ -14,34 +14,28 @@ interface TableHeaderProps {
 
 const TableHeader: FC<TableHeaderProps> = ({ headerConfig }) => {
     return (
-        <thead className={styles.tableHeader}>
-                    {
-                        headerConfig.map(headerGroup => (
-                            <tr className={styles.headerRow} key={headerGroup.id}>
-                                {
-                                    headerGroup.headers.map(header => {
-                                        return (
-                                            <th
-                                                className={cn(styles.cell, styles.headerCell)}
-                                                style={{ width: header.column.getSize() }}
-                                                key={header.id}
-                                            >
-                                                {
-                                                    header.isPlaceholder
-                                                        ? null
-                                                        : flexRender(
-                                                            header.column.columnDef.header,
-                                                            header.getContext()
-                                                        )
-                                                }
-                                            </th>
-                                        )
-                                    })
-                                }
-                            </tr>
-                        ))
-                    }
-                </thead>
+        <div className={styles.headerRow} key={headerConfig[0].id}>
+        {
+            headerConfig[0].headers.map(header => {
+                return (
+                    <div
+                        className={cn(styles.cell, styles.headerCell)}
+                        key={header.id}
+                        style={{ maxWidth: header.column.columnDef.maxSize }}
+                    >
+                        {
+                            header.isPlaceholder
+                                ? null
+                                : flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                )
+                        }
+                    </div>
+                )
+            })
+        }
+    </div>
     )
 };
 

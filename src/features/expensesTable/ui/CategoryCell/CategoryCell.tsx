@@ -10,12 +10,11 @@ interface CategoryCellProps {
 }
 
 const CategoryCell: FC<CategoryCellProps> = ({ categoryIds }) => {
-
     const categoryDict = useSelector(categoryListSelector.selectEntities);
 
     return (
         <div className={styles.categoryCell}>
-            { categoryIds.map(categoryId => <CategoryLabel>{ categoryDict[categoryId].name ?? '-' }</CategoryLabel>) }
+            { categoryIds.map(categoryId => <CategoryLabel key={categoryId}>{ categoryDict[categoryId].name ?? '-' }</CategoryLabel>) }
         </div>
     )
 };
