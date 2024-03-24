@@ -19,14 +19,8 @@ interface UiButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButto
 
 const UiButton = forwardRef(({ viewType = 'blue', outline = false, children, addBefore, size = 'medium', onClick, ...rest } : UiButtonProps, ref: Ref<HTMLButtonElement>) => {
 
-    // TODO: мне кажется здесь лишнее
-    const onClickStopPropagation = (e: MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-        if (onClick) onClick();
-    }
-
     return (
-        <button className={ cn(styles.uiButton, styles[viewType], styles[size], outline ? styles['outline'] : '') } onClick={onClickStopPropagation} { ...rest} ref={ref}>
+        <button className={ cn(styles.uiButton, styles[viewType], styles[size], outline ? styles['outline'] : '') } onClick={onClick} { ...rest} ref={ref}>
             { addBefore ?? addBefore }
             <span>
                 { children }
