@@ -66,3 +66,7 @@ export {
 export {
     UiSkeleton
 } from './uiSkeleton';
+
+export {
+    UiColorPicker
+} from './uiColorPicker';
