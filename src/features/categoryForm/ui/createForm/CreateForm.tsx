@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import type { FC } from 'react';
+import { useState } from "react";
 import { useSelector } from 'react-redux';
 import debouncePromise from 'awesome-debounce-promise';
 
-import { UiInput, UiButton } from "@/shared/ui";
+import { UiInput, UiButton, UiColorPicker } from "@/shared/ui";
 import { categoryListSelector } from "@/entities/category";
 
 import styles from './styles.module.less';
@@ -17,6 +18,8 @@ interface CreateFormProps {
 }
 
 const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset, editedData = { name: '' } }) => {
+
+    const [ color, changeColor ] = useState('#FFFFFF');
 
     const initialData = editedData ?? { name: '' };
 
@@ -32,9 +35,11 @@ const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset, editedData = { nam
         }, 200)
     }
 
+
     return (
         <form className={styles.createForm} onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
             <UiInput label="Название категории" errorMessage={errors.name?.message}  labelPosition="top" { ...register('name', { required: сategoryFormErrors.requiredName, validate }) } />
+            <UiColorPicker value={color} onChange={changeColor}/>
             <div className={styles.formActions}>
                 <UiButton type='reset' viewType='white' outline>
                     Отменить
