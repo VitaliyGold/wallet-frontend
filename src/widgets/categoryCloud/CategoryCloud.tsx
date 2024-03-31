@@ -26,7 +26,8 @@ const CategoryCloud = () => {
         return categoryList.map(category => 
             <CategoryLabel 
                 key={category.categoryId} 
-                size="large" 
+                size="large"
+                color={category.color}
                 isLoading={category.isLoading}
                 controlPanel={<><EditCategoryButton categoryId={category.categoryId} /><RemoveCategoryButton categoryId={category.categoryId} /></>}
             >

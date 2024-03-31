@@ -21,9 +21,10 @@ const CreateCategoryButton = () => {
             name: formData.name,
             isLoading: true,
             isHidden: false,
+            color: formData.color,
         }));
         try {
-            const category = await dispatch(createCategoryThunks(formData.name)).unwrap();
+            const category = await dispatch(createCategoryThunks(formData)).unwrap();
             dispatch(categoryActions.updateCategory({ updatedId: tempCategoryId, category: { ...category, isLoading: false } }));
         } catch (e) {
             dispatch(categoryActions.removeCategory(tempCategoryId))

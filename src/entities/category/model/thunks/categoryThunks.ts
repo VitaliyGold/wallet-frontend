@@ -10,8 +10,8 @@ const getCategoryListThunks = createAsyncThunk('category/list', async () => {
     return categories.map(category => getCategoryResponseAdapter(category));
 });
 
-const createCategoryThunks = createAsyncThunk('category/create', async (name: string) => {
-    const createdCategory = await createCategory(name);
+const createCategoryThunks = createAsyncThunk('category/create', async (category: Omit<CategoryEntity, 'categoryId'>) => {
+    const createdCategory = await createCategory(category);
     return getCategoryResponseAdapter(createdCategory);
 });
 

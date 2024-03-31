@@ -24,7 +24,7 @@ const ExpensesList: FC<ExpensesListProps> = ({ expensesList, expenseControlPanel
             return null;
         }
 
-        return categoryIds.map(categoryId => <CategoryLabel key={categoryId}> { categoryDict[categoryId]?.name ?? 'Нет имени' } </CategoryLabel>);
+        return categoryIds.map(categoryId => <CategoryLabel key={categoryId} color={categoryDict[categoryId].color} outline={true}> { categoryDict[categoryId]?.name ?? 'Нет имени' } </CategoryLabel>);
     }
 
     const getExpenseCard = (expenses: Expenses) => {

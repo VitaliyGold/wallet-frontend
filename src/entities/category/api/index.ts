@@ -6,10 +6,8 @@ const getCategories: GetCategoryRequest = () => {
     return fetcher.get('categories', {});
 };
 
-const createCategory: CreateCategoryRequest = (name: string) => {
-    return fetcher.post('categories', {
-        name,
-    })
+const createCategory: CreateCategoryRequest = (createdCategory) => {
+    return fetcher.post('categories', createdCategory)
 };
 
 const removeCategory: RemoveCategoryRequest = (categoryId) => {
