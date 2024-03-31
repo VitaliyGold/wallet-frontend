@@ -1,4 +1,5 @@
-import type { FC, ChangeEvent, Ref } from 'react';
+import type { ChangeEvent, Ref } from 'react';
+import cn from 'classnames';
 import { forwardRef } from 'react';
 
 import { UiInput } from '@/shared/ui';
@@ -22,7 +23,7 @@ const UiColorPicker = forwardRef(({ onChange, value }: UiColorPickerProps, ref: 
     return (
         <div className={styles.colorPicker}>
             <div className={styles.colorInput}>
-                <span className={styles.color} style={{ backgroundColor: value }}></span>
+                <span className={cn(styles.color, styles.currentColor)} style={{ backgroundColor: value }}></span>
                 <UiInput value={value} onChange={onChangeColor} ref={ref}/>
             </div>
             <div className={styles.colorsList}>
