@@ -28,13 +28,22 @@ const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset, editedData }) => {
 
     const validate = {
         alreadyExist: debouncePromise((value: string) => {
-            return categoryNamesList.includes(value) ? сategoryFormErrors.categoryAlreadyExist : true;
+            return categoryNamesList.filter(name => name !== editedData?.name).includes(value.toLocaleLowerCase().trim()) ? сategoryFormErrors.categoryAlreadyExist : true;
         }, 200)
+    }
+
+    const onFormSubmit = (formData: CategoryFormData) => {
+        const categoryFormData: CategoryFormData = {
+            name: formData.name.trim(),
+            color: formData.color.trim(),
+        };
+
+        onSubmit(categoryFormData);
     }
 
 
     return (
-        <form className={styles.createForm} onReset={onReset} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.createForm} onReset={onReset} onSubmit={handleSubmit(onFormSubmit)}>
             <UiInput label="Название категории" errorMessage={errors.name?.message}  labelPosition="top" { ...register('name', { required: сategoryFormErrors.requiredName, validate }) } />
             <Controller
                 control={control}

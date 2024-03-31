@@ -33,7 +33,7 @@ const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
             updatedId: categoryId,
             category: {
                 ...editedCategory,
-                name,
+                name: name,
                 isLoading: true,
                 color
             }
