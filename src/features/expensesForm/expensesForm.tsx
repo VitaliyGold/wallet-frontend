@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 
 import type { Expenses } from '@/entities/expenses';
-import { getExpenseAdapter } from '@/entities/expenses';
+import { getExpenseAdapter, ExpensesDirectionSelect } from '@/entities/expenses';
 import { UiInput, UiButton, UiButtonsGroup, MaskedUiInput, UiDatePicker } from '@/shared/ui';
 import { CategorySelect } from "@/entities/category";
 
@@ -63,6 +63,13 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 control={control}
                 render={({ field: { onChange, value } }) => (
                     <CategorySelect value={value} onChange={onChange} label='Категории трат'/>
+                )}
+            />
+            <Controller
+                name='expenseDirection'
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                    <ExpensesDirectionSelect value={value} onChange={onChange}/>
                 )}
             />
             <div className={styles.formControls}>

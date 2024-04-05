@@ -11,12 +11,13 @@ const getExpenseAdapter = (data: GetExpenseApi | RemoveExpenseApiResponse | {} =
         categoryIds: expense.category ? expense.category.map((categoryItem) => categoryItem.category_id) : [],
         tagIds: expense.tags ? expense.tags.map((tag) => tag.tag_id) : [],
         isHidden: false,
+        expenseDirection: expense.amount < 0 ? 'expenses' : 'incomes',
     }
 }
 
 const createExpenseAdapter = (expense: Expenses): SetExpenseApi => {
     return {
-        amount: Number(expense.amount),
+        amount: expense.expenseDirection === 'incomes' ? Number(expense.amount) : -Number(expense.amount),
         date: new Date(expense.spendingDate).toISOString(),
         name: expense.expensesName,
         categories: expense.categoryIds,

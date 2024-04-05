@@ -10,15 +10,20 @@ interface UiSelectHeaderProps {
     currentLabel: string[];
     currentValuePlaceholder?: string;
     isLoading?: boolean;
+    multiply?: boolean;
 }
 
-const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentValuePlaceholder = 'Выберите', isLoading }) => {
+const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentValuePlaceholder = 'Выберите', isLoading, multiply = false }) => {
 
     const currenLabelText = () => {
         if (!currentLabel.length) {
             return currentValuePlaceholder;
+        } else if (multiply) {
+            return `Выбрано: ${currentLabel.length}`;
+        } else {
+            return currentLabel[0] ?? '';
         }
-        return `Выбрано: ${currentLabel.length}`;
+        
     }
 
     return (

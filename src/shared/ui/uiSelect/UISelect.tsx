@@ -100,10 +100,11 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
                     isLoading={isOptionsLoading}
                     currentLabel={Array.from(currentValuesMap.values())} 
                     currentValuePlaceholder={currentValuePlaceholder}
+                    multiply={multiply}
                 />
             </div>
            { isBodyOpened &&
-                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto' }} {...getFloatingProps()}>
+                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto', zIndex: 2 }} {...getFloatingProps()}>
                     <UiSelectBody>
                         {
                             getSelectBodyContent()
