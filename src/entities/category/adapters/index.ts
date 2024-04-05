@@ -5,6 +5,7 @@ const getCategoryResponseAdapter = (data: CategoryApi): Category => {
     return {
         categoryId: data.category_id,
         name: data.name,
+        color: data.color,
         isLoading: false,
         isHidden: false,
     }
@@ -14,6 +15,7 @@ const updateCategoryRequestAdapter = (updatedCategory: CategoryEntity): Category
     return {
         category_id: updatedCategory.categoryId,
         name: updatedCategory.name,
+        color: updatedCategory.color,
     }
 }
 

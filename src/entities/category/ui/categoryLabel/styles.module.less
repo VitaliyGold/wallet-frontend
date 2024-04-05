@@ -1,21 +1,35 @@
 .categoryLabel {
-    background-color: var(--yellow-400);
-    border-radius: 4px;
-    border: 1px solid var(--white);
+    border-radius: 8px;
     width: fit-content;
     position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
+    color: var(--black);
     &.smallLabel {
         padding: 2px 8px;
     }
     &.largeLabel {
         padding: 8px 16px;
     }
+    &.dark {
+        color: var(--white);
+    }
+    &.outline {
+        border: 1px solid var(--gray-700);
+        &.dark {
+            color: var(--white);
+            border-color: var(--white);
+        }
+    }
 }
 
 .controlPanel {
     display: flex;
     gap: 4px;
+    & > * {
+        &:hover {
+            color: var(--gray-700);
+        }
+    }
 }

@@ -24,7 +24,7 @@ const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
     
     const onResetForm = () => openTrigger(false);
 
-    const onSubmitForm = async (formData: CategoryFormData) => {
+    const onSubmitForm = async ({ name, color }: CategoryFormData) => {
         openTrigger(false);
         const oldCategory = {
             ...editedCategory,
@@ -33,12 +33,13 @@ const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
             updatedId: categoryId,
             category: {
                 ...editedCategory,
-                name: formData.name,
+                name: name,
                 isLoading: true,
+                color
             }
         }));
         try {
-            const updatedCategory = await dispatch(updateCategoryThunks({ name: formData.name, categoryId })).unwrap();
+            const updatedCategory = await dispatch(updateCategoryThunks({ name, categoryId, color })).unwrap();
             dispatch(categoryActions.updateCategory({
                 updatedId: categoryId,
                 category: updatedCategory,
@@ -59,7 +60,7 @@ const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
             {
                 isFormOpen &&
                 <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 'var(--popup-z-index)' }} {...getFloatingProps()}>
-                    <CreateForm onReset={onResetForm} onSubmit={onSubmitForm} editedData={ { name: editedCategory.name } }/>
+                    <CreateForm onReset={onResetForm} onSubmit={onSubmitForm} editedData={ { name: editedCategory.name, color: editedCategory.color } }/>
                 </div>
             }
         </>

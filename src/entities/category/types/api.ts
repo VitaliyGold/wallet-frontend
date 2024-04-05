@@ -1,11 +1,12 @@
 interface CategoryApi {
     category_id: string;
     name: string;
+    color: string;
 }
 
 type GetCategoryRequest = () => Promise<CategoryApi[]>;
 
-type CreateCategoryRequest = (name: string) => Promise<CategoryApi>;
+type CreateCategoryRequest = (createdCategory: Omit<CategoryApi, 'category_id'>) => Promise<CategoryApi>;
 
 type UpdateCategoryRequest = (updatedCategory: CategoryApi) => Promise<CategoryApi>;
 
