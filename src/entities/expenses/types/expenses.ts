@@ -6,10 +6,10 @@ interface Expenses {
     amount: string;
     categoryIds: string[];
     tagIds: string[];
-    expenseDirection: 'incomes' | 'expenses';
+    amountDirection: 'incomes' | 'expenses';
 }
 
-type ExpenseDirection = 'incomes' | 'expenses';
+type AmountDirection = 'incomes' | 'expenses';
 
 interface ExpensesFilters {
     endDate: number;
@@ -21,5 +21,5 @@ interface ExpensesFilters {
 export type {
     Expenses,
     ExpensesFilters,
-    ExpenseDirection,
+    AmountDirection,
 }

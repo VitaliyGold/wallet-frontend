@@ -8,7 +8,7 @@ type TextSize = 'xs' | 's' | 'l' | 'xl';
 interface UiTextProps {
     tag?: 'span' | 'p',
     size?: TextSize,
-    color?: 'black' | 'gray' | 'white' | 'inherit',
+    color?: 'black' | 'gray' | 'white' | 'inherit' | 'green' | 'red',
     children: ReactNode,
 }
 

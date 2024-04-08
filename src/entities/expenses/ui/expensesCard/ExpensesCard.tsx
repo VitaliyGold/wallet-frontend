@@ -25,7 +25,7 @@ const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = 
             </p>
             <div className={styles.metaContainer}>
                 <p className={styles.date}>{ formatDateToFront(expenses.spendingDate) }</p>
-                <p className={cn(styles.amount, expenses.expenseDirection === 'incomes' ? styles.incomes : styles.expenses)}>{ expenses.amount } ₽</p>
+                <p className={cn(styles.amount, expenses.amountDirection === 'incomes' ? styles.incomes : styles.expenses)}>{ expenses.amount } ₽</p>
             </div>
             {
                 labelsComponent && <div className={styles.labels}>{labelsComponent}</div>

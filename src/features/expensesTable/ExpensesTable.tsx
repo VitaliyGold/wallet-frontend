@@ -6,6 +6,7 @@ import { formatDateToFront } from '@/shared/lib/dateMethods';
 import { UiText } from '@/shared/ui';
 
 import { CategoryCell } from './ui/CategoryCell';
+import { AmountCell } from './ui/AmountCell';
 import styles from './styles.module.less';
 import { TableBody } from './ui/tableBody/TableBody';
 import { TableHeader } from './ui/tableHeader/TableHeader';
@@ -32,7 +33,7 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
         }),
         columnHelper.accessor('amount', {
             header: 'Сумма',
-            cell: props => <UiText>{ props.getValue() } ₽</UiText>,
+            cell: props => <AmountCell amountDirection={props.row.original.amountDirection}>{ props.getValue() } ₽</AmountCell>,
             maxSize: 90
         }),
         columnHelper.accessor('categoryIds', {

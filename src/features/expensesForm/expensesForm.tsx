@@ -69,7 +69,7 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 render={({ field }) => (<MaskedUiInput mask={Number} label="Сумма" { ...field } />)}
             />
             <Controller
-                name='expenseDirection'
+                name='amountDirection'
                 control={control}
                 render={({ field: { onChange, value } }) => (
                     <UiRadioGroup value={value} options={options} onChange={onChange}/>

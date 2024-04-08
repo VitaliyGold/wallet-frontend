@@ -1,5 +1,5 @@
 export type { ExpensesSliceSchema } from './types/expensesSliceSchemas';
-export type { Expenses, ExpensesFilters } from './types/expenses';
+export type { Expenses, ExpensesFilters, AmountDirection } from './types/expenses';
 
 export { expensesReducer, expensesActions } from './model/expensesSlice';
 export { createExpensesActions, createExpensesReducer, createExpensesAdapter } from './model/createExpensesSlice';
