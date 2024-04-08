@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from "react";
 import { memo } from "react";
+import cn from 'classnames';
 
 import { getCuttingString } from "@/shared/lib/getCuttingString";
 
@@ -24,7 +25,7 @@ const ExpensesCard: FC<ExpensesCardProps> = memo(({ expenses, actionComponent = 
             </p>
             <div className={styles.metaContainer}>
                 <p className={styles.date}>{ formatDateToFront(expenses.spendingDate) }</p>
-                <p className={styles.amount}>{ expenses.amount } ₽</p>
+                <p className={cn(styles.amount, expenses.expenseDirection === 'incomes' ? styles.incomes : styles.expenses)}>{ expenses.amount } ₽</p>
             </div>
             {
                 labelsComponent && <div className={styles.labels}>{labelsComponent}</div>

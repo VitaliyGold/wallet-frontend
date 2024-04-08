@@ -7,7 +7,7 @@ const getExpenseAdapter = (data: GetExpenseApi | RemoveExpenseApiResponse | {} =
         expenseId: expense?.expenses_id ?? crypto.randomUUID(),
         expensesName: expense.name ?? '',
         spendingDate: expense.date ? new Date(expense.date).getTime() : new Date().getTime(),
-        amount: expense.amount ? String(expense.amount) : '',
+        amount: expense.amount ? String(Math.abs(expense.amount)) : '',
         categoryIds: expense.category ? expense.category.map((categoryItem) => categoryItem.category_id) : [],
         tagIds: expense.tags ? expense.tags.map((tag) => tag.tag_id) : [],
         isHidden: false,

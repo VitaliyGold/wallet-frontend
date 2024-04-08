@@ -70,3 +70,7 @@ export {
 export {
     UiColorPicker
 } from './uiColorPicker';
+
+export {
+    UiRadioGroup
+} from './uiRadioGroup';

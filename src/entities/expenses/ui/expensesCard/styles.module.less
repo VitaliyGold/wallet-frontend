@@ -36,8 +36,13 @@
 
 .amount {
     font-size: var(--text-size-l);
-    color: var(--red-400);
     cursor: default;
+    &.incomes {
+        color: var(--green-400);
+    }
+    &.expenses {
+        color: var(--red-400);
+    }
 }
 
 .labels {

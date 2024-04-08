@@ -1,3 +1,0 @@
-export {
-    ExpensesDirectionSelect
-} from './ExpensesDirectionSelect';

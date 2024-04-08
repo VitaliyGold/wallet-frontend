@@ -3,8 +3,8 @@ import { useForm, Controller } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 
 import type { Expenses } from '@/entities/expenses';
-import { getExpenseAdapter, ExpensesDirectionSelect } from '@/entities/expenses';
-import { UiInput, UiButton, UiButtonsGroup, MaskedUiInput, UiDatePicker } from '@/shared/ui';
+import { getExpenseAdapter } from '@/entities/expenses';
+import { UiInput, UiButton, UiButtonsGroup, MaskedUiInput, UiDatePicker, UiRadioGroup } from '@/shared/ui';
 import { CategorySelect } from "@/entities/category";
 
 import { CreateExpenseFormData } from './types';
@@ -45,6 +45,21 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
         }
     }
 
+    const options = [
+        {
+            value: 'incomes',
+            label: 'Доход'
+        }, 
+        {
+            value: 'expenses',
+            label: 'Расход'
+        }
+    ];
+
+    const aaa = (value: string) => {
+        console.log(value)
+    }
+
     return (
         <form className={styles.expensesForm} onSubmit={handleSubmit(onExpenseFormSubmit)}>
             <UiInput label="Название траты" { ...register('expensesName') }/>
@@ -52,6 +67,13 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 name='amount'
                 control={control}
                 render={({ field }) => (<MaskedUiInput mask={Number} label="Сумма" { ...field } />)}
+            />
+            <Controller
+                name='expenseDirection'
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                    <UiRadioGroup value={value} options={options} onChange={onChange}/>
+                )}
             />
             <Controller
                 name='spendingDate'
@@ -63,13 +85,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 control={control}
                 render={({ field: { onChange, value } }) => (
                     <CategorySelect value={value} onChange={onChange} label='Категории трат'/>
-                )}
-            />
-            <Controller
-                name='expenseDirection'
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                    <ExpensesDirectionSelect value={value} onChange={onChange}/>
                 )}
             />
             <div className={styles.formControls}>
