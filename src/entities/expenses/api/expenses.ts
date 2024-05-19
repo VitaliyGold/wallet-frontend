@@ -1,9 +1,9 @@
-import { GetExpenseApi, SetExpenseApi, RemoveExpenseApiResponse } from '../types/api';
+import { GetExpenseApi, SetExpenseApi, RemoveExpenseApiResponse, GetExpenseRequestParams } from '../types/api';
 
 import type { PaginationResponse } from '@/shared/types';
 import { fetcher } from '@/shared/lib/fetcher';
 
-const getExpensesListApi = (name: string, limit: number, offset: number, startDate: number, endDate: number, categoryIds: string[]): Promise<PaginationResponse<GetExpenseApi[]>> => {
+const getExpensesListApi = (name: string, limit: number, offset: number, startDate: number, endDate: number, categoryIds: string[], direction: GetExpenseRequestParams['direction']): Promise<PaginationResponse<GetExpenseApi[]>> => {
     const query = {
         name: name,
         limit: String(limit),
@@ -11,6 +11,7 @@ const getExpensesListApi = (name: string, limit: number, offset: number, startDa
         startDate: new Date(startDate).toISOString(),
         endDate: new Date(endDate).toISOString(),
         categories: categoryIds,
+        direction,
     }
     return fetcher.get('expenses', query);
 }

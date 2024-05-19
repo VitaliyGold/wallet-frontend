@@ -1,3 +1,5 @@
+import { AmountDirection } from "./expenses";
+
 interface GetExpenseApi {
     expenses_id: string,
     amount: number,
@@ -32,6 +34,7 @@ interface GetExpenseRequestParams {
     startDate: number;
     endDate: number;
     categoryIds: string[];
+    direction: AmountDirection | 'all';
 }
 
 type GetTotalExpensesRequestParams = Omit<GetExpenseRequestParams, 'offset' | 'limit'>;

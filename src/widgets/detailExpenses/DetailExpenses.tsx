@@ -48,7 +48,7 @@ const DetailExpenses = () => {
     }, [offset])
 
     const getData = async () => {
-        await dispatch(getExpensesListThunk({ limit: 50, offset, name: expensesName, startDate, endDate, categoryIds })).unwrap();
+        await dispatch(getExpensesListThunk({ limit: 50, offset, name: expensesName, startDate, endDate, categoryIds, direction: 'all' })).unwrap();
         setLoading(false);
     }
 

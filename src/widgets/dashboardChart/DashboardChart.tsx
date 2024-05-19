@@ -32,6 +32,7 @@ const DashboardChart = () => {
                 startDate: new Date('2023-08-07').getTime(), 
                 endDate: new Date().getTime(),
                 categoryIds: [],
+                direction: 'expenses',
             })).unwrap();
             setExpenseByCategory(transformDataToCharts(data));
         } catch(e) {
