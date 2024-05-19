@@ -1,18 +1,13 @@
 import { Expenses } from "@/entities/expenses";
 import { formatDateToFront } from "@/shared/lib/dateMethods";
+import { EMPTY_CATEGORY_ID } from "@/entities/category";
 
-
-type ChartData = {
-    date: string;
-    [key: string]: number | string;
-};
-
-type GroupChartByDate = Map<string, ChartData>
+import { ChartData, GroupChartByDate } from "../types";
 
 const transformDataToCharts = (expenses: Expenses[]): ChartData[] => {
     const dateGroup:GroupChartByDate = new Map();
 
-    const setAmountCategoryToGroup = (date: string, amount: number, categoryId = 'unknown'): void => {
+    const setAmountCategoryToGroup = (date: string, amount: number, categoryId = EMPTY_CATEGORY_ID): void => {
         if (dateGroup.has(date) && dateGroup.get(date)![categoryId]) {
             // @ts-ignore
             dateGroup.get(date)![categoryId] += amount;
@@ -34,6 +29,8 @@ const transformDataToCharts = (expenses: Expenses[]): ChartData[] => {
             setAmountCategoryToGroup(formattedSpendingDate, +expense.amount, expense.categoryIds[0]);
         }
     }
+
+    console.log(Array.from(dateGroup.values()));
 
     return Array.from(dateGroup.values());
 

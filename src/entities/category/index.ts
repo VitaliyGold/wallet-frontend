@@ -27,3 +27,11 @@ export type {
 export {
     CategoryLabel
 } from './ui/categoryLabel';
+
+export {
+    UNKNOWN_CATEGORY_NAME,
+    EMPTY_CATEGORY_COLOR,
+    EMPTY_CATEGORY_ID,
+    EMPTY_CATEGORY_NAME,
+    UNKNOWN_CATEGORY_COLOR,
+} from './consts';
