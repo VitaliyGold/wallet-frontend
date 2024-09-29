@@ -1,8 +1,8 @@
-import { GetExpenseApi, SetExpenseApi, RemoveExpenseApiResponse, UpdateExpenseApi } from "../types/api"
+import { ExpenseApiWithCategoryAndTags, SetExpenseApi, RemoveExpenseApiResponse, UpdateExpenseApi } from "../types/api"
 import { Expenses } from "../types/expenses"
 
-const getExpenseAdapter = (data: GetExpenseApi | RemoveExpenseApiResponse | {} = {}): Expenses => {
-    const expense = data as GetExpenseApi;
+const getExpenseAdapter = (data: ExpenseApiWithCategoryAndTags | RemoveExpenseApiResponse | {} = {}): Expenses => {
+    const expense = data as ExpenseApiWithCategoryAndTags;
     return {
         expenseId: expense?.expenses_id ?? crypto.randomUUID(),
         expensesName: expense.name ?? '',

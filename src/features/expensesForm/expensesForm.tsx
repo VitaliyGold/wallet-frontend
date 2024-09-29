@@ -56,10 +56,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
         }
     ];
 
-    const aaa = (value: string) => {
-        console.log(value)
-    }
-
     return (
         <form className={styles.expensesForm} onSubmit={handleSubmit(onExpenseFormSubmit)}>
             <UiInput label="Название траты" { ...register('expensesName') }/>

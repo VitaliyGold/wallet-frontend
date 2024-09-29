@@ -4,9 +4,16 @@ interface Expenses {
     spendingDate: number;
     isHidden: boolean;
     amount: string;
+    // поменять, категория у траты может быть только одна
     categoryIds: string[];
     tagIds: string[];
     amountDirection: 'incomes' | 'expenses';
+}
+
+type GroupExpenses = {
+    categoryId: string;
+    totalAmount: number;
+    expenses: Expenses[];
 }
 
 type AmountDirection = 'incomes' | 'expenses';
@@ -22,4 +29,5 @@ export type {
     Expenses,
     ExpensesFilters,
     AmountDirection,
+    GroupExpenses,
 }
