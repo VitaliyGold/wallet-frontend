@@ -25,7 +25,7 @@ const FiltersList: FC<FiltersListProps> = ({ control, register }) => {
                 <UiInput placeholder='Название'  { ...register('expensesName') } />
             </FilterContainer>
             <FilterContainer maxWidth={300}>
-            <PeriodFilter control={control}/>
+                <PeriodFilter control={control}/>
             </FilterContainer>
             <FilterContainer maxWidth={300}>
                 <Controller
