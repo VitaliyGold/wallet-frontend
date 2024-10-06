@@ -21,7 +21,12 @@ const UiDatePicker = forwardRef<HTMLInputElement, DatePickerProps>((props, ref) 
 
     const onDatePickerChange = (event: ChangeEvent<HTMLInputElement>) => {
         const date = event.currentTarget.value;
-        onChange(new Date(date).getTime());
+        if (date) {
+            onChange(new Date(date).getTime());
+        } else {
+            onChange(new Date().getTime());
+        }
+        
     }
 
     return (
