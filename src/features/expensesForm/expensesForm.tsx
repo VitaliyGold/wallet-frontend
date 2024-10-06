@@ -7,7 +7,8 @@ import { getExpenseAdapter } from '@/entities/expenses';
 import { UiInput, UiButton, UiButtonsGroup, MaskedUiInput, UiDatePicker, UiRadioGroup } from '@/shared/ui';
 import { CategorySelect } from "@/entities/category";
 
-import { CreateExpenseFormData } from './types';
+import type { CreateExpenseFormData } from './types';
+import { options } from './contants';
 import styles from './styles.module.less';
 
 interface ExpensesFormProps {
@@ -45,17 +46,6 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
         }
     }
 
-    const options = [
-        {
-            value: 'incomes',
-            label: 'Доход'
-        }, 
-        {
-            value: 'expenses',
-            label: 'Расход'
-        }
-    ];
-
     return (
         <form className={styles.expensesForm} onSubmit={handleSubmit(onExpenseFormSubmit)}>
             <UiInput label="Название траты" { ...register('expensesName') }/>
@@ -77,7 +67,7 @@ const ExpensesForm: FC<ExpensesFormProps> = ({ expense, closeCallback, saveCallb
                 render={({ field }) => (<UiDatePicker label="Дата траты" { ...field } />)}
             />
             <Controller
-                name='categoryIds'
+                name='categoryId'
                 control={control}
                 render={({ field: { onChange, value } }) => (
                     <CategorySelect value={value} onChange={onChange} label='Категории трат'/>

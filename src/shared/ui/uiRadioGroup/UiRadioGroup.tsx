@@ -20,7 +20,7 @@ const UiRadioGroup: FC<UiRadioGroupProps> = ({ value, options, onChange, label }
             { label && <label>{label}</label> }
             {
                 options.map(option => (
-                    <div className={styles.radioButton}>
+                    <div className={styles.radioButton} key={option.value}>
                         <input type="radio" checked={option.value === value} onChange={() => onChange(option.value)}></input>
                         <label htmlFor={option.value}>
                             { option.label }

@@ -28,6 +28,8 @@ const ExpensesChart = () => {
 
     const clearData = () => {expensesBarActions.clearExpenses()}
 
+    console.log(expensesGroupData)
+
     useEffect(() => {
         getData();
         return clearData;

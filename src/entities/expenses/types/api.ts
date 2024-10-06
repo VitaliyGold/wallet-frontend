@@ -6,24 +6,20 @@ type ExpenseApi = {
 }
 
 type ExpenseApiWithCategoryAndTags = ExpenseApi & {
-    category: [
-        {
-            category_id: string
-        }
-    ],
-    tags: [
-        {
-            tag_id: string
-        }
-    ]
+    category: {
+        category_id: string
+    } | null,
+    tag: {
+        tag_id: string
+    } | null,
 }
 
 interface SetExpenseApi {
     amount: number,
     date: string,
     name: string,
-    categories: string[],
-    tags: string[],
+    categoryId: string | null,
+    tagId: string | null,
 }
 
 type UpdateExpenseApi = SetExpenseApi & Pick<ExpenseApiWithCategoryAndTags, 'expenses_id'>;

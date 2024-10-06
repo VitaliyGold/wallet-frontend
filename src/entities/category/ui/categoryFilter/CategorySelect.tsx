@@ -6,13 +6,14 @@ import type { IUiOption } from "@/shared/ui/uiSelect";
 import { categoryListSelector, categorySelector } from "../../model/categorySelectors";
 
 interface CategorySelectProps {
-    value: string[];
+    value: string | string[] | null;
     label?: string;
-    onChange: (categoryIds: string[]) => void;
+    multiply?: boolean;
+    onChange: (categoryId?: string | string[] | null) => void;
     onClose?: () => void;
 }
 
-const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, label }) => {
+const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, label, multiply = false }) => {
 
     const { isLoadingCategoryList } = useSelector(categorySelector);
 
@@ -21,11 +22,27 @@ const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, lab
         label: category.name
     }));
 
-    const onSelectedCategories = (categoryId: string, isSelected: boolean) => {
+    const isMultiply = multiply && Array.isArray(value);
+
+    const onSelectedCategory = (categoryId: string, isSelected: boolean) => {
+        if (!value) {
+            onChange(categoryId)
+            return;
+        }
         if (isSelected) {
-            onChange([...value, categoryId]);
+            if (isMultiply) onChange([ categoryId, ...value ]);
+            else onChange(null);
         } else {
-            onChange(value.filter(category => category !== categoryId));
+            if (isMultiply) onChange(value.filter(category => category !== categoryId));
+            else onChange(null);
+        }
+    };
+
+    const clearCategory = () => {
+        if (isMultiply) {
+            onChange([])
+        } else {
+            onChange(null);
         }
     }
 
@@ -36,9 +53,9 @@ const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, lab
             label={label}
             options={options}
             currentValue={value}
-            onSelected={onSelectedCategories}
+            onSelected={onSelectedCategory}
             onClose={onClose}
-            multiply
+            onClear={clearCategory}
         />
     )
 };
