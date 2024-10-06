@@ -43,7 +43,6 @@ const ExpensesChart = () => {
 
     const tooltipContent = (tooltipProps: TooltipProps<number, string>) => {
         if (!tooltipProps.active) return null;
-        console.log(tooltipProps);
         const hoverCategoryId = tooltipProps.payload && tooltipProps.payload[0]?.name;
 
         const hoverCategoryAmount = (tooltipProps.payload && tooltipProps.payload[0]?.value) ?? 0;
