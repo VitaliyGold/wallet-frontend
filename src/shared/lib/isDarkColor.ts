@@ -9,7 +9,6 @@ const isDarkColor = (color: string): boolean => {
     var b = parseInt(color.substring(4,6),16);
 
     var brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    console.log(brightness)
     return brightness < 125;
 };
 
