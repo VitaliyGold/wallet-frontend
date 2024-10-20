@@ -21,5 +21,5 @@
         "react": ["./node_modules/@types/react"]
       }
     },
-    "include": ["src", "header", "apiTypes.ts", "tsconfig.node.json"]
+    "include": ["src"]
   }
