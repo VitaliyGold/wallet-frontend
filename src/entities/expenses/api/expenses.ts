@@ -3,14 +3,14 @@ import { ExpenseApiWithCategoryAndTags, SetExpenseApi, RemoveExpenseApiResponse 
 import type { PaginationResponse } from '@/shared/types';
 import { fetcher } from '@/shared/lib/fetcher';
 
-const getExpensesListApi = (name: string, limit: number, offset: number, startDate: number, endDate: number, categoryIds: string[]): Promise<PaginationResponse<ExpenseApiWithCategoryAndTags[]>> => {
+const getExpensesListApi = (name: string, limit: number, offset: number, startDate: number, endDate: number, category_ids: string[]): Promise<PaginationResponse<ExpenseApiWithCategoryAndTags[]>> => {
     const query = {
         name: name,
         limit: String(limit),
         offset: String(offset),
         startDate: new Date(startDate).toISOString(),
         endDate: new Date(endDate).toISOString(),
-        categories: categoryIds,
+        category_ids,
     }
     return fetcher.get('expenses', query);
 }

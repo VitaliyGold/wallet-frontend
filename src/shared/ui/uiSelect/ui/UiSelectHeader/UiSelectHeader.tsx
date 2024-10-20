@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { memo } from 'react';
 import cn from 'classnames';
 
-import { UiText, Icon, UiLoader } from '@/shared/ui';
+import { UiText, Icon, UiLoader, UiIconButton } from '@/shared/ui';
 
 import styles from './styles.module.less';
 
@@ -11,11 +11,12 @@ interface UiSelectHeaderProps {
     currentValuePlaceholder?: string;
     isLoading?: boolean;
     multiply?: boolean;
+    onClear: () => void;
 }
 
-const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentValuePlaceholder = 'Выберите', isLoading, multiply = false }) => {
+const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentValuePlaceholder = 'Выберите', isLoading, multiply = false, onClear }) => {
 
-    const currenLabelText = () => {
+    const currentLabelText = () => {
         if (!currentLabel.length) {
             return currentValuePlaceholder;
         } else if (multiply) {
@@ -34,13 +35,13 @@ const UiSelectHeader: FC<UiSelectHeaderProps> = memo(({ currentLabel, currentVal
                     : 
                     <>
                         <div className={styles.label}>
-                            <UiText color={currentLabel.length ? 'inherit' : 'gray'}>{ currenLabelText() }</UiText>
+                            <UiText color={currentLabel.length ? 'inherit' : 'gray'}>{ currentLabelText() }</UiText>
                         </div>
                         
                     </>
             }
             <Icon iconType='down' size={20}/>
-            
+            <UiIconButton type='button' iconType='remove' onClick={onClear}/>
         </div>
     )
 });

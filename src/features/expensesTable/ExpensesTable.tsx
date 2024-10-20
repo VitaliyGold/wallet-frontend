@@ -36,12 +36,12 @@ const ExpensesTable: FC<ExpensesTableProps> = ({ expensesList, infinityLoadingEl
             cell: props => <AmountCell amountDirection={props.row.original.amountDirection}>{ props.getValue() } ₽</AmountCell>,
             maxSize: 90
         }),
-        columnHelper.accessor('categoryIds', {
-            id: 'categoryIds',
+        columnHelper.accessor('categoryId', {
+            id: 'categoryId',
             header: 'Категории',
-            cell: props => <CategoryCell categoryIds={props.getValue()}/>,
+            cell: props => <CategoryCell categoryId={props.getValue()}/>,
         }),
-        columnHelper.accessor('tagIds', {
+        columnHelper.accessor('tagId', {
             header: 'Теги',
             cell: info => <p></p>,
         }),

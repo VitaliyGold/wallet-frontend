@@ -26,7 +26,9 @@ const ExpensesChart = () => {
 
     const getData = () => dispatch(getExpensesGroupByCategoryThunk({ startDate: new Date('2023-08-07').getTime(), endDate: new Date('2024-09-29').getTime()}));
 
-    const clearData = () => {expensesBarActions.clearExpenses()}
+    const clearData = () => {
+        expensesBarActions.clearExpenses()
+    }
 
     useEffect(() => {
         getData();

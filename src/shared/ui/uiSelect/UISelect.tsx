@@ -12,16 +12,17 @@ import { UiText } from '../uiText';
 
 interface UiSelectProps {
     options: IUiOption[];
-    currentValue: string[] | string;
+    currentValue: string[] | string | null;
     multiply?: boolean;
     onSelected: (selectedValue: string, isSelected: boolean) => void;
     onClose?: () => void;
     isOptionsLoading?: boolean;
     currentValuePlaceholder?: string;
     label?: string;
+    onClear?: () => void;
 }
 
-const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder, isOptionsLoading = false, label }) => {
+const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, onSelected, onClose, currentValuePlaceholder, isOptionsLoading = false, label, onClear }) => {
 
     const [ isBodyOpened, setBodyOpened ] = useState(false);
 
@@ -92,12 +93,17 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
         )
     }
 
+    const onClearSelect = () => {
+        if (onClear) onClear();
+    }
+
     return (
         <div className={styles.selectContainer} tabIndex={0}>
             { label && <label className={styles.inputLabel}>{label}</label> }
             <div ref={refs.setReference} { ...getReferenceProps()} className={styles.headerContainer}>
                 <UiSelectHeader
                     isLoading={isOptionsLoading}
+                    onClear={onClearSelect}
                     currentLabel={Array.from(currentValuesMap.values())} 
                     currentValuePlaceholder={currentValuePlaceholder}
                     multiply={multiply}

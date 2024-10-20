@@ -10,7 +10,7 @@ const getExpensesGroupByCategoryThunk = createAsyncThunk('expenses/total', async
     const data = await getExpensesGroupByCategory(startDate, endDate);
 
     return data.reduce((expenses, groupExpense) => {
-        expenses.push({ categoryId: groupExpense.category_id, totalAmount: Math.abs(groupExpense.category_total_amount), expenses: groupExpense.expenses.map(getExpenseAdapter) })
+        expenses.push({ categoryId: groupExpense.category_id, totalAmount: groupExpense.category_total_amount ? Math.abs(groupExpense.category_total_amount) : 0, expenses: groupExpense.expenses.map(getExpenseAdapter) })
         return expenses;
     }, [] as GroupExpenses[]);
 });

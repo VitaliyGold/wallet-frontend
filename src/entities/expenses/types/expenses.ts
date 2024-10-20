@@ -5,8 +5,8 @@ interface Expenses {
     isHidden: boolean;
     amount: string;
     // поменять, категория у траты может быть только одна
-    categoryIds: string[];
-    tagIds: string[];
+    categoryId: string | null;
+    tagId: string | null;
     amountDirection: 'incomes' | 'expenses';
 }
 
