@@ -8,8 +8,8 @@ const getExpenseAdapter = (data: ExpenseApiWithCategoryAndTags | RemoveExpenseAp
         expensesName: expense.name ?? '',
         spendingDate: expense.date ? new Date(expense.date).getTime() : new Date().getTime(),
         amount: expense.amount ? String(Math.abs(expense.amount)) : '',
-        categoryId: expense.category ? expense.category.category_id : null,
-        tagId: expense.tag ? expense.tag.tag_id : null,
+        categoryId: expense.category_id ?? null,
+        tagId: expense.tag_id ?? null,
         isHidden: false,
         amountDirection: expense.amount < 0 ? 'expenses' : 'incomes',
     }
@@ -20,8 +20,8 @@ const createExpenseAdapter = (expense: Expenses): SetExpenseApi => {
         amount: expense.amountDirection === 'incomes' ? Number(expense.amount) : -Number(expense.amount),
         date: new Date(expense.spendingDate).toISOString(),
         name: expense.expensesName,
-        categoryId: expense.categoryId,
-        tagId: expense.tagId,
+        category_id: expense.categoryId,
+        tag_id: expense.tagId,
     }
 }
 

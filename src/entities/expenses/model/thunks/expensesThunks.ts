@@ -6,8 +6,8 @@ import { Expenses } from "../../types/expenses";
 
 import { getExpensesListApi, saveNewExpensesApi, removeExpensesApi, editExpensesApi } from "../../api/expenses";
 
-const getExpensesListThunk = createAsyncThunk('expenses/list', async ({ limit, offset, name, startDate, endDate, categoryIds }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
-    const { data, total } = await getExpensesListApi(name, limit, offset, startDate, endDate, categoryIds);
+const getExpensesListThunk = createAsyncThunk('expenses/list', async ({ limit, offset, name, startDate, endDate, category_ids }: GetExpenseRequestParams ): Promise<PaginationResponse<Expenses[]>> => {
+    const { data, total } = await getExpensesListApi(name, limit, offset, startDate, endDate, category_ids);
     return {
         data: data.map(expense => getExpenseAdapter(expense)),
         total,

@@ -26,7 +26,6 @@ const ExpensesBarSlice = createSlice({
         }),
         builder.addCase(getExpensesGroupByCategoryThunk.fulfilled, (state, action) => {
             state.loading = false;
-            console.log(action.payload);
             expensesBarAdapter.addMany(state, action.payload);
         })
     }

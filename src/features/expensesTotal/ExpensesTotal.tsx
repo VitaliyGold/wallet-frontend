@@ -22,7 +22,7 @@ const ExpensesTotal = () => {
 
     const getExpensesTotal = async () => {
         setLoading(true);
-        const total = await dispatch(getExpensesTotalThunk({ name: expensesName, startDate, endDate, categoryIds })).unwrap();
+        const total = await dispatch(getExpensesTotalThunk({ name: expensesName, startDate, endDate, category_ids: categoryIds })).unwrap();
         setLoading(false);
         setTotalAmount(total);
     }

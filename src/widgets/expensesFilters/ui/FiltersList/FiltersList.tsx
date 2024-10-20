@@ -32,7 +32,7 @@ const FiltersList: FC<FiltersListProps> = ({ control, register }) => {
                     name='categoryIds'
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                        <CategorySelect value={value} onChange={onChange}/>
+                        <CategorySelect value={value} onChange={onChange} multiply/>
                     )}
                 />
             </FilterContainer>

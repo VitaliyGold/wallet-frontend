@@ -25,10 +25,6 @@ const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, lab
     const isMultiply = multiply && Array.isArray(value);
 
     const onSelectedCategory = (categoryId: string, isSelected: boolean) => {
-        if (!value) {
-            onChange(categoryId)
-            return;
-        }
         if (isSelected) {
             if (isMultiply) onChange([ categoryId, ...value ]);
             else onChange(null);

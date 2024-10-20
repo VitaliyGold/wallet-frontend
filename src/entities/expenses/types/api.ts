@@ -6,20 +6,16 @@ type ExpenseApi = {
 }
 
 type ExpenseApiWithCategoryAndTags = ExpenseApi & {
-    category: {
-        category_id: string
-    } | null,
-    tag: {
-        tag_id: string
-    } | null,
+    category_id: string | null,
+    tag_id: string | null,
 }
 
 interface SetExpenseApi {
     amount: number,
     date: string,
     name: string,
-    categoryId: string | null,
-    tagId: string | null,
+    category_id: string | null,
+    tag_id: string | null,
 }
 
 type UpdateExpenseApi = SetExpenseApi & Pick<ExpenseApiWithCategoryAndTags, 'expenses_id'>;
@@ -30,7 +26,7 @@ interface GetExpenseRequestParams {
     name: string;
     startDate: number;
     endDate: number;
-    categoryIds: string[];
+    category_ids: string[];
 }
 
 interface ExpenseGroupByCategoryApi {
