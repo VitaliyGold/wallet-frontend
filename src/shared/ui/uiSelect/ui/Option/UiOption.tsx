@@ -14,7 +14,6 @@ interface UiOptionProps {
 }
 
 const UiOption: FC<UiOptionProps> = ({ label, disabled = false, isSelected, withCheckbox = false, onSelect }) => {
-
     return (
         <div className={cn([styles.option, { [styles.selected]: isSelected && !withCheckbox, [styles.disabledOption]: disabled } ])} onClick={() => onSelect(!isSelected)}>
             { withCheckbox && <UiCheckbox value={isSelected} disabled={disabled}/> }

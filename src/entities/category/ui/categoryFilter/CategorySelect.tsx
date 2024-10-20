@@ -44,7 +44,7 @@ const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, lab
 
     return (
         <UiSelect
-            currentValuePlaceholder='Выберите категорию'
+            currentValuePlaceholder='Категория'
             isOptionsLoading={isLoadingCategoryList}
             label={label}
             options={options}
@@ -52,6 +52,7 @@ const CategorySelect: FC<CategorySelectProps> = ({ value, onChange, onClose, lab
             onSelected={onSelectedCategory}
             onClose={onClose}
             onClear={clearCategory}
+            multiply={isMultiply}
         />
     )
 };

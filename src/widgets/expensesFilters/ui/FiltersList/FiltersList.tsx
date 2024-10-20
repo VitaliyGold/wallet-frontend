@@ -18,21 +18,21 @@ interface FiltersListProps {
 
 
 const FiltersList: FC<FiltersListProps> = ({ control, register }) => {
-
+    console.log(12312)
     return (
         <div className={styles.filtersList}>
-            <FilterContainer maxWidth={300}>
+            <FilterContainer maxWidth={250}>
                 <UiInput placeholder='Название'  { ...register('expensesName') } />
             </FilterContainer>
             <FilterContainer maxWidth={300}>
                 <PeriodFilter control={control}/>
             </FilterContainer>
-            <FilterContainer maxWidth={300}>
+            <FilterContainer maxWidth={200}>
                 <Controller
                     name='categoryIds'
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                        <CategorySelect value={value} onChange={onChange} multiply/>
+                        <CategorySelect value={value} onChange={onChange} multiply={true}/>
                     )}
                 />
             </FilterContainer>

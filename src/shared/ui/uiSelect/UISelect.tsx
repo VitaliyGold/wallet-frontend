@@ -110,7 +110,7 @@ const UiSelect: FC<UiSelectProps> = ({ options, currentValue, multiply = false, 
                 />
             </div>
            { isBodyOpened &&
-                <div ref={refs.setFloating} style={{ ...floatingStyles, width: 'auto', zIndex: 2 }} {...getFloatingProps()}>
+                <div ref={refs.setFloating} style={{ ...floatingStyles }} className={styles.floater} {...getFloatingProps()}>
                     <UiSelectBody>
                         {
                             getSelectBodyContent()
