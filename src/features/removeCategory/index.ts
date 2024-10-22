@@ -1,3 +1,1 @@
-export {
-    RemoveCategoryButton
-} from './RemoveCategoryButton';
+export { RemoveCategoryButton } from "./RemoveCategoryButton";

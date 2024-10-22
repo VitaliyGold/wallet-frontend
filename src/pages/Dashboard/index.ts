@@ -1,1 +1,1 @@
-export { DashboardAsync } from './Dashboard.async';
+export { DashboardAsync } from "./Dashboard.async";

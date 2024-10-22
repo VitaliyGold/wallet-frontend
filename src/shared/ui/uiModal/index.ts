@@ -1,3 +1,1 @@
-export {
-    UiModal
-} from './UiModal';
+export { UiModal } from "./UiModal";

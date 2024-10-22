@@ -1,3 +1,1 @@
-export {
-    CategoryCloud
-} from './CategoryCloud';
+export { CategoryCloud } from "./CategoryCloud";

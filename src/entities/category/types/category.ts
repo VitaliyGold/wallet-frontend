@@ -1,15 +1,12 @@
-interface CategoryEntity  {
-    name: string;
-    categoryId: string;
-    color: string;
+interface CategoryEntity {
+	name: string;
+	categoryId: string;
+	color: string;
 }
 
 interface Category extends CategoryEntity {
-    isLoading: boolean;
-    isHidden: boolean;
+	isLoading: boolean;
+	isHidden: boolean;
 }
 
-export type {
-    Category,
-    CategoryEntity,
-}
+export type { Category, CategoryEntity };

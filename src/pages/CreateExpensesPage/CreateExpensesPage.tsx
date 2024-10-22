@@ -1,14 +1,7 @@
-import { useSelector } from "react-redux";
-
 import { CreateExpenses } from "@/widgets/createExpense";
 
 const CreateExpensesPage = () => {
-
-    return (
-        <CreateExpenses/>
-    )
+	return <CreateExpenses />;
 };
 
-export {
-    CreateExpensesPage,
-}
+export { CreateExpensesPage };

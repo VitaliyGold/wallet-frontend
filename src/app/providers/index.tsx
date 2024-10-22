@@ -1,2 +1,2 @@
-export { StoreProvider } from './storeProvider';
-export { useAppDispatch } from './model/store';
+export { StoreProvider } from "./storeProvider";
+export { useAppDispatch } from "./model/store";

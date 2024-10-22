@@ -1,3 +1,1 @@
-export {
-    InfinityLoader
-} from './InfinityLoader';
+export { InfinityLoader } from "./InfinityLoader";

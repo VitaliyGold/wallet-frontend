@@ -1,7 +1,3 @@
-export {
-    CreateCategoryButton
-} from './ui/createCategoryButton';
+export { CreateCategoryButton } from "./ui/createCategoryButton";
 
-export {
-    EditCategoryButton
-} from './ui/editCategoryButton';
+export { EditCategoryButton } from "./ui/editCategoryButton";

@@ -1,8 +1,6 @@
 type PaginationResponse<T> = {
-    data: T;
-    total: number;
+	data: T;
+	total: number;
 };
 
-export type {
-    PaginationResponse,
-}
+export type { PaginationResponse };

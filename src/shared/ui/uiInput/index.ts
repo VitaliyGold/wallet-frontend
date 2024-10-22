@@ -1,7 +1,3 @@
-export {
-    UiInput,
-} from './uiInput';
+export { UiInput } from "./uiInput";
 
-export {
-    MaskedUiInput,
-} from './MaskedUiInput';
+export { MaskedUiInput } from "./MaskedUiInput";

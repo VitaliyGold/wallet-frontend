@@ -19,7 +19,8 @@
       "paths": {
         "@/*": ["./src/*"],
         "react": ["./node_modules/@types/react"]
-      }
+      },
+      "types": ["vite-plugin-svgr/client"]
     },
-    "include": ["src", "header", "apiTypes.ts", "tsconfig.node.json"]
+    "include": ["src/*"]
   }

@@ -1,3 +1,1 @@
-export {
-    ExpensesTotal
-} from './ExpensesTotal';
+export { ExpensesTotal } from "./ExpensesTotal";

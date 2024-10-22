@@ -1,3 +1,1 @@
-export {
-    UiRadioGroup
-} from './UiRadioGroup';
+export { UiRadioGroup } from "./UiRadioGroup";

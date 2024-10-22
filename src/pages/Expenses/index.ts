@@ -1,3 +1,1 @@
-export {
-    ExpensesPageAsync
-} from './Expenses.async';
+export { ExpensesPageAsync } from "./Expenses.async";

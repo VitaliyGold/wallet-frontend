@@ -1,8 +1,6 @@
 interface Color {
-    color: string;
-    title: string;
+	color: string;
+	title: string;
 }
 
-export type {
-    Color,
-}
+export type { Color };

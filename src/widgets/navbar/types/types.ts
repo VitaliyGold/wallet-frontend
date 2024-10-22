@@ -1,11 +1,9 @@
-type NavbarLinks = 'table' | 'dashboard' | 'settings';
+type NavbarLinks = "table" | "dashboard" | "settings";
 
 interface INavbarItem {
-    title: string;
-    link: string;
-    iconName: NavbarLinks;
+	title: string;
+	link: string;
+	iconName: NavbarLinks;
 }
 
-export type {
-    INavbarItem
-}
+export type { INavbarItem };

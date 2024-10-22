@@ -1,29 +1,42 @@
-import type { FC, ReactNode, ChangeEvent } from 'react';
-import cn from 'classnames';
+import type { FC, ReactNode, ChangeEvent } from "react";
+import cn from "classnames";
 
-import styles from './styles.module.less';
+import styles from "./styles.module.less";
 
 interface UiCheckboxProps {
-    children?: ReactNode;
-    value: boolean;
-    onChange?: (newValue: boolean) => void;
-    disabled?: boolean; 
+	children?: ReactNode;
+	value: boolean;
+	onChange?: (newValue: boolean) => void;
+	disabled?: boolean;
 }
 
-const UiCheckbox: FC<UiCheckboxProps> = ({ children, value, onChange, disabled }) => {
+const UiCheckbox: FC<UiCheckboxProps> = ({
+	children,
+	value,
+	onChange,
+	disabled,
+}) => {
+	const onCheck = (e: ChangeEvent<HTMLInputElement>) => {
+		if (onChange) onChange(e.target.checked);
+	};
 
-    const onCheck = (e: ChangeEvent<HTMLInputElement>) => {
-        if (onChange) onChange(e.target.checked);
-    }
-
-    return (
-        <label className={cn({ [styles.checkboxContainer]: true, [styles.disabled]: disabled } )}>
-            <input className={styles.checkbox} type="checkbox" checked={value} onChange={onCheck} disabled={disabled}/>
-            <span className={styles.label}>{children}</span>
-        </label>
-    )
+	return (
+		<label
+			className={cn({
+				[styles.checkboxContainer]: true,
+				[styles.disabled]: disabled,
+			})}
+		>
+			<input
+				className={styles.checkbox}
+				type="checkbox"
+				checked={value}
+				onChange={onCheck}
+				disabled={disabled}
+			/>
+			<span className={styles.label}>{children}</span>
+		</label>
+	);
 };
 
-export {
-    UiCheckbox,
-}
+export { UiCheckbox };

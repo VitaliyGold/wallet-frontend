@@ -1,2 +1,2 @@
-export { Icon } from './Icon';
-export type { IconsTypes } from './model/types';
+export { Icon } from "./Icon";
+export type { IconsTypes } from "./model/types";

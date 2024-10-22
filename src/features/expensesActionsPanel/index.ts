@@ -1,1 +1,1 @@
-export { ExpensesActionsPanel } from './expensesActionsPanel';
+export { ExpensesActionsPanel } from "./expensesActionsPanel";

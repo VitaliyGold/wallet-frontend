@@ -6,14 +6,22 @@ import { expensesBarAdapter } from "./expensesBarSlice";
 
 const expensesBarStateSelector = (state: RootStore) => state.expensesBar;
 
-const isExpensesBarLoadingSelector = createSelector(expensesBarStateSelector, (state) => state.loading);
+const isExpensesBarLoadingSelector = createSelector(
+	expensesBarStateSelector,
+	(state) => state.loading,
+);
 
-const isExpensesBarErrorSelector = createSelector(expensesBarStateSelector, (state) => state.error);
+const isExpensesBarErrorSelector = createSelector(
+	expensesBarStateSelector,
+	(state) => state.error,
+);
 
-const expensesBarDataSelector = expensesBarAdapter.getSelectors((state: RootStore) => state.expensesBar);
+const expensesBarDataSelector = expensesBarAdapter.getSelectors(
+	(state: RootStore) => state.expensesBar,
+);
 
 export {
-    isExpensesBarLoadingSelector,
-    isExpensesBarErrorSelector,
-    expensesBarDataSelector,
-}
+	isExpensesBarLoadingSelector,
+	isExpensesBarErrorSelector,
+	expensesBarDataSelector,
+};

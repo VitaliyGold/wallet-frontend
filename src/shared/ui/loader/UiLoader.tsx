@@ -1,24 +1,23 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import Loader from '@/shared/assets/svg/loader.svg?react';
-import styles from './styles.module.less';
+import Loader from "@/shared/assets/svg/loader.svg?react";
+import styles from "./styles.module.less";
 
 interface UiLoaderProps {
-    size?: number;
+	size?: number;
 }
-
 
 const UiLoader: FC<UiLoaderProps> = ({ size = 50 }) => {
+	return (
+		<div className={styles.loaderContainer}>
+			<span
+				className={styles.uiLoader}
+				style={{ width: `${size}px`, height: `${size}px` }}
+			>
+				<Loader width={size} height={size} />
+			</span>
+		</div>
+	);
+};
 
-    return (
-        <div className={styles.loaderContainer}>
-            <span className={styles.uiLoader} style={{ width: `${size}px`, height: `${size}px` }}>
-                <Loader width={size} heigth={size}/>
-            </span>
-        </div>
-    )
-}
-
-export {
-    UiLoader,
-}
+export { UiLoader };

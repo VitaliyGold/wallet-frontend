@@ -1,1 +1,1 @@
-export { UiText } from './UiText';
+export { UiText } from "./UiText";

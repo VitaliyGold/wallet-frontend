@@ -1,3 +1,1 @@
-export {
-    DetailExpenses
-} from './DetailExpenses';
+export { DetailExpenses } from "./DetailExpenses";

@@ -1,3 +1,1 @@
-export {
-    CategoryCell
-} from './CategoryCell';
+export { CategoryCell } from "./CategoryCell";

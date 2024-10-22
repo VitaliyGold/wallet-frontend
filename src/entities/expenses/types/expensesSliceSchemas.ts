@@ -1,17 +1,13 @@
-
 import { EntityState } from "@reduxjs/toolkit";
 import type { Expenses } from "./expenses";
 
 interface ExpensesSliceSchema {
-    expensesList: EntityState<Expenses, string>;
-    totalExpenses: number;
+	expensesList: EntityState<Expenses, string>;
+	totalExpenses: number;
 }
 
 interface CreateExpensesSliceSchema {
-    newExpensesList: Expenses[];
+	newExpensesList: Expenses[];
 }
 
-export type {
-    ExpensesSliceSchema,
-    CreateExpensesSliceSchema,
-}
+export type { ExpensesSliceSchema, CreateExpensesSliceSchema };

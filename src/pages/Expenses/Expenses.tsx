@@ -5,15 +5,13 @@ import { ExpensesTotal } from "@/features/expensesTotal";
 import { PageLayout } from "@/shared/ui";
 
 const ExpensesPage = () => {
-    return (
-        <PageLayout>
-            <ExpensesFilter/>
-            <DetailExpenses/>
-            <ExpensesTotal/>
-        </PageLayout>
-    )
+	return (
+		<PageLayout>
+			<ExpensesFilter />
+			<DetailExpenses />
+			<ExpensesTotal />
+		</PageLayout>
+	);
 };
 
-export {
-    ExpensesPage,
-}
+export { ExpensesPage };

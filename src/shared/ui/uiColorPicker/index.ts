@@ -1,3 +1,1 @@
-export {
-    UiColorPicker
-} from './UiColorPicker';
+export { UiColorPicker } from "./UiColorPicker";
