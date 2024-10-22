@@ -1,0 +1,4 @@
+{
+    "*.ts": "bun test:ts",
+    "*.{js,jsx,ts,tsx}": "npx eslint --fix"
+  }
