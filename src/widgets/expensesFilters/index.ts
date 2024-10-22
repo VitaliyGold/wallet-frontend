@@ -1,3 +1,1 @@
-export {
-    ExpensesFilter
-} from './ExpensesFilters';
+export { ExpensesFilter } from "./ExpensesFilters";

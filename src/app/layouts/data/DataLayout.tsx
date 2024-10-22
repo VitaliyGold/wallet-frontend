@@ -1,24 +1,20 @@
-import type { FC, ReactNode } from 'react';
-import { useEffect } from 'react';
-import { getCategoryListThunks } from '@/entities/category';
-import { useAppDispatch } from '@/app/providers';
+import type { FC, ReactNode } from "react";
+import { useEffect } from "react";
+import { getCategoryListThunks } from "@/entities/category";
+import { useAppDispatch } from "@/app/providers";
 
 interface DataLayoutProps {
-    children: ReactNode,
+	children: ReactNode;
 }
 
 const DataLayout: FC<DataLayoutProps> = ({ children }) => {
+	const dispatch = useAppDispatch();
 
-    const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(getCategoryListThunks());
+	}, []);
 
-    useEffect(() => {
-        dispatch(getCategoryListThunks());
-    }, []);
-
-    return <>{children}</>;
+	return <>{children}</>;
 };
 
-
-export {
-    DataLayout,
-}
+export { DataLayout };

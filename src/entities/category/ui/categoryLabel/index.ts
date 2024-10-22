@@ -1,3 +1,1 @@
-export {
-    CategoryLabel
-} from './CategoryLabel';
+export { CategoryLabel } from "./CategoryLabel";

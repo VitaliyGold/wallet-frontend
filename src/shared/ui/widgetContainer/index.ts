@@ -1,3 +1,1 @@
-export {
-    WidgetContainer
-} from './WidgetContainer';
+export { WidgetContainer } from "./WidgetContainer";

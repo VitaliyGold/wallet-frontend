@@ -1,3 +1,1 @@
-export {
-    SettingsPageAsync
-} from './Settings.async';
+export { SettingsPageAsync } from "./Settings.async";

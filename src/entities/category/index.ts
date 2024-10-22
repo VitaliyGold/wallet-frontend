@@ -1,29 +1,23 @@
 export {
-    categoryEntityAdapter,
-    categoryActions,
-    categoryReducer,
-} from './model/categorySlice';
+	categoryEntityAdapter,
+	categoryActions,
+	categoryReducer,
+} from "./model/categorySlice";
 
 export {
-    categoryListSelector,
-    categorySelector
-} from './model/categorySelectors';
+	categoryListSelector,
+	categorySelector,
+} from "./model/categorySelectors";
+
+export { CategorySelect } from "./ui/categoryFilter";
 
 export {
-    CategorySelect
-} from './ui/categoryFilter';
+	getCategoryListThunks,
+	createCategoryThunks,
+	updateCategoryThunks,
+	removeCategoryThunks,
+} from "./model/thunks/categoryThunks";
 
-export {
-    getCategoryListThunks,
-    createCategoryThunks,
-    updateCategoryThunks,
-    removeCategoryThunks,
-} from './model/thunks/categoryThunks';
+export type { Category } from "./types/category";
 
-export type {
-    Category
-} from './types/category';
-
-export {
-    CategoryLabel
-} from './ui/categoryLabel';
+export { CategoryLabel } from "./ui/categoryLabel";

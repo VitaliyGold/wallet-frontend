@@ -1,1 +1,1 @@
-export { AmountCell } from './AmountCell';
+export { AmountCell } from "./AmountCell";

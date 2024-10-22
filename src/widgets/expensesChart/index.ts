@@ -1,3 +1,1 @@
-export {
-    ExpensesChart
-} from './ExpensesChart';
+export { ExpensesChart } from "./ExpensesChart";

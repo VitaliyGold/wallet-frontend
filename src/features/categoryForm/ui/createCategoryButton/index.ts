@@ -1,3 +1,1 @@
-export {
-    CreateCategoryButton
-} from './CreateCategoryButton';
+export { CreateCategoryButton } from "./CreateCategoryButton";

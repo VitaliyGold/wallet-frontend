@@ -1,3 +1,1 @@
-export {
-    UiSkeleton
-} from './UiSkeleton';
+export { UiSkeleton } from "./UiSkeleton";

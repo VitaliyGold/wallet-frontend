@@ -1,24 +1,19 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { UiButton } from '@/shared/ui';
+import { UiButton } from "@/shared/ui";
 
-import styles from './styles.module.less';
+import styles from "./styles.module.less";
 
 interface Props {
-    onRetry: () => void;
+	onRetry: () => void;
 }
-
 
 const ErrorChart: FC<Props> = ({ onRetry }) => {
-    return (
-        <div className={styles.errorWrapper}>
-            <UiButton onClick={onRetry}>
-                Попробовать снова
-            </UiButton>
-        </div>
-    )
+	return (
+		<div className={styles.errorWrapper}>
+			<UiButton onClick={onRetry}>Попробовать снова</UiButton>
+		</div>
+	);
 };
 
-export {
-    ErrorChart,
-}
+export { ErrorChart };

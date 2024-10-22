@@ -1,1 +1,1 @@
-export { LastExpenses } from './LastExpenses';
+export { LastExpenses } from "./LastExpenses";

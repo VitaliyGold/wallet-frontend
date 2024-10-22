@@ -1,3 +1,1 @@
-export {
-    BackgroundLoading
-} from './BackgroundLoading';
+export { BackgroundLoading } from "./BackgroundLoading";

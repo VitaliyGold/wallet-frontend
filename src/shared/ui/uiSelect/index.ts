@@ -1,7 +1,3 @@
-export {
-    UiSelect
-} from './UISelect';
+export { UiSelect } from "./UISelect";
 
-export type {
-    IUiOption
-} from './types';
+export type { IUiOption } from "./types";

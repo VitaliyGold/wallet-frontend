@@ -1,3 +1,1 @@
-export {
-    RemoveExpenses,
-} from './RemoveExpenses';
+export { RemoveExpenses } from "./RemoveExpenses";
