@@ -17,10 +17,10 @@
       "jsx": "react-jsx",
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"],
+        "@*": ["src/*"],
         "react": ["./node_modules/@types/react"]
       },
-      "types": ["vite-plugin-svgr/client"]
+      "types": ["vite-plugin-svgr/client"],
+      "exclude": ["node_modules/*"]
     },
-    "include": ["src/*"]
   }

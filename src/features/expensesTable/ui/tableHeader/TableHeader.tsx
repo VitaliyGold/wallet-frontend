@@ -1,5 +1,4 @@
 import { FC } from "react";
-import cn from "classnames";
 import type { HeaderGroup } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 
@@ -13,24 +12,22 @@ interface TableHeaderProps {
 
 const TableHeader: FC<TableHeaderProps> = ({ headerConfig }) => {
 	return (
-		<div className={styles.headerRow} key={headerConfig[0].id}>
-			{headerConfig[0].headers.map((header) => {
-				return (
-					<div
-						className={cn(styles.cell, styles.headerCell)}
-						key={header.id}
-						style={{ maxWidth: header.column.columnDef.maxSize }}
-					>
-						{header.isPlaceholder
-							? null
-							: flexRender(
-									header.column.columnDef.header,
-									header.getContext(),
-								)}
-					</div>
-				);
-			})}
-		</div>
+		<thead key={headerConfig[0].id}>
+			<tr className={styles.headerRow}>
+				{headerConfig[0].headers.map((header) => {
+					return (
+						<th key={header.id}>
+							{header.isPlaceholder
+								? null
+								: flexRender(
+										header.column.columnDef.header,
+										header.getContext(),
+									)}
+						</th>
+					);
+				})}
+			</tr>
+		</thead>
 	);
 };
 
