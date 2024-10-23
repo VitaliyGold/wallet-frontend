@@ -11,33 +11,27 @@ interface TableBodyProps {
 
 const TableBody: FC<TableBodyProps> = ({ data }) => {
 	return (
-		<div className={styles.tableBody}>
+		<tbody className={styles.tableBody}>
 			{data.rows.map((row) => {
 				return (
-					<div
+					<tr
 						key={row.original.expenseId}
 						className={styles.tableRow}
 					>
 						{row.getVisibleCells().map((cell) => {
 							return (
-								<div
-									key={cell.id}
-									className={styles.cell}
-									style={{
-										maxWidth: cell.column.columnDef.maxSize,
-									}}
-								>
+								<td key={cell.id} className={styles.cell}>
 									{flexRender(
 										cell.column.columnDef.cell,
 										cell.getContext(),
 									)}
-								</div>
+								</td>
 							);
 						})}
-					</div>
+					</tr>
 				);
 			})}
-		</div>
+		</tbody>
 	);
 };
 
