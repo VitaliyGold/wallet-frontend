@@ -18,13 +18,25 @@ const PeriodFilter: FC<Props> = ({ control }) => {
 			<Controller
 				name="startDate"
 				control={control}
-				render={({ field: { onChange, value, onBlur } }) => <UiDatePicker value={value} onChange={( date ) => onChange(setBeginDayTime(date))} onBlur={onBlur} />}
+				render={({ field: { onChange, value, onBlur } }) => (
+					<UiDatePicker
+						value={value}
+						onChange={(date) => onChange(setBeginDayTime(date))}
+						onBlur={onBlur}
+					/>
+				)}
 			/>
 			<span>-</span>
 			<Controller
 				name="endDate"
 				control={control}
-				render={({ field: { onChange, value, onBlur } }) => <UiDatePicker value={value} onChange={( date ) => onChange(setEndDayTime(date))} onBlur={onBlur} />}
+				render={({ field: { onChange, value, onBlur } }) => (
+					<UiDatePicker
+						value={value}
+						onChange={(date) => onChange(setEndDayTime(date))}
+						onBlur={onBlur}
+					/>
+				)}
 			/>
 		</div>
 	);

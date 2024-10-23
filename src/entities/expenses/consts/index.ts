@@ -1,4 +1,8 @@
-import { getMonthAgo, setBeginDayTime, setEndDayTime } from "@/shared/lib/dateMethods";
+import {
+	getMonthAgo,
+	setBeginDayTime,
+	setEndDayTime,
+} from "@/shared/lib/dateMethods";
 import { ExpensesFilters } from "../types/expenses";
 
 const defaultExpensesFilter = (): ExpensesFilters => {

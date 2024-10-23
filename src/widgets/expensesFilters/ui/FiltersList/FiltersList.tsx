@@ -17,7 +17,6 @@ interface FiltersListProps {
 }
 
 const FiltersList: FC<FiltersListProps> = ({ control, register }) => {
-	
 	return (
 		<div className={styles.filtersList}>
 			<FilterContainer maxWidth={250}>
