@@ -37,7 +37,7 @@ const CategorySelect: FC<CategorySelectProps> = ({
 	const onSelectedCategory = (categoryId: string, isSelected: boolean) => {
 		if (isSelected) {
 			if (isMultiply) onChange([categoryId, ...value]);
-			else onChange(null);
+			else onChange(categoryId);
 		} else {
 			if (isMultiply)
 				onChange(value.filter((category) => category !== categoryId));
