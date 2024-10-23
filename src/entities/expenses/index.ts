@@ -20,6 +20,8 @@ export {
 	createExpensesStateSelector,
 	totalExpensesSelector,
 	filtersExpensesSelector,
+	isErrorExpensesSelector,
+	isLoadingExpensesSelector,
 } from "./model/expensesSelectors";
 export {
 	expensesBarDataSelector,

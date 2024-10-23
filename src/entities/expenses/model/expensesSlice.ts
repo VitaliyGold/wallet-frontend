@@ -13,6 +13,8 @@ const ExpensesSlice = createSlice({
 	name: "expensesSlice",
 	initialState: expensesAdapter.getInitialState({
 		totalExpenses: 0,
+		isLoading: false,
+		isError: false,
 		filters: defaultExpensesFilter(),
 	}),
 	reducers: {
@@ -42,6 +44,16 @@ const ExpensesSlice = createSlice({
 		builder.addCase(getExpensesListThunk.fulfilled, (state, action) => {
 			expensesAdapter.addMany(state, action.payload.data);
 			state.totalExpenses = action.payload.total;
+			state.isLoading = false;
+			state.isError = false;
+		});
+		builder.addCase(getExpensesListThunk.pending, (state) => {
+			state.isLoading = true;
+			state.isError = false;
+		});
+		builder.addCase(getExpensesListThunk.rejected, (state) => {
+			state.isLoading = false;
+			state.isError = true;
 		});
 	},
 });

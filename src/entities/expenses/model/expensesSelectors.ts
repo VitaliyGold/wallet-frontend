@@ -23,9 +23,21 @@ const filtersExpensesSelector = createSelector(
 	(state) => state.filters,
 );
 
+const isLoadingExpensesSelector = createSelector(
+	expensesStateSelector,
+	(state) => state.isLoading,
+);
+
+const isErrorExpensesSelector = createSelector(
+	expensesStateSelector,
+	(state) => state.isError,
+);
+
 export {
 	expensesListEntitiesSelector,
 	createExpensesStateSelector,
 	totalExpensesSelector,
 	filtersExpensesSelector,
+	isLoadingExpensesSelector,
+	isErrorExpensesSelector,
 };
