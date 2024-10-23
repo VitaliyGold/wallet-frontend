@@ -21,6 +21,6 @@
         "react": ["./node_modules/@types/react"]
       },
       "types": ["vite-plugin-svgr/client"],
-      "exclude": ["node_modules/*"]
+      "exclude": ["node_modules/*"],
     },
   }
