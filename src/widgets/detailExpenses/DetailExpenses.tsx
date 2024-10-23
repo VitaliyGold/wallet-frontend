@@ -13,12 +13,16 @@ import {
 	expensesActions,
 	ExpensesCardActions,
 	updateExpensesThunk,
+	defaultExpensesFilter,
 } from "@/entities/expenses";
 import type { Expenses } from "@/entities/expenses";
 import { UiLoader, InfinityLoader, UiModal } from "@/shared/ui";
 import { useSkipFirstRender } from "@/shared/lib/useSkipFirstRender";
 
 import styles from "./styles.module.less";
+import { EmptyPlaceholder } from "./EmptyPlaceholder";
+import { isEqualFilter } from "@/widgets/expensesFilters/lib/isEqualFilter";
+
 
 const DetailExpenses = () => {
 	const [isLoading, setLoading] = useState(true);
@@ -36,13 +40,19 @@ const DetailExpenses = () => {
 	const expensesList = useSelector(expensesListEntitiesSelector.selectAll);
 	const totalExpenses = useSelector(totalExpensesSelector);
 
-	const { endDate, startDate, expensesName, categoryIds } = useSelector(
+	const expensesFilter = useSelector(
 		filtersExpensesSelector,
 	);
+
+	const { expensesName, endDate, startDate, categoryIds } = expensesFilter;
 
 	const currentExpense = useSelector((state: RootStore) =>
 		expensesListEntitiesSelector.selectById(state, currentExpenseId),
 	);
+
+	const isFilterNotDefault = !isLoading && !isEqualFilter(expensesFilter, defaultExpensesFilter());
+
+	console.log(isFilterNotDefault)
 
 	useSkipFirstRender(() => {
 		setLoading(true);
@@ -117,7 +127,7 @@ const DetailExpenses = () => {
 	}
 
 	if (!totalExpenses) {
-		return <div className={styles.emptyPlaceholder}>Нет трат</div>;
+		return <EmptyPlaceholder hasFilters={isFilterNotDefault}/>;
 	}
 
 	const getModalContent = () => {
