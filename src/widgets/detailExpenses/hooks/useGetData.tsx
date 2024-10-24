@@ -1,11 +1,12 @@
-import type { ExpensesFilters } from "@/entities/expenses";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "@/app";
 
+import { useAppDispatch } from "@/app";
+import type { ExpensesFilters } from "@/entities/expenses";
 import {
 	isLoadingExpensesSelector,
 	getExpensesListThunk,
+	expensesActions,
 } from "@/entities/expenses";
 
 export const useGetData = ({
@@ -18,15 +19,7 @@ export const useGetData = ({
 
 	const [offset, changeOffset] = useState(0);
 
-	useEffect(() => {
-		getData();
-	}, [expensesName, endDate, startDate, categoryIds, offset]);
-
-	const isExpensesLoading = useSelector(isLoadingExpensesSelector);
-
-	const isLoadingMore = !!offset && isExpensesLoading;
-
-	const getData = () =>
+	const getData = () => {
 		dispatch(
 			getExpensesListThunk({
 				limit: 50,
@@ -37,10 +30,30 @@ export const useGetData = ({
 				category_ids: categoryIds,
 			}),
 		);
+	};
+
+	const onFilterChange = () => {
+		changeOffset(0);
+		dispatch(expensesActions.clearExpenses());
+		getData();
+	};
+
+	const getMoreData = () => {
+		changeOffset(offset + 50);
+		getData();
+	};
+
+	useEffect(() => {
+		onFilterChange();
+	}, [expensesName, endDate, startDate, JSON.stringify(categoryIds)]);
+
+	const isExpensesLoading = useSelector(isLoadingExpensesSelector);
+
+	const isLoadingMore = !!offset && isExpensesLoading;
 
 	return {
 		isLoading: isExpensesLoading,
 		isLoadingMore,
-		changeOffset: () => changeOffset(offset + 50),
+		getMoreData,
 	};
 };

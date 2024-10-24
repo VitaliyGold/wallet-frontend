@@ -32,7 +32,7 @@ const DetailExpenses = () => {
 
 	const { expensesName, endDate, startDate, categoryIds } = expensesFilter;
 
-	const { isLoading, changeOffset } = useGetData({
+	const { isLoading, isLoadingMore, getMoreData } = useGetData({
 		expensesName,
 		endDate,
 		startDate,
@@ -51,9 +51,6 @@ const DetailExpenses = () => {
 		};
 	}, []);
 
-	const haveMoreData =
-		!!expensesList.length && expensesList.length !== totalExpenses;
-
 	if (isLoading) {
 		return <UiLoader />;
 	}
@@ -69,8 +66,9 @@ const DetailExpenses = () => {
 				expenseControlPanel={ExpenseControlPanel}
 			/>
 			<InfinityLoader
-				condition={haveMoreData}
-				getMoreCallback={changeOffset}
+				isLoading={isLoadingMore}
+				hasMoreData={isLoadingMore}
+				getMoreCallback={getMoreData}
 			/>
 			<ChangeExpenseModal />
 		</div>

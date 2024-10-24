@@ -6,19 +6,21 @@ import { UiLoader } from "../loader";
 interface InfinityLoaderProps {
 	loaderSize?: number;
 	getMoreCallback: () => void;
-	condition: boolean;
+	hasMoreData: boolean;
+	isLoading: boolean;
 }
 
 const InfinityLoader: FC<InfinityLoaderProps> = ({
 	loaderSize = 20,
 	getMoreCallback,
-	condition,
+	hasMoreData,
+	isLoading,
 }) => {
 	const onChangeViewLoader = (isVisible: boolean) => {
-		if (isVisible) getMoreCallback();
+		if (isVisible && !isLoading) getMoreCallback();
 	};
 
-	if (condition) {
+	if (hasMoreData) {
 		return (
 			<InView onChange={onChangeViewLoader}>
 				<UiLoader size={loaderSize} />
