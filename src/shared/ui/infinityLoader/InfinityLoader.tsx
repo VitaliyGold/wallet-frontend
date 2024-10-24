@@ -16,6 +16,7 @@ const InfinityLoader: FC<InfinityLoaderProps> = ({
 	hasMoreData,
 	isLoading,
 }) => {
+	console.log(2);
 	const onChangeViewLoader = (isVisible: boolean) => {
 		if (isVisible && !isLoading) getMoreCallback();
 	};
