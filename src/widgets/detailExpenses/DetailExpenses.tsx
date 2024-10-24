@@ -1,76 +1,49 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { RootStore, useAppDispatch } from "@/app";
+import { useAppDispatch } from "@/app";
 
 import { ExpensesList } from "@/features/expensesList";
-import { RemoveExpenses } from "@/features/removeExpenses";
-import { ExpensesForm } from "@/features/expensesForm";
 import {
 	expensesListEntitiesSelector,
 	totalExpensesSelector,
-	getExpensesListThunk,
 	filtersExpensesSelector,
 	expensesActions,
-	ExpensesCardActions,
-	updateExpensesThunk,
+	defaultExpensesFilter,
+	isLoadingExpensesSelector,
 } from "@/entities/expenses";
-import type { Expenses } from "@/entities/expenses";
-import { UiLoader, InfinityLoader, UiModal } from "@/shared/ui";
-import { useSkipFirstRender } from "@/shared/lib/useSkipFirstRender";
+import { UiLoader, InfinityLoader } from "@/shared/ui";
+// перенести на уровень хелперов
+import { isEqualFilter } from "@/widgets/expensesFilters/lib/isEqualFilter";
 
 import styles from "./styles.module.less";
+import { EmptyPlaceholder } from "./EmptyPlaceholder";
+import { useGetData } from "./hooks/useGetData";
+import { useChangeExpenses } from "./hooks/useChangeExpenses";
 
 const DetailExpenses = () => {
-	const [isLoading, setLoading] = useState(true);
-
-	const [offset, changeOffset] = useState(0);
-
-	const [currentExpenseId, setCurrentExpenseId] = useState<string>("");
-
-	const [currentModalMode, setCurrentModalMode] = useState<
-		null | "edit" | "remove"
-	>(null);
+	const isExpensesLoading = useSelector(isLoadingExpensesSelector);
 
 	const dispatch = useAppDispatch();
 
 	const expensesList = useSelector(expensesListEntitiesSelector.selectAll);
 	const totalExpenses = useSelector(totalExpensesSelector);
 
-	const { endDate, startDate, expensesName, categoryIds } = useSelector(
-		filtersExpensesSelector,
-	);
+	const expensesFilter = useSelector(filtersExpensesSelector);
 
-	const currentExpense = useSelector((state: RootStore) =>
-		expensesListEntitiesSelector.selectById(state, currentExpenseId),
-	);
+	const { expensesName, endDate, startDate, categoryIds } = expensesFilter;
 
-	useSkipFirstRender(() => {
-		setLoading(true);
-		dispatch(expensesActions.clearExpenses());
-		if (!offset) {
-			getData();
-		} else {
-			changeOffset(0);
-		}
-	}, [endDate, startDate, expensesName, categoryIds.length]);
+	const { isLoading, isLoadingMore, getMoreData } = useGetData({
+		expensesName,
+		endDate,
+		startDate,
+		categoryIds,
+	});
 
-	useEffect(() => {
-		getData();
-	}, [offset]);
+	const { ChangeExpenseModal, ExpenseControlPanel } = useChangeExpenses();
 
-	const getData = async () => {
-		await dispatch(
-			getExpensesListThunk({
-				limit: 50,
-				offset,
-				name: expensesName,
-				startDate,
-				endDate,
-				category_ids: categoryIds,
-			}),
-		).unwrap();
-		setLoading(false);
-	};
+	const isFilterNotDefault =
+		!isExpensesLoading &&
+		!isEqualFilter(expensesFilter, defaultExpensesFilter());
 
 	useEffect(() => {
 		return () => {
@@ -78,87 +51,26 @@ const DetailExpenses = () => {
 		};
 	}, []);
 
-	const getMoreData = () => {
-		changeOffset(offset + 50);
-	};
-
-	const setDefaultMode = () => {
-		setCurrentExpenseId("");
-		setCurrentModalMode(null);
-	};
-
-	const startEdit = (expenseId: string) => {
-		setCurrentModalMode("edit");
-		setCurrentExpenseId(expenseId);
-	};
-
-	const startRemoved = (expenseId: string) => {
-		setCurrentModalMode("remove");
-		setCurrentExpenseId(expenseId);
-	};
-
-	const editData = async (expenses: Expenses) => {
-		const oldExpense = { ...currentExpense };
-		setDefaultMode();
-		dispatch(expensesActions.patchExpense(expenses));
-		try {
-			await dispatch(updateExpensesThunk(expenses)).unwrap();
-			// eslint-disable-next-line
-        } catch(e) {
-			dispatch(expensesActions.patchExpense(oldExpense));
-		}
-	};
-
-	const haveMoreData =
-		!!expensesList.length && expensesList.length !== totalExpenses;
-
 	if (isLoading) {
 		return <UiLoader />;
 	}
 
 	if (!totalExpenses) {
-		return <div className={styles.emptyPlaceholder}>Нет трат</div>;
+		return <EmptyPlaceholder hasFilters={isFilterNotDefault} />;
 	}
-
-	const getModalContent = () => {
-		if (currentModalMode === "edit") {
-			return (
-				<ExpensesForm
-					expense={currentExpense}
-					closeCallback={setDefaultMode}
-					saveCallback={editData}
-				/>
-			);
-		}
-		return (
-			<RemoveExpenses
-				currentExpense={currentExpense}
-				onCancelCallback={setDefaultMode}
-				onSuccessCallback={setDefaultMode}
-			/>
-		);
-	};
 
 	return (
 		<div className={styles.detailExpenses}>
 			<ExpensesList
 				expensesList={expensesList}
-				expenseControlPanel={(expenseId) => (
-					<ExpensesCardActions
-						removeAction={() => startRemoved(expenseId)}
-						editAction={() => startEdit(expenseId)}
-					/>
-				)}
+				expenseControlPanel={ExpenseControlPanel}
 			/>
 			<InfinityLoader
-				condition={haveMoreData}
+				isLoading={isLoadingMore}
+				hasMoreData={isLoadingMore}
 				getMoreCallback={getMoreData}
 			/>
-			{currentExpenseId && (
-				<UiModal onHideCallback={setDefaultMode}>
-					{getModalContent()}
-				</UiModal>
-			)}
+			<ChangeExpenseModal />
 		</div>
 	);
 };

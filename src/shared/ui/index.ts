@@ -35,3 +35,5 @@ export { UiSkeleton } from "./uiSkeleton";
 export { UiColorPicker } from "./uiColorPicker";
 
 export { UiRadioGroup } from "./uiRadioGroup";
+
+export { UiImage } from "./uiImage";

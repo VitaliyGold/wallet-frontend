@@ -4,6 +4,7 @@ import type { FC } from "react";
 import type { ExpensesFilters } from "@/entities/expenses";
 
 import { UiDatePicker } from "@/shared/ui";
+import { setBeginDayTime, setEndDayTime } from "@/shared/lib/dateMethods";
 
 import styles from "./styles.module.less";
 
@@ -17,13 +18,25 @@ const PeriodFilter: FC<Props> = ({ control }) => {
 			<Controller
 				name="startDate"
 				control={control}
-				render={({ field }) => <UiDatePicker {...field} />}
+				render={({ field: { onChange, value, onBlur } }) => (
+					<UiDatePicker
+						value={value}
+						onChange={(date) => onChange(setBeginDayTime(date))}
+						onBlur={onBlur}
+					/>
+				)}
 			/>
 			<span>-</span>
 			<Controller
 				name="endDate"
 				control={control}
-				render={({ field }) => <UiDatePicker {...field} />}
+				render={({ field: { onChange, value, onBlur } }) => (
+					<UiDatePicker
+						value={value}
+						onChange={(date) => onChange(setEndDayTime(date))}
+						onBlur={onBlur}
+					/>
+				)}
 			/>
 		</div>
 	);
