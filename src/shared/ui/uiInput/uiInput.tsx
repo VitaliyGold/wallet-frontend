@@ -28,7 +28,10 @@ const UiInput = memo(
 						<label className={styles.inputLabel}>{label}</label>
 					)}
 					<input
-						className={styles.inputElement}
+						className={cn(
+							styles.inputElement,
+							errorMessage ? styles.errorInput : "",
+						)}
 						ref={ref}
 						{...rest}
 					/>

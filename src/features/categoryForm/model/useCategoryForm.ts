@@ -2,16 +2,16 @@ import { useState } from "react";
 
 import {
 	useFloating,
-	autoUpdate,
 	useClick,
 	useInteractions,
 	useDismiss,
 	offset,
 } from "@floating-ui/react";
 // TODO вынести всю работу с тултипами в отдельный shared хук
-const useCategoryForm = () => {
+const useCategoryForm = (
+	labelRef: HTMLDivElement | null | undefined = null,
+) => {
 	const [isFormOpen, setFormOpen] = useState(false);
-
 	const openTrigger = (isOpen: boolean) => {
 		setFormOpen(isOpen);
 	};
@@ -21,8 +21,10 @@ const useCategoryForm = () => {
 		strategy: "absolute",
 		open: isFormOpen,
 		onOpenChange: openTrigger,
-		whileElementsMounted: autoUpdate,
 		middleware: [offset(5)],
+		elements: {
+			reference: labelRef,
+		},
 	});
 
 	const dismiss = useDismiss(context);

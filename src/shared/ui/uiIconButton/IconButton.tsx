@@ -36,6 +36,7 @@ interface IconButtonProps
 const UiIconButton = forwardRef(
 	(
 		{
+			children = null,
 			iconType,
 			size = IconSizes["medium"],
 			viewType = "gray",
@@ -63,6 +64,7 @@ const UiIconButton = forwardRef(
 				ref={ref}
 			>
 				<Icon iconType={iconType} size={size} />
+				{children}
 			</button>
 		);
 	},

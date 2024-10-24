@@ -1,5 +1,5 @@
 const сategoryFormErrors = {
-	requiredName: "Имя обязательно",
+	requiredName: "Это обязательное поле",
 	categoryAlreadyExist: "Категория с таким именем уже есть",
 };
 

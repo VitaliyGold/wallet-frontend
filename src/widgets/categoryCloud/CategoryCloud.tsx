@@ -1,18 +1,11 @@
 import { useSelector } from "react-redux";
 
-import {
-	CategoryLabel,
-	categoryListSelector,
-	categorySelector,
-} from "@/entities/category";
+import { categoryListSelector, categorySelector } from "@/entities/category";
 import { WidgetContainer, UiSkeleton, UiText } from "@/shared/ui";
-import {
-	CreateCategoryButton,
-	EditCategoryButton,
-} from "@/features/categoryForm";
-import { RemoveCategoryButton } from "@/features/removeCategory";
+import { CreateCategoryButton } from "@/features/categoryForm";
 
 import styles from "./styles.module.less";
+import { CategoryItem } from "./ui/CategoryItem/CategoryItem";
 
 const CategoryCloud = () => {
 	const categoryList = useSelector(categoryListSelector.selectAll);
@@ -38,22 +31,13 @@ const CategoryCloud = () => {
 			);
 		}
 		return categoryList.map((category) => (
-			<CategoryLabel
+			<CategoryItem
 				key={category.categoryId}
-				size="large"
+				name={category.name}
 				color={category.color}
+				categoryId={category.categoryId}
 				isLoading={category.isLoading}
-				controlPanel={
-					<>
-						<EditCategoryButton categoryId={category.categoryId} />
-						<RemoveCategoryButton
-							categoryId={category.categoryId}
-						/>
-					</>
-				}
-			>
-				{category.name}
-			</CategoryLabel>
+			/>
 		));
 	};
 

@@ -51,7 +51,7 @@ const LastExpenses = () => {
 		).unwrap();
 	};
 
-	const haveMoreData =
+	const hasMoreData =
 		!!lastExpensesList.length && lastExpensesList.length !== totalExpenses;
 
 	const getMoreData = () => {
@@ -72,7 +72,7 @@ const LastExpenses = () => {
 			infinityLoadingElement={
 				<InfinityLoader
 					getMoreCallback={getMoreData}
-					condition={haveMoreData}
+					hasMoreData={hasMoreData}
 				/>
 			}
 		/>

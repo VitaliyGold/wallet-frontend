@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, RefObject } from "react";
 import { useSelector } from "react-redux";
 
 import { UiIconButton } from "@/shared/ui";
@@ -16,11 +16,17 @@ import { CategoryFormData } from "../../types";
 
 interface EditCategoryButtonProps {
 	categoryId: string;
+	labelRef?: RefObject<HTMLDivElement> | null;
 }
 
-const EditCategoryButton: FC<EditCategoryButtonProps> = ({ categoryId }) => {
+const EditCategoryButton: FC<EditCategoryButtonProps> = ({
+	categoryId,
+	labelRef,
+}) => {
+	const labelElement = labelRef ? labelRef.current : null;
+
 	const { isFormOpen, refs, openTrigger, getFloatingProps, floatingStyles } =
-		useCategoryForm();
+		useCategoryForm(labelElement);
 
 	const dispatch = useAppDispatch();
 
