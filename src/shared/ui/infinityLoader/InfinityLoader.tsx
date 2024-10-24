@@ -7,17 +7,16 @@ interface InfinityLoaderProps {
 	loaderSize?: number;
 	getMoreCallback: () => void;
 	hasMoreData: boolean;
-	isLoading: boolean;
+	isLoading?: boolean;
 }
 
 const InfinityLoader: FC<InfinityLoaderProps> = ({
 	loaderSize = 20,
 	getMoreCallback,
 	hasMoreData,
-	isLoading,
 }) => {
 	const onChangeViewLoader = (isVisible: boolean) => {
-		if (isVisible && !isLoading) getMoreCallback();
+		if (isVisible) getMoreCallback();
 	};
 
 	if (hasMoreData) {
