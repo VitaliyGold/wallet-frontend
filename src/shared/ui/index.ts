@@ -37,3 +37,5 @@ export { UiColorPicker } from "./uiColorPicker";
 export { UiRadioGroup } from "./uiRadioGroup";
 
 export { UiImage } from "./uiImage";
+
+export * from "./toaster";

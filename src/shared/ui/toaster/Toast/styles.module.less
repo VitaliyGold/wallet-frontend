@@ -1,0 +1,21 @@
+.toast {
+    width: 300px;
+    background-color: var(--white);
+    box-shadow: var(--widget-shadow);
+    position: relative;
+    border-radius: 5px;
+    &.error {
+        background-color: var(--red-400);
+        color: var(--white);
+    }
+}
+
+.toastContent {
+    padding: 8px 40px 8px 8px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}

@@ -5,6 +5,7 @@ import {
 	createExpensesReducer,
 	expensesBarReducer,
 } from "@/entities/expenses";
+import { toasterReducer } from "@/shared/ui/toaster";
 import { categoryReducer } from "@/entities/category";
 
 const createReduxStore = () =>
@@ -14,6 +15,7 @@ const createReduxStore = () =>
 			createExpenses: createExpensesReducer,
 			category: categoryReducer,
 			expensesBar: expensesBarReducer,
+			toasters: toasterReducer,
 		},
 		devTools: import.meta.env.NODE_ENV !== "production",
 		middleware: (getDefaultMiddleware) =>

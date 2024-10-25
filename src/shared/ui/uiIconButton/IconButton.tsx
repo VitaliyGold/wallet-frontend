@@ -30,6 +30,7 @@ interface IconButtonProps
 	viewType?: IconButtonViewType;
 	outline?: boolean;
 	withoutPaddings?: boolean;
+	className?: string;
 	onClick: () => void;
 }
 
@@ -42,6 +43,7 @@ const UiIconButton = forwardRef(
 			outline = false,
 			withoutPaddings = true,
 			onClick,
+			className,
 			...rest
 		}: IconButtonProps,
 		ref: Ref<HTMLButtonElement>,
@@ -53,11 +55,15 @@ const UiIconButton = forwardRef(
 
 		return (
 			<button
-				className={cn(styles.iconButton, {
-					[styles[viewType]]: true,
-					[styles.outline]: outline,
-					[styles.withoutPaddings]: withoutPaddings,
-				})}
+				className={cn(
+					styles.iconButton,
+					{
+						[styles[viewType]]: true,
+						[styles.outline]: outline,
+						[styles.withoutPaddings]: withoutPaddings,
+					},
+					className ? className : "",
+				)}
 				onClick={onClickStopPropagation}
 				{...rest}
 				ref={ref}
