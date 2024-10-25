@@ -1,3 +1,5 @@
+import { isNil } from "@/shared/helpers";
+
 import {
 	ExpenseApiWithCategoryAndTags,
 	SetExpenseApi,
@@ -13,6 +15,7 @@ const getExpenseAdapter = (
 		| object = {},
 ): Expenses => {
 	const expense = data as ExpenseApiWithCategoryAndTags;
+
 	return {
 		expenseId: expense?.expenses_id ?? crypto.randomUUID(),
 		expensesName: expense.name ?? "",
@@ -23,7 +26,10 @@ const getExpenseAdapter = (
 		categoryId: expense.category_id ?? null,
 		tagId: expense.tag_id ?? null,
 		isHidden: false,
-		amountDirection: expense.amount < 0 ? "expenses" : "incomes",
+		amountDirection:
+			isNil(expense.amount) || expense.amount < 0
+				? "expenses"
+				: "incomes",
 	};
 };
 

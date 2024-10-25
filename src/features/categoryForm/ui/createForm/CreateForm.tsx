@@ -1,7 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import type { FC } from "react";
 import { useSelector } from "react-redux";
-import debouncePromise from "awesome-debounce-promise";
 
 import { UiInput, UiButton, UiColorPicker } from "@/shared/ui";
 import { categoryListSelector } from "@/entities/category";
@@ -37,13 +36,13 @@ const CreateForm: FC<CreateFormProps> = ({ onSubmit, onReset, editedData }) => {
 	});
 
 	const validate = {
-		alreadyExist: debouncePromise((value: string) => {
+		alreadyExist: (value: string) => {
 			return categoryNamesList
 				.filter((name) => name !== editedData?.name)
 				.includes(value.toLocaleLowerCase().trim())
 				? сategoryFormErrors.categoryAlreadyExist
 				: true;
-		}, 200),
+		},
 	};
 
 	const onFormSubmit = (formData: CategoryFormData) => {

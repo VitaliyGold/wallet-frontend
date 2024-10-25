@@ -33,8 +33,27 @@ const ExpensesForm: FC<ExpensesFormProps> = ({
 	// TODO: убрать/заменить
 	const defaultExpenseData = isEdit ? expense : getExpenseAdapter();
 
-	const { register, handleSubmit, control, reset } =
-		useForm<CreateExpenseFormData>({ defaultValues: defaultExpenseData });
+	const {
+		register,
+		handleSubmit,
+		control,
+		reset,
+		formState: { errors },
+	} = useForm<CreateExpenseFormData>({
+		defaultValues: defaultExpenseData,
+		mode: "onSubmit",
+		reValidateMode: "onChange",
+	});
+
+	const validate = {
+		min: (value: string) => {
+			const numberValue = Number(value);
+			if (isNaN(numberValue) || numberValue < 1) {
+				return "Минимальная сумма 1 ₽";
+			}
+			return true;
+		},
+	};
 
 	const clearForm = () => {
 		reset();
@@ -64,12 +83,25 @@ const ExpensesForm: FC<ExpensesFormProps> = ({
 			className={styles.expensesForm}
 			onSubmit={handleSubmit(onExpenseFormSubmit)}
 		>
-			<UiInput label="Название траты" {...register("expensesName")} />
+			<UiInput
+				label="Название траты"
+				errorMessage={errors.expensesName?.message}
+				{...register("expensesName", { required: "Обязательное поле" })}
+			/>
 			<Controller
+				rules={{
+					required: "Обязательное поле",
+					validate: validate,
+				}}
 				name="amount"
 				control={control}
 				render={({ field }) => (
-					<MaskedUiInput mask={Number} label="Сумма" {...field} />
+					<MaskedUiInput
+						mask={Number}
+						errorMessage={errors.amount?.message}
+						label="Сумма"
+						{...field}
+					/>
 				)}
 			/>
 			<Controller
