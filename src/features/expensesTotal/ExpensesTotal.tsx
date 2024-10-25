@@ -6,7 +6,8 @@ import {
 	filtersExpensesSelector,
 	getExpensesTotalThunk,
 } from "@/entities/expenses";
-import { UiLoader } from "@/shared/ui";
+import { UiLoader, UiText } from "@/shared/ui";
+import { formatDateToFront } from "@/shared/lib/dateMethods";
 
 import styles from "./styles.module.less";
 
@@ -41,8 +42,13 @@ const ExpensesTotal = () => {
 	const getContent = () => {
 		return (
 			<div className={styles.content}>
-				<span className={styles.title}>Всего потрачено за период:</span>
-				<span className={styles.total}>{totalAmount} ₽</span>
+				<UiText size="l">
+					Баланс нас период c {formatDateToFront(startDate)} по{" "}
+					{formatDateToFront(endDate)}:
+				</UiText>
+				<UiText size="xl" color="red">
+					{totalAmount} ₽
+				</UiText>
 			</div>
 		);
 	};
